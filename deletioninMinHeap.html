@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Deletion in Min Heap</title>
+    <script src="dist/mutiFileReference.js"></script>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+            .arrowImg{
+                width: 50px;
+                height: 50px;
+            }
+            .boxno1{
+                 transform: translate(-75px,140px);
+             }
+            .minHeapInsertionNode1,.minHeapInsertionNode2,.minHeapInsertionNode3,.minHeapInsertionNode4,.minHeapInsertionNode5,.minHeapInsertionNode6,.minHeapInsertionNode7,.minHeapInsertionNode8,.minHeapInsertionNode9,.minHeapInsertionNode10,.minHeapInsertionNode11{
+                 position: absolute;
+                 transition: 2s ease;
+             }
+             .minHeapInsertionNode1{
+                 top: 30px;    
+                 left: 30%;    
+             }
+             .minHeapInsertionNode2{
+                top: 80px;
+                left: 15%;
+             }
+             .minHeapInsertionNode3{
+                top: 80px;
+                left: 45%;
+             }
+            .minHeapInsertionNode4{
+                top: 130px;
+                left: 5%;
+             }
+            .minHeapInsertionNode5{
+                top: 130px;
+                left: 25%;
+             }
+             .minHeapInsertionNode6{
+                top: 130px;
+                left: 35%;
+             }
+             .minHeapInsertionNode7{
+                top: 130px;
+                left: 55%;
+             }
+             .minHeapInsertionNode8{
+                top: 180px;
+                left: 0%;
+            }
+            .minHeapInsertionNode9{
+                top: 180px;
+                left: 10%;
+             }
+             .minHeapInsertionNode10{
+                top: 180px;
+                left: 20%;
+             }
+             .minHeapInsertionNode11{
+                top: 180px;
+                left: 30%;
+             }
+             .minHeapInsertionArrow1,.minHeapInsertionArrow2,.minHeapInsertionArrow3,.minHeapInsertionArrow4,.minHeapInsertionArrow5,.minHeapInsertionArrow6,.minHeapInsertionArrow7,.minHeapInsertionArrow8,.minHeapInsertionArrow9,.minHeapInsertionArrow10{
+                 position: absolute;
+                 transition: 2s ease;
+             }
+             .minHeapInsertionArrow1{
+                top: 50px;
+                left: 21%;
+             }
+            .minHeapInsertionArrow2{
+                top: 50px;
+                left: 38%;
+             }
+            .minHeapInsertionArrow3{
+                top: 100px;
+                left: 8%;
+            }
+            .minHeapInsertionArrow4{
+                top: 100px;
+                left: 21%;
+            }
+            .minHeapInsertionArrow5{
+                top: 100px;
+                left: 39%;
+            }
+
+            .minHeapInsertionArrow6{
+                top: 100px;
+                left: 51%;
+            }
+            .minHeapInsertionArrow7{
+                top: 155px;
+                left: 1%;
+            }
+            .minHeapInsertionArrow8{
+                top: 155px;
+                left: 8%;
+            }
+            .minHeapInsertionArrow9{
+                top: 155px;
+                left: 22%;
+            }
+            .minHeapInsertionArrow10{
+                top: 155px;
+                left: 28%;
+            }
+        </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5" style="height: 100vh;">
+                    <h1 class="text-primary pt-2">Deletion in Min Heap</h1>
+                           <p></p>
+                        <div class="steps">
+                            <ol>
+                                <li>
+                                    <strong>Identify the root:</strong>In a Min-Heap, the element to be deleted is typically the root (minimum element), as the heap maintains the smallest element at the root.
+                                </li>
+                                <li>
+                                    <strong>Replace the root:</strong>Replace the root element with the last element of the heap (the rightmost leaf).
+                                </li>
+                                <li> 
+                                    <strong>Remove the last element: </strong>After replacing the root, the min element is no longer needed, so remove it.
+                                </li>
+                                <li>
+                                    <strong>Heapify Down:</strong>After replacing the root, the heap might violate the Min-Heap property. So, perform a "heapify down" (also known as "sift down" or "bubble down") operation to restore the heap's structure:
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="minHeapDeleteButtons py-3">
+                                <div class="text-white d-none position-absolute top-5 p-3 rounded" style="background-color: rgb(224, 46, 19); color: white;" id="minHeapDeleteError">
+                                    Deletion is in process!
+                                </div>
+                            <button class="btn btn-primary" id="minHeapDeleteBtn">Delete</button>
+                            <button class="btn btn-primary" id="minHeapDeleteResetBtn">Reset</button>
+                        </div>
+                        <div>
+                            <div class="nodes d-flex gap-3" style="position: relative;">
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode1" id="minHeapInsertionNodeno1" style="width: 20px;height: 20px;">13</div> 
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow1' style="transform: rotate(320deg);" id="minHeapInsertionArrowno1"></i>
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode2" id="minHeapInsertionNodeno2" style="width: 20px;height: 20px;">14</div> 
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow2' style="transform: rotate(220deg);" id="minHeapInsertionArrowno2"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow3' style="transform: rotate(310deg);" id="minHeapInsertionArrowno3"></i> 
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow4' style="transform: rotate(230deg);" id="minHeapInsertionArrowno4"></i> 
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow5' style="transform: rotate(310deg);" id="minHeapInsertionArrowno5"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow6' style="transform: rotate(230deg);" id="minHeapInsertionArrowno6"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow7' style="transform: rotate(310deg);" id="minHeapInsertionArrowno7"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow8' style="transform: rotate(230deg);" id="minHeapInsertionArrowno8"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow9' style="transform: rotate(310deg);" id="minHeapInsertionArrowno9"></i>
+                                <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow10' style="transform: rotate(230deg);" id="minHeapInsertionArrowno10"></i>
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode3" id="minHeapInsertionNodeno3" style="width: 20px;height: 20px;">16</div> 
+                                <p class="text-danger d-none" id="minHeapDeletionErrorMsg">Min Heap Property disturbed</p>
+                                <br>
+                                <p class="text-danger d-none" id="2ndMsgShow">As 14 is less than 16 so replace 31 with 14</p>
+                                <p class="text-danger d-none" id="3rdMsgShow">As 19 is less than 21 so replace 31 with 19</p>
+                                <p class="text-danger d-none" id="4thMsgShow">As 26 is less than 65 so replace 31 with 26</p>
+                                <!-- <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow2' style="transform: rotate(300deg);" ></i> -->
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode4" id="minHeapInsertionNodeno4" style="width: 20px;height: 20px;">19</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode5" id="minHeapInsertionNodeno5" style="width: 20px;height: 20px;">21</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode6" id="minHeapInsertionNodeno6" style="width: 20px;height: 20px;">18</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode7" id="minHeapInsertionNodeno7" style="width: 20px;height: 20px;">68</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode8" id="minHeapInsertionNodeno8" style="width: 20px;height: 20px;">65</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode9" id="minHeapInsertionNodeno9" style="width: 20px;height: 20px;">26</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode10" id="minHeapInsertionNodeno10" style="width: 20px;height: 20px;">32</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center minHeapInsertionNode11" id="minHeapInsertionNodeno11" style="width: 20px;height: 20px;">31</div> 
+                            </div>
+                        </div>
+            </div>
+       </div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+    <script src="js/searchFunctionlity.js"></script>
+    <script src="dist/deletionInMinHeap.js"></script>
+    <script src="dist/index.js"></script>
+</body>
+</html>

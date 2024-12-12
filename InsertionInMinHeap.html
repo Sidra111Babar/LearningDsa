@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Insertion in Min Heap</title>
+    <script src="dist/mutiFileReference.js"></script>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+            .arrowImg{
+                width: 50px;
+                height: 50px;
+            }
+            .boxno1{
+                 transform: translate(-75px,140px);
+             }
+            .minHeapInsertionNode1,.minHeapInsertionNode2,.minHeapInsertionNode3,.minHeapInsertionNode4,.minHeapInsertionNode5,.minHeapInsertionNode6,.minHeapInsertionNode7,.minHeapInsertionNode8{
+                 position: absolute;
+                 transition: 2s ease;
+             }
+             .minHeapInsertionNode1{
+                 top: 30px;    
+                 left: 15%;    
+             }
+             .minHeapInsertionNode2{
+                top: 80px;
+                left: 5%;
+             }
+             .minHeapInsertionNode3{
+                top: 80px;
+                left: 25%;
+             }
+            .minHeapInsertionNode4{
+                top: 130px;
+                left: 0%;
+             }
+            .minHeapInsertionNode5{
+                top: 130px;
+                left: 10%;
+             }
+             .minHeapInsertionNode6{
+                top: 130px;
+                left: 20%;
+             }
+             .minHeapInsertionNode7{
+                top: 130px;
+                left: 30%;
+             }.minHeapInsertionArrow1,.minHeapInsertionArrow2,.minHeapInsertionArrow3,.minHeapInsertionArrow4,.minHeapInsertionArrow5,.minHeapInsertionArrow6,.minHeapInsertionArrow7{
+                 position: absolute;
+                 transition: 2s ease;
+             }
+             .minHeapInsertionArrow1{
+                top: 50px;
+                left: 10%;
+             }
+            .minHeapInsertionArrow2{
+                top: 50px;
+                left: 19%;
+             }
+            .minHeapInsertionArrow3{
+                top: 100px;
+                left: 2%;
+            }
+            .minHeapInsertionArrow4{
+                top: 100px;
+                left: 7%;
+            }
+            .minHeapInsertionArrow5{
+                top: 100px;
+                left: 22%;
+            }
+            .minHeapInsertionNode8{
+                top: 180px;
+                left: 0%;
+            }
+            .minHeapInsertionArrow6{
+                top: 100px;
+                left: 27%;
+            }
+            .minHeapInsertionArrow7{
+                top: 155px;
+                left: -1%;
+            }
+        </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="animationSideBar"></div>
+        <script>loadContent('animationsSideBar.html', 'animationSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5" style="height: 100vh;">
+                    <h1 class="text-primary pt-2">Insertion in Min Heap</h1>
+
+                        <div class="steps">
+                            <ol>
+                                <li>
+                                    <strong>Insert values one by one:</strong> Insert the new value at the end (as the last leaf) of the heap.
+                                </li>
+                                <li>
+                                    <strong>Check where the Min Heap property is violated:</strong> The Min Heap property states that the parent node should always be lesser than its children. After inserting, check if the newly inserted node violates this property (i.e., if the parent is larger than the inserted node).
+                                </li>
+                                <li>
+                                    <strong>If violated, swap with the parent:</strong> Keep swapping the newly inserted node with its parent until the Min Heap property is satisfied. This is called "heapifying up" or "sifting up." Repeat this until the newly inserted node is either at the root or no longer violates the Min Heap property.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="minHeapInsertionButtons py-3">
+                            <button class="btn btn-primary" id="minHeapInsertionInsertBtn">Insert</button>
+                            <button class="btn btn-primary" id="minHeapInsertionResetBtn">Reset</button>
+                        </div>
+                        <div>
+                            <div class="nodes d-flex gap-3" style="position: relative;">
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno1" style="width: 20px;height: 20px;">10</div> 
+                                <i class='bx bx-arrow-back fs-2 d-none' style="transform: rotate(320deg);" id="minHeapInsertionArrowno1"></i>
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno2" style="width: 20px;height: 20px;">40</div> 
+                                <i class='bx bx-arrow-back fs-2 d-none' style="transform: rotate(230deg);" id="minHeapInsertionArrowno2"></i>
+                                <i class='bx bx-arrow-back fs-2 d-none' style="transform: rotate(310deg);" id="minHeapInsertionArrowno3"></i> 
+                                <i class='bx bx-arrow-back fs-2 d-none' style="transform: rotate(230deg);" id="minHeapInsertionArrowno4"></i> 
+                                <i class='bx bx-arrow-back fs-2 d-none' style="transform: rotate(310deg);" id="minHeapInsertionArrowno5"></i> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno3" style="width: 20px;height: 20px;">50</div> 
+                                <p class="text-danger d-none propertyDisturbMsg">Min Heap Property disturbed</p>
+                                <!-- <i class='bx bx-arrow-back fs-2 minHeapInsertionArrow2' style="transform: rotate(300deg);" ></i> -->
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno4" style="width: 20px;height: 20px;">5</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno5" style="width: 20px;height: 20px;">30</div> 
+                                <div class="rounded bg-primary text-white d-flex justify-content-center align-items-center" id="minHeapInsertionNodeno6" style="width: 20px;height: 20px;">2</div> 
+                            </div>
+                        </div>
+            </div>
+       </div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+    <script src="dist/InsertionInMinHeap.js"></script>
+    <script src="dist/index.js"></script>
+</body>
+</html>

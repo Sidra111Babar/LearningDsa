@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Queue</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+      <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Queue</h1>
+                    <p>A queue in C++ is a data structure that operates on a First-In-First-Out (FIFO) principle, meaning that elements are added to the back (enqueue) and removed from the front (dequeue).</p>
+                    <h2 class="fw-bold text-primary">Concepts</h2>
+                    <ol>
+                        <li><span class="fw-bold">Enqueue (push) </span>Adds an element to the back of the queue</li>
+                        <li><span class="fw-bold">Dequeue (pop) </span>Removes the element from the front of the queue</li>
+                        <li><span class="fw-bold">Front </span>Accesses the front element</li>
+                        <li><span class="fw-bold">Back </span>Accesses the back element</li>
+                        <li><span class="fw-bold">Size </span> Returns the number of elements in the queue</li>
+                        <li><span class="fw-bold">Empty </span>Checks if the queue is empty</li>
+                    </ol>
+                        <h2 class="text-primary">When to Use Queue</h2>
+
+                                  <li><span class="fw-bold">FIFO (First-In-First-Out) Processing</span>
+                                    <ul>
+                                        <li><span class="fw-bold">Task Scheduling</span> If you need to process tasks or jobs in the order they arrive, like in job queues, CPU scheduling, or print queues.</li>
+                                        <li><span class="fw-bold">Breadth-First Search (BFS)</span> In graph traversal, a queue is used to explore nodes level by level.</li>
+                                        <li><span class="fw-bold">Resource Management</span> When multiple processes request resources (like memory or CPU), a queue can handle them in the order they were requested</li>
+                                    </ul>
+                                 </li>
+                                  <li><span class="fw-bold">Data Streaming or Real-Time Processing</span>
+                                    <ul>
+                                        <li><span class="fw-bold">Event-Driven Systems</span> Queues can be used to manage event handling, where incoming events are processed in the order they occur (e.g., in a server handling requests)</li>
+                                        <li><span class="fw-bold">Buffering</span> In systems where data needs to be processed at different rates, like network packet handling or audio processing, queues can help by buffering the data.
+                                        </li>
+                                    </ul>
+                                  </li>
+                                  <li><span class="fw-bold">Waiting Systems</span>
+                                    <ul>
+                                        <li><span class="fw-bold">Customer Support </span>When managing requests like in customer support or service desks, queues help ensure fairness by processing requests in the order they were made</li>
+                                        <li><span class="fw-bold">Producer-Consumer Problems </span>Queues help decouple producers (data creators) from consumers (data processors) when both work at different rate</li>
+                                    </ul>
+                                </li>
+
+                            <h2 class="text-primary">When Not to Use Queue</h2>
+                               <ol>
+                                   <li><span class="fw-bold">LIFO (Last-In-First-Out) Required </span>When the most recent element needs to be processed first (i.e., stack behavior). For instance, recursive function calls use stacks, not queues</li>
+                                   <li><span class="fw-bold">Random Access Needed </span>If you need to access elements by an index or perform frequent searches or lookups, a queue is inefficient since it only allows access to the front and back elements. In such cases, use a container that supports random access, like arrays or vectors</li>
+                                   <li><span class="fw-bold">Priority-Based Processing </span>If you need to process elements based on priority rather than order of insertion, a priority queue (or a different data structure like a heap) is a better fit.</li>
+                               </ol>
+                            <h2>Queue Using STL</h2>
+                            <ul>
+                                <span class="fw-bold">Operations</span>
+                                <li>Enqueue</li>
+                                <li>Dequeue</li>
+                                <li>Front</li>
+                                <li>Back</li>
+                                <li>isEmpty</li>
+                            </ul>
+                            <div class="code-container mt-2">
+                                <div>
+                                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                    </div>
+                                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                    </div>
+                                    <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon33"></i>
+                                    <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon33"></i>
+                                </div>
+                               <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode33">
+#include &lt;iostream&gt;
+#include &lt;deque&gt;
+    using namespace std;
+    class Queue {
+    private:
+        deque&lt;int&gt; arr;
+    public:
+        void enqueue(int val) {
+            arr.push_back(val); // Enqueue at the back of the deque
+        }
+        void dequeue() {
+            if (!arr.empty()) {
+                arr.pop_front(); // Remove from the front of the deque
+            } else {
+                cout << "Queue is empty, cannot dequeue.\n";
+            }
+        }
+    
+        bool isEmpty() {
+            return arr.empty(); // Check if the deque is empty
+        }
+        int top() {
+            if (!arr.empty()) {
+                return arr.front(); // Access the front element
+            } else {
+                cout << "Queue is empty.\n";
+                return -1; // Indicate an error condition
+            }
+        }
+        int last() {
+            if (!arr.empty()) {
+                return arr.back(); // Access the back element
+            } else {
+                cout << "Queue is empty.\n";
+                return -1; // Indicate an error condition
+            }
+        }
+    };
+    int main() {
+        Queue q;
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        cout << "Top element: " << q.top() << endl; // Should print 10
+        cout << "Last element: " << q.last() << endl; // Should print 30
+        q.dequeue();
+        cout << "After dequeue, top element: " << q.top() << endl; // Should print 20
+        q.dequeue();
+        q.dequeue();
+        q.dequeue(); // Attempt to dequeue an empty queue
+        cout << "Is queue empty? " << (q.isEmpty() ? "Yes" : "No") << endl; // Should print Yes (Usage of ternary operator in place of if else)
+        return 0;
+    }
+    
+                               </code></pre>
+                           </div> 
+                           <div>
+                            <div class="mt-2">
+                                <h2>Queue Using Array(Wrap Around)</h2>
+                                 <p>A Queue using Array (Wrap Around), also known as a Circular Queue, is a linear data structure that follows the First-In-First-Out (FIFO) principle, but with a circular implementation. In this type of queue, the last position is connected back to the first position, making a circular arrangement. This structure is especially useful for optimizing space when the queue reaches its maximum capacity.</p>
+                                 <h3>Concepts</h3>
+                                 <ol>
+                                     <li><strong>Fixed Size:</strong>
+                                        <ul>
+                                            <li>A circular queue is implemented using a fixed-size array.</li>
+                                            <li>When the array is full, new elements are added in a circular manner, reusing previously vacated positions.</li>
+                                        </ul>
+                                     </li>
+                                     <li><strong>Front and Rear Pointers:</strong>
+                                        <ul>
+                                            <li>Front points to the first element of the queue.</li>
+                                            <li>Rear points to the last element.</li>
+                                            <li>When an element is added, the Rear pointer moves to the next position.</li>
+                                            <li>When an element is removed, the Front pointer moves to the next position.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Wrap Around:</strong>
+                                        <ul>
+                                            <li>The concept of wrap around means that when the rear pointer reaches the end of the array, it wraps back to the beginning, using unused space if available.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Empty and Full Conditions:</strong>
+                                        <ul>
+                                            <li>Empty Queue: When both Front and Rear pointers are equal or set to a special value (often -1).</li>
+                                            <li>Full Queue: When the rear pointer wraps around and points to the position just before the front pointer, i.e., (Rear + 1) % Capacity == Front.</li>
+                                        </ul>
+                                    </li>
+                                     
+                                 </ol>
+                                  <h3>Operations</h3>
+                                  <ol>
+                                      <li><strong>Enqueue (Insert Element):</strong>
+                                        <ul>
+                                            <li>Adds an element to the queue at the Rear.</li>
+                                            <li>If the queue is full, no more elements can be added.</li>
+                                            <li>If the rear reaches the end of the array, it wraps around to the beginning of the array.</li>
+                                        </ul>
+                                      </li>
+                                      <li><strong>Dequeue (Remove Element):</strong>
+                                        <ul>
+                                            <li>Removes the element from the Front of the queue.</li>
+                                            <li>After removing, the front pointer is moved to the next position.</li>
+                                            <li>If the front reaches the end of the array, it wraps around to the beginning of the array.</li>
+                                        </ul>
+                                      </li>
+                                      <li><strong>Peek:</strong>
+                                        <ul>
+                                            <li>Returns the element at the front of the queue without removing it.</li>
+                                        </ul>
+                                      </li>
+                                      <li><strong>IsFull:</strong>
+                                        <ul>
+                                            <li>Checks if the queue is full by comparing the positions of Front and Rear.</li>
+                                        </ul>
+                                      </li>
+                                      <li><strong>IsEmpty:</strong>
+                                        <ul>
+                                            <li>Checks if the queue is empty by checking if both Front and Rear are equal.</li>
+                                        </ul>
+                                      </li>
+                                  </ol>
+                                  <h3>Example</h3>
+                                  <p>Imagine a queue implemented with an array of size 5:</p>
+                                  <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Index</th>
+                                        <th scope="col">0</th>
+                                        <th scope="col">1</th>
+                                        <th scope="col">2</th>
+                                        <th scope="col">3</th>
+                                        <th scope="col">4</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Queue</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                   <ul><strong>Enqueue Operation: </strong> When you enqueue elements, Rear moves to the right, and the element is placed in the next available space. For example
+                                        <li>Enqueue 10 → Rear = 0.</li>
+                                        <li>Enqueue 20 → Rear = 1.</li>
+                                        <li>Enqueue 30 → Rear = 2.</li>
+                                   </ul>
+                                   <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Index</th>
+                                        <th scope="col">0</th>
+                                        <th scope="col">1</th>
+                                        <th scope="col">2</th>
+                                        <th scope="col">3</th>
+                                        <th scope="col">4</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Queue</th>
+                                        <td>10</td>
+                                        <td>20</td>
+                                        <td>30</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                    <ul><strong>Dequeue Operation: </strong>When you dequeue elements, Front moves to the right. The space previously occupied can be reused after wrap-around.
+                                        <li>Dequeue → Front = 0 (10 is removed).</li>
+                                        <li>Dequeue → Front = 1 (20 is removed).</li>
+                                    </ul>
+                                    <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Index</th>
+                                            <th scope="col">0</th>
+                                            <th scope="col">1</th>
+                                            <th scope="col">2</th>
+                                            <th scope="col">3</th>
+                                            <th scope="col">4</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">Queue</th>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>30</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    <ul><strong>Wrap Around:</strong>
+                                        <li>Enqueue 40 → Rear = 3.</li>
+                                        <li>Enqueue 50 → Rear = 4.</li>
+                                        <li>Enqueue 60 → Rear wraps around to 0 (reuses the empty space).</li>
+                                    </ul>
+                                    <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Index</th>
+                                            <th scope="col">0</th>
+                                            <th scope="col">1</th>
+                                            <th scope="col">2</th>
+                                            <th scope="col">3</th>
+                                            <th scope="col">4</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">Queue</th>
+                                            <td>60</td>
+                                            <td>-</td>
+                                            <td>30</td>
+                                            <td>40</td>
+                                            <td>50</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    <h3>Advantages</h3>
+                                    <ul>
+                                        <li>Efficient Memory Usage</li>
+                                        <li>Avoiding Wastage of Space</li>
+                                        <li>Improved Performance in Specific Scenarios</li>
+                                    </ul>
+                                 <div class="code-container mt-2">
+                                    <div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                        </div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                        </div>
+                                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon32"></i>
+                                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon32"></i>
+                                    </div>
+                                <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode32">
+#include &lt;iostream&gt;
+using namespace std;
+
+class WraparoundQueue {
+private:
+    int capacity;   
+    int* queue;     
+    int front;      
+    int rear;       
+
+public:
+   
+    WraparoundQueue(int capacity) : capacity(capacity), front(-1), rear(-1) {
+        queue = new int[capacity];  
+    }
+    ~WraparoundQueue() {
+        delete[] queue;
+    }
+
+    // Check if the queue is empty
+    bool isEmpty() {
+        return front == -1 && rear == -1;
+    }
+
+    // Check if the queue is full
+    bool isFull() {
+        return (rear + 1) % capacity == front;
+    }
+
+    // Function to add an item to the queue
+    void enqueue(int item) {
+        if (isFull()) {
+            cout << "Queue is full" << endl;
+            return;
+        }
+        // If the queue is initially empty
+        if (isEmpty()) {
+            front = 0;
+            rear = 0;
+        } else {
+            // Move rear forward in a circular manner
+            rear = (rear + 1) % capacity;
+        }
+        queue[rear] = item;  // Insert the item
+    }
+
+    // Function to remove an item from the front of the queue
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        int item = queue[front];
+        // If the queue only had one element, reset front and rear
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            // Move front forward in a circular manner
+            front = (front + 1) % capacity;
+        }
+        return item;
+    }
+
+    // Peek the front element of the queue without removing it
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        return queue[front];
+    }
+
+    // Function to display the queue elements
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+
+        cout << "Queue elements: ";
+        // Case when front <= rear (normal situation, no wrap-around)
+        if (front <= rear) {
+            for (int i = front; i <= rear; i++) {
+                cout << queue[i] << " ";
+            }
+        }
+        // Case when rear has wrapped around (rear < front)
+        else {
+            for (int i = front; i < capacity; i++) {
+                cout << queue[i] << " ";  // Print from front to end of array
+            }
+            for (int i = 0; i <= rear; i++) {
+                cout << queue[i] << " ";  // Print from start to rear
+            }
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    WraparoundQueue q(5); // Create a queue of size 5
+    
+    // Enqueue elements
+    q.enqueue(1);    
+    q.enqueue(2);    
+    q.enqueue(3);   
+    q.enqueue(4);    
+    q.enqueue(5);
+    q.enqueue(6);   // full
+    
+
+    q.display(); 
+    q.dequeue();     // front = 1
+    
+    // Enqueue another element: 5 (wrap-around happens here)
+    q.enqueue(5);    // rear wraps to 0
+    q.display();
+    
+    // Further operations to demonstrate wrap-around
+    q.dequeue();    
+    q.enqueue(6);   
+    q.display();
+    
+    return 0;
+}
+
+        
+                                </code></pre>
+                                </div>
+                                 <h3 class="mt-2">Queue Using Linked List</h3>
+                                 <p>A queue using a linked list is a dynamic data structure where elements are stored in a linear order but are dynamically allocated as needed. Unlike an array-based implementation, a linked list-based queue doesn't have a fixed size, so it can grow or shrink as elements are added or removed. This makes it more flexible and memory-efficient, especially when the size of the queue is unpredictable.</p>
+                                 <div class="code-container mt-2">
+                                    <div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                        </div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                        </div>
+                                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon34"></i>
+                                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon34"></i>
+                                    </div>
+                                <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode34">
+#include &lt;iostream&gt;
+using namespace std;
+class Queue
+{
+private:
+    class Node
+    {
+    public:
+        int data;
+        Node* next;
+        Node(int data)
+        {
+            this->data = data;
+            next = NULL;
+        }
+    };
+    Node * front;  // head node
+    Node * rear; // tail node
+public:
+    Queue()
+    {
+        rear == NULL;
+        front == NULL;
+    }
+    
+    bool IsEmpty()
+    {
+        return front == NULL;
+    }
+    //insert at tail  in Linked List
+    void Enqueue(int data)
+    {
+        if (IsEmpty())
+        {
+            rear = new Node (data);
+            front = rear;
+            return;
+        }
+        Node *temp = front;
+        while(temp != NULL){
+        	temp = temp->next;
+		}
+		Node *newnode = new Node(data);
+		rear->next = newnode;
+		rear = newnode;
+		rear->next = NULL;
+    }
+    // Delete At head in Linked List
+    void Dequeue()
+    {
+        if (IsEmpty())
+        {
+        	cout << "Queue is Empty\n";
+            return;
+        }
+        if(front->next == NULL){
+        	delete front;
+        	front = NULL;
+		}
+       Node *temp = front;
+       front = front->next;
+       delete temp;
+       temp = NULL;
+   }
+       
+    void Display()
+    {
+    	 if (IsEmpty())
+        {
+        	cout << "Queue is Empty\n";
+            return;
+        }
+        Node * temp = front;
+        while(temp != NULL)
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+    }
+};
+
+int main(){
+    Queue q;
+    q.Display();
+    q.Dequeue();
+	q.Enqueue(2);
+	q.Enqueue(3);
+	q.Enqueue(4);
+	q.Display();
+	cout << endl;
+	cout << "Dequeue Two Times\n";
+	q.Dequeue();
+	q.Dequeue();
+
+	q.Display();
+	
+	return 0;
+}
+
+        
+                                </code></pre>
+                                </div>
+                                 <h3 class="mt-3">Queue Using Stack</h3>
+                                 <p>A queue using stacks is a data structure that simulates the behavior of a queue (FIFO - First In, First Out) but is implemented using one or more stacks. A stack operates on a LIFO (Last In, First Out) principle, meaning the last element added is the first one to be removed. By cleverly using one or two stacks, we can create a structure that behaves like a queue.</p>
+                                 <div class="code-container mt-2">
+                                    <div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                        </div>
+                                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                        </div>
+                                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon35"></i>
+                                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon35"></i>
+                                    </div>
+                                <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode35">
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+class Queue {
+	private:
+    stack&lt;int&gt; s1, s2;
+    public:
+    void enQueue(int x)
+    {
+        // Move all elements from s1 to s2
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+ 
+        // Push item into s1
+        s1.push(x);
+ 
+        // Push everything back to s1
+        while (!s2.empty()) {
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+ 
+    
+    int deQueue()
+    {
+        // if first stack is empty
+        if (s1.empty()) {
+            return -1;
+        }
+ 
+        // Return top of s1
+        int x = s1.top();
+        s1.pop();
+        return x;
+    }
+   int top() {
+        if (s1.empty()) {
+            return -1; 
+        }
+        return s1.top();
+    }
+};
+ 
+int main()
+{
+    Queue q;
+    q.enQueue(1);
+    q.enQueue(2);
+    q.enQueue(3);
+    cout << q.deQueue() << '\n';   // 1 will dequeue
+    cout << q.deQueue() << '\n';   // 2 will dequeue
+    cout << q.deQueue() << '\n';   // 3 will dequeue
+    
+    
+ 
+    return 0;
+}
+        
+                                </code></pre>
+                                </div>
+                            </div>
+                           </div>
+                </div>
+            </div>
+        </div>
+        <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

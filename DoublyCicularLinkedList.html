@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Doubly Circular Linked List</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+      <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Doubly Circular Linked List</h1>
+                    <ul>A doubly circular linked list is a hybrid of two types of linked lists:
+                        <li><span class="fw-bold"> Doubly Linked List</span> Each node has two pointers, one to the next node and one to the previous node.</li>
+                        <li><span class="fw-bold"> Circular Linked List</span> The last node’s next pointer points to the first node, and the first node's previous pointer points to the last node, forming a continuous loop in both directions.</li>
+                        In this structure, you can traverse the list in both directions (forward and backward), and no node is designated as the "end" since the list is circular.
+                    </ul>
+                    <p>Each node contains three components:</p>
+                    <p class="fw-bold">1. Data: The value stored in the node.</p>
+                    <p class="fw-bold">3. next:  Points to the next node in the list. The next pointer of the last node points to the first node instead of nullptr.</p>
+                    <p class="fw-bold">3. prev:  Points to the previous node in the list. The prev pointer of the first node points to the last node instead of nullptr.</p>
+                    <div class="code-container">
+                         <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                             <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon16"></i>
+                             <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon16"></i>
+                         </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode16">
+    class DoublyCircularLL{
+        private:
+            class Node{
+            public:
+                int data;
+                Node *next;
+                Node *prev;
+                Node(int data){
+                    this->data = data;
+                    next = NULL;
+                    prev = NULL;
+                }
+            };
+        
+            Node *head;
+            Node *tail;
+        
+        public:
+            DoublyCircularLL(){
+                    head = NULL;
+                    tail = NULL;
+            }
+    }
+                        </code></pre>
+                    </div>
+                    <div>
+                        <h2 class="text-primary pt-3">Use Case of Doubly Circular Linked List</h2>
+                        <ul><span class="fw-bold">Bidirectional Circular Navigation</span>
+                            <li>When you need to continuously cycle through a list in both directions, a doubly circular linked list is effective. For example, in multiplayer games where players take turns in a circle, the direction of turns can change dynamically.</li>
+                            <li>Also useful in media players with features like "repeat" and "previous track," allowing seamless navigation in both directions in circular form</li>
+                            <li>Circular Buffers: Systems that require both forward and backward cycling of data (such as <span class="fw-bold">network buffers or file systems</span>) benefit from the doubly circular structure for efficient navigation.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-primary">When Not to Use Doubly CircularLinked List</h2>
+                        <ol>
+                            <li><span class="fw-bold">Memory Overhead </span>Each node in a doubly circular linked list contains two pointers (next and prev), leading to increased memory usage. In applications where memory is a constraint (e.g., embedded systems), a singly circular linked list may be more appropriate because it has only one pointer per node.</li>
+                            <li><span class="fw-bold">Simple Traversal </span>If you only need to traverse in one direction (forward) and do not need circular or bidirectional navigation, a singly linked list or singly circular linked list is more efficient. They are simpler, and you avoid the complexity of managing two pointers per node.</li>
+                            <li><span class="fw-bold">No Circular Navigation Needed </span>If your use case doesn’t require looping back to the beginning or end, a doubly linked list (non-circular) is sufficient. For example, in linear data structures like lists, queues, or stacks, circular behavior is not necessary, and a non-circular list is easier to implement and manage.</li>
+                            <li><span class="fw-bold">Less Complex Operations </span>In scenarios where you mostly perform operations at the head or tail of the list (like in a stack or a simple queue), a singly linked list is often sufficient and easier to implement, without the overhead of managing two pointers (prev and next) for each node.</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h2 class="text-primary">Operations in Doubly Circular Linked List(ADT)</h2>
+                        <ul>
+                              <li>Insert at Front</li>
+                              <li>Insert at End</li>
+                              <li>Insert at Middle</li>
+                              <li>Delete at Front</li>
+                              <li>Delete at End</li>
+                              <li>Delete at Middle</li>
+                              <li>Count Nodes</li>
+                              <li>IsEmpty</li>
+                              <li>Display </li>
+                        </ul>
+                        <h2 class="my-3">Doubly Circular Linked List(ADT) with Tail Pointer and Recursive Approach</h2>
+                        <div class="code-container">
+                            <div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                </div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon17"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon17"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode17">
+#include &lt;iostream&gt;
+using namespace std;
+class DoublyCircularLL{
+private:
+    class Node{
+    public:
+        int data;
+        Node *next;
+        Node *prev;
+        Node(int data){
+            this->data = data;
+            next = NULL;
+            prev = NULL;
+        }
+    };
+
+    Node *head;
+    Node *tail;
+
+public:
+    DoublyCircularLL(){
+         head = NULL;
+         tail = NULL;
+    }
+    void insertAtTail(int value);
+    void insertAtHead(int value);
+    void deleteATHead();
+    void deleteATTail();
+    bool isEmpty();
+    void DisplayDCLL(Node *node);
+    void Display_Wrapper();
+    int count();
+    void reverse_display_Wrapper();
+    void reverse_DCLL(Node *current);
+    void median_element(Node *start,Node *end);
+    void median_Wrapper();
+    void removeDuplicates();
+    //code same as single Linked List(one difference is the usage of prev pointer)  AX_SingleLinkedList_RecursiveOperations.cpp
+    //2nd method is double Linked List method AZ_DoubleLL_RecursiveOperations.cpp
+    
+    void insertAT_SpecificLoc(Node *current,int loc,int value,int currentCount = 1)
+    {
+    	if(loc <= 0){
+		insertAtHead(value);
+		return;
+	}
+	if(loc > count()){
+			insertAtTail(value);
+			return;
+	}
+    if (currentCount == loc) { 
+        Node *newnode = new Node(value);
+        newnode->next = current->next;
+        newnode->prev = current;
+        current->next->prev = newnode; 
+        current->next = newnode; 
+        return;
+    }
+		insertAT_SpecificLoc(current->next,loc,value,currentCount + 1);
+	
+	}
+	void insertAT_SpecificLoc_Wrapper(int loc,int value){
+		insertAT_SpecificLoc(head,loc,value);
+	}
+    void deleteAt_SpecificLoc(Node* current,int loc,int currentCount = 1){
+    	if(isEmpty()){
+    		cout << "Doubly Circular Linked list is empty\n";
+    		return;
+		}
+    	if(loc <= 0){
+		deleteATHead();
+		return;
+	}
+    	if(loc > count()){
+		deleteATTail();
+		return;
+	}
+	 if (loc == currentCount) {
+        Node *temp = current->next;
+        current->next = temp->next;
+        temp->next->prev = current;
+        delete temp;
+        return;
+    }
+	deleteAt_SpecificLoc(current->next,loc,currentCount + 1);
+	     
+	}
+	void delete_atSpecific_loc_Wrapper(int loc){
+		deleteAt_SpecificLoc(head,loc);
+	}
+    
+};
+void DoublyCircularLL::removeDuplicates() {
+    if (head == nullptr) {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    Node *current = head;
+    do {
+        Node *temp = current->next;
+        while (temp != head) {
+            if (temp->data == current->data) {
+                Node *duplicate = temp;
+                temp = temp->next;
+                duplicate->prev->next = duplicate->next;
+                duplicate->next->prev = duplicate->prev;
+                delete duplicate;
+            } else {
+                temp = temp->next;
+            }
+        }
+        current = current->next;
+    } while (current != head);
+}
+
+void DoublyCircularLL::median_element(Node *start,Node* end){
+	
+ 	if (start == end || start->next == end) {
+        cout << "Middle element is: " << start->data << endl;
+    } else {
+        DoublyCircularLL::median_element(start->next, end->prev);
+    }
+
+}
+void DoublyCircularLL::median_Wrapper(){
+	if(DoublyCircularLL::isEmpty()){
+		cout << "Doubly Circular Linked List is empty\n";
+		return;
+	}
+    	DoublyCircularLL::median_element(head,tail);
+}
+void DoublyCircularLL::reverse_DCLL(Node *current){
+	cout << current->data << " ";
+	if(current == head){
+		return;
+	}
+	DoublyCircularLL::reverse_DCLL(current->prev);
+}
+void DoublyCircularLL::reverse_display_Wrapper(){
+	DoublyCircularLL::reverse_DCLL(tail);
+	cout << endl;
+}
+int DoublyCircularLL::count(){
+	if (isEmpty()) {
+        return 0;
+    }
+
+    Node* temp = head;
+    int count = 1;
+    while (temp != tail){
+    	temp = temp->next;
+    	count++;
+	}
+
+    return count;
+}
+
+void DoublyCircularLL::deleteATTail(){
+	 if (isEmpty()) {
+        cout << "Doubly Circular Linked List is Empty\n";
+        return;
+    }
+   // Case 1: Only one node
+       if (head->next == head) {
+            delete head;
+            head = nullptr;
+            return;
+      }
+	Node *temp= tail;
+	tail = tail->prev;
+	delete temp;
+	head->prev = tail;
+	tail->next = head;
+}
+void DoublyCircularLL::deleteATHead() {
+    if (isEmpty()) {
+        cout << "Doubly Circular Linked List is Empty\n";
+        return;
+    }
+   // Case 1: Only one node
+       if (head->next == head) {
+            delete head;
+            head = nullptr;
+        } else {
+            // More than one node
+            Node* temp = head;
+            
+            head = head->next;
+            
+            delete temp;
+            head->prev = tail;
+            tail->next = head;
+        }
+}
+
+bool DoublyCircularLL::isEmpty(){
+	return (head == NULL);
+}
+void DoublyCircularLL::insertAtTail(int value){
+	if (DoublyCircularLL::isEmpty()) {
+        Node *newnode = new Node(value);
+        head = newnode;
+        head->next = head;
+        head->prev = head;
+        tail = head;
+        return;
+    }
+    Node *newnode = new Node(value);
+    newnode->prev = tail;
+    tail->next = newnode;
+    newnode->next = head;
+    head->prev = newnode;
+    tail = newnode;
+}
+void DoublyCircularLL::insertAtHead(int value) {
+    if (DoublyCircularLL::isEmpty()) {
+        Node *newnode = new Node(value);
+        head = newnode;
+        head->next = head;
+        head->prev = head;
+        tail = head;
+    } else {
+    	Node *newnode = new Node(value);
+        Node* lastNode = head->prev;         
+            newnode->next = head;            
+            newnode->prev = lastNode;        
+            lastNode->next = newnode;         
+            head->prev = newnode;             
+            head = newnode;
+    }
+}
+
+void DoublyCircularLL::DisplayDCLL(Node *node) {
+    if (isEmpty()) {
+        cout << "Empty Doubly Circular Linked List\n";
+        return;
+    }
+    cout << node->data << " ";
+    if (node->next != head) {
+        DisplayDCLL(node->next);
+    }
+    
+}
+
+void DoublyCircularLL::Display_Wrapper() {
+    DisplayDCLL(head);
+    cout << endl;
+}
+
+
+int main(){
+	
+   DoublyCircularLL dcll;
+   dcll.Display_Wrapper();
+   dcll.insertAtHead(1);
+   dcll.insertAtTail(5);
+    dcll.insertAtTail(4);
+     dcll.insertAtTail(3);
+     dcll.insertAtHead(2);
+     dcll.insertAtHead(6);
+   
+   dcll.Display_Wrapper();
+   dcll.deleteATHead();
+   dcll.Display_Wrapper();
+   dcll.median_Wrapper();  
+   dcll.deleteATTail();
+   dcll.Display_Wrapper();
+   cout << dcll.count() << endl;
+   cout << "Insert if loc < = 0\n";
+   dcll.insertAT_SpecificLoc_Wrapper(0,7);
+   dcll.Display_Wrapper();
+   cout << "Insert if loc > count\n";
+   dcll.insertAT_SpecificLoc_Wrapper(7,8);
+   dcll.Display_Wrapper();
+   cout << "Insert at third index\n";
+   dcll.insertAT_SpecificLoc_Wrapper(3,9);
+   dcll.Display_Wrapper();
+   cout << "Delete at 3rd index\n";
+   dcll.delete_atSpecific_loc_Wrapper(3);
+   dcll.Display_Wrapper();
+   cout << "Reverse Display\n";
+   dcll.reverse_display_Wrapper();
+   dcll.median_Wrapper();
+   cout << "Insert at head\n";
+   dcll.insertAtHead(5);
+   dcll.Display_Wrapper();
+   dcll.removeDuplicates();
+   dcll.Display_Wrapper();
+   
+    return 0;
+}
+                           </code></pre>
+                       </div>
+                </div>
+            </div>
+        </div>
+        <script>loadContent('footer.html', 'footer');</script>
+        <div id="footer"></div>
+        <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

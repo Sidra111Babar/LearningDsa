@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Circular Linked list</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+      <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Circular Linked List</h1>
+                    <p>A Circular Linked List is a variation of the linked list where the last node points back to the first node, forming a circular loop. Unlike a regular singly linked list where the last node points to nullptr, the circular linked list forms a continuous circle of nodes. It can be either singly or doubly linked, but the most common type is a singly circular linked list.</p>
+                    <p>Each node contains two components:</p>
+                    <p class="fw-bold">1. Data: The value stored in the node.</p>
+                    <p class="fw-bold">3. next:  Points to the next node in the list. The next pointer of the last node points to the first node instead of nullptr.</p>
+                    <ul><span class="fw-bold">Circular Linked List vs Singly Linked List</span>
+                        <li>In a circular linked list, you can traverse the entire list starting from any node.</li>
+                        <li>There is no nullptr or NULL termination in a circular linked list, which means you have to be careful when traversing the list to avoid infinite loops.</li>
+                    </ul>
+                    <div class="code-container">
+                         <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                             <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon11"></i>
+                             <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon11"></i>
+                         </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode11">
+    struct Node {
+        int data;
+        Node* next;
+        
+        Node(int value) : data(value), next(nullptr) {}
+    };
+    
+    // Define the circular linked list class
+    class CircularLinkedList {
+    private:
+        Node* head;
+        
+    public:
+        CircularLinkedList() : head(nullptr) {}
+    }
+                        </code></pre>
+                    </div>
+                    <div>
+                        <div class="pt-3">
+                              <h2 class="text-primary">Features of Circular Linked List</h2>
+                              <ul>
+                                <li><span class="fw-bold">Circular Nature</span> The next pointer of the last node points back to the first node.</li>
+                                <li><span class="fw-bold">Traversal</span> The list can be traversed starting from any node. 
+                                    <p><span class="text-danger">Note: </span>But You should give the refrence of that node</p>
+                                    <p>This same thing could also be done in other linked lists so it is not only a feature of circular linked list.</p>
+                                </li>
+                                 
+                                <li><span class="fw-bold">No NULL termination</span> The traversal does not end with nullptr.</li>
+                              </ul>
+                              <h2>Traversal from any node</h2>
+                              <div class="code-container">
+                                <div>
+                                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                    </div>
+                                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                    </div>
+                                    <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon15"></i>
+                                    <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon15"></i>
+                                </div>
+                               <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode15">
+ #include &lt;iostream&gt;
+ using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert a node at the end of the list
+Node* insert(Node* head, int value) {
+    Node* newNode = new Node();
+    newNode->data = value;
+    newNode->next = nullptr;
+
+    if (!head) {  // If the list is empty
+        head = newNode;
+        newNode->next = head;  // Point the next to itself
+        return head;
+    }
+
+    Node* temp = head;
+    while (temp->next != head) {  // Find the last node
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->next = head;  // New node points to head
+    return head;
+}
+
+// Function to traverse the circular linked list starting from any node
+void traverseFromNode(Node* start) {
+    if (!start) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    Node* temp = start;
+    do {
+        cout << temp->data << " ";
+        temp = temp->next;
+    } while (temp != start);  // Loop until we come back to the starting node
+    cout << endl;
+}
+
+int main() {
+    Node* head = nullptr;
+
+    // Insert some nodes
+    head = insert(head, 10);
+    head = insert(head, 20);
+    head = insert(head, 30);
+    head = insert(head, 40);
+
+    // Assume we want to traverse from the second node (data = 20)
+    Node* startNode = head->next;  // Pointing to the second node
+
+    cout << "Traversal starting from node with data = 20: ";
+    traverseFromNode(startNode);
+
+    return 0;
+}
+
+                               </code></pre>
+                           </div>
+
+                               <h2 class="text-primary">Use Cases</h2>
+                               <ul>
+                                   <li><span class="fw-bold">Round Robin Scheduling</span> Circular linked lists are useful in implementing round-robin scheduling algorithms in operating systems, where each process is assigned a fixed time slice.</li>
+                                   <li><span class="fw-bold">Music Playlist</span> In music players, the last song often loops back to the first song when the playlist finishes.</li>
+                                   <li><span class="fw-bold">Hot Potato Game</span> In circular games where each player passes something to the next, like in the game of Hot Potato, a circular linked list can represent the players.</li>
+                               </ul>
+                        </div>
+                        <h2 class="text-primary">Operations in Circular Linked List(ADT)</h2>
+                        <ul>
+                              <li>Insert at Front</li>
+                              <li>Insert at End</li>
+                              <li>Insert at Middle</li>
+                              <li>Delete at Front</li>
+                              <li>Delete at End</li>
+                              <li>Delete at Middle</li>
+                              <li>Display </li>
+                        </ul>
+                        <h2 class="my-3">Circular Linked List Without maintaining tail pointer</h2>
+                        <div class="code-container">
+                            <div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                </div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon12"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon12"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode12">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Define the node structure
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+// Define the circular linked list class
+class CircularLinkedList {
+private:
+    Node* head;
+    
+public:
+    CircularLinkedList() : head(nullptr) {}
+    // Function to display the circular linked list
+    void display() {
+        if (!head) {
+            cout << "List is empty" << endl;
+            return; 
+        }
+        
+        Node* temp = head;
+        do {
+            cout << temp->data << " ";
+            temp = temp->next;
+        } while (temp != head);
+        cout << endl;
+    }
+    void insertAtStart(int value) {
+    Node *newnode = new Node(value);
+    if (head == NULL) {
+        newnode->next = newnode; // Point to itself
+        head = newnode;
+    } else {
+        Node* current = head;
+        while (current->next != head){  
+            current = current->next;
+        } 
+        // current is equal to second last node in this case
+        current->next = newnode;
+        newnode->next = head;
+        head = newnode;
+      }
+   }
+     //To insert a node at the end of a circular linked list, 
+	 //you need to traverse the list until you find the last node, 
+	 //then make the next pointer of the last node point to the new node, 
+	 //and finally make the next pointer of the new node point back to the head of the list
+	void insertat_End(int value){
+		//creation of node
+		Node *newnode = new Node(value);
+		//if head is null linked list is mepty ake head first node and that's set
+		if(head == NULL){
+		   head = newnode;
+		   newnode->next = newnode;
+		   return;// if this condition is true then no need to run the code below to improve time complexity
+		} 
+		Node* current = head;
+		while(current->next != head){
+			current = current->next;
+		}
+		// loop will terminate in this case current is equal to second last node
+		current->next = newnode;
+		newnode->next = head;
+	}
+void insertInBetween(int value) {
+    Node *newnode = new Node(value);
+    if (head == NULL) {
+        head = newnode;
+        newnode->next = head;
+    } else {
+        Node *fast = head;
+        Node *slow = head;
+        Node *prev = NULL;
+        while (fast->next != head && fast->next->next != head) {
+            fast = fast->next->next;
+            prev = slow;
+            slow = slow->next;
+        }
+        prev->next = newnode;
+        newnode->next = slow;
+    }
+}
+void deleteAt_Head() {
+    if (head == NULL) {
+        cout << "Linked List is Empty.\n";
+        return; // Added return to exit the function if the list is empty
+    }
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    // Update the next pointer of the new head to maintain the circular nature of the list
+    if (head != NULL) {
+        Node* current = head;
+        while (current->next != temp) {
+            current = current->next;
+        }
+        current->next = head;
+    }
+}
+
+void deleteAt_Tail() {
+    if (head == NULL) {
+        cout << "Linked List is Empty.\n";
+        return;
+    }
+
+    Node* current = head;
+    Node* prev = NULL;
+
+    // Traverse until the second last node
+    while (current->next != head) {
+        prev = current;
+        current = current->next;
+    }
+
+    // Now 'current' points to the last node and 'prev' points to the second last node
+
+    // If there's only one node in the list
+    if (current == head) {
+        delete current;
+        head = NULL;
+    } else {
+        prev->next = current->next; // Skip the last node
+        delete current; // Delete the last node
+    }
+}
+
+void deleteAT_Middle() {
+    if (head == NULL) {
+        cout << "Linked List is empty.\n";
+        return;
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+    Node* prev = nullptr;
+
+    while (fast != NULL && fast->next != head) {
+        fast = fast->next->next;
+        prev = slow;
+        slow = slow->next;
+        if (fast == head || fast->next == head) {
+            // If fast pointer reaches back to head or the next node after fast is head
+            break;
+        }
+    }
+
+    // Now 'slow' points to the middle node
+    if (prev != nullptr) {
+        prev->next = slow->next; // Skip the middle node
+    } else {
+        // If prev is still NULL, it means the list contains only one node
+        head = slow->next; // Update head if deleting the only node in the list
+    }
+    delete slow; // Delete the middle node
+}
+
+};
+
+int main() {
+    CircularLinkedList list;
+    
+    // Inserting elements into the circular linked list
+    list.insertAtStart(1);
+    list.insertAtStart(2);
+    list.insertAtStart(3);
+    cout << "Circular Linked List: ";
+    list.display();
+    cout << "Insert 0 and 5 at end.\n";
+    list.insertat_End(0);
+    list.insertat_End(5);
+    
+    // Displaying the circular linked list
+    cout << "Circular Linked List: ";
+    list.display();
+    cout << "Insert 4 in between.\n";
+    list.insertInBetween(4);
+    list.display();
+    cout << "Delete at Head.\n";
+    list.deleteAt_Head();
+    list.display();
+    cout << "Delete at Head.\n";
+    list.deleteAt_Head();
+    list.display();
+    cout << "Delete at Middle.\n";
+    list.deleteAT_Middle();
+    list.display();
+    cout << "Delete at Middle.\n";
+    list.deleteAT_Middle();
+    list.display();
+    cout << "Delete at Tail.\n";
+    list.deleteAt_Tail();
+    list.display();
+    
+    
+    return 0;
+}
+
+                           </code></pre>
+                       </div>
+                       <h2 class="my-3">Circular Linked List with Tail Pointer</h2>
+                        <div class="code-container mt-2">
+                            <div> 
+                                <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                </div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                </div>
+                              <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon13"></i>
+                              <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon13"></i>
+                            </div>
+                            <pre class="mt-2">
+                              <code class="language-cpp" id="SimpleNodeCode13">
+#include &lt;iostream&gt;   
+using namespace std;
+class CLinkedList{
+	private:
+		class Node{
+			public:
+				int data;
+				Node *next;
+				Node(int data){
+					this->data = data;
+					next  = NULL;
+					
+				}
+		};
+	Node *head = NULL;
+	Node *tail;
+	public:
+		CLinkedList(int data){
+			head = new Node(data);
+			tail = head;
+			tail->next = head;
+		}
+		void insertATHead(int data);
+		void insertAtTail(int data);
+		void insertAnywhere(int data,int loc);
+		void deleteAtHead();
+		void deleteAtTail();
+		void deleteAnywhere(int loc);
+		void display();
+		bool isEmpty();
+};
+bool CLinkedList::isEmpty(){
+	return head == NULL;
+}
+void CLinkedList::insertATHead(int data){
+    if(isEmpty()){
+    	return;
+	}
+	Node *newnode = new Node(data);
+	newnode->next = head;
+	head = newnode;
+	tail->next = head;
+}
+void CLinkedList::insertAtTail(int data){
+	Node *newnode = new Node(data);
+	tail->next = newnode;
+	tail = tail->next;    // newnode = tail (wrong logic)
+	tail->next = head;
+	
+}
+void CLinkedList::insertAnywhere(int data, int loc) {
+    Node *newnode = new Node(data);
+    Node *current = head;
+    
+    // Check if the list is empty or if loc is 0
+    if (CLinkedList::isEmpty() || loc == 1 || loc < 0) {
+        CLinkedList::insertATHead(data);
+        return;
+    }
+    
+    int count = 1; // Start count from 1 since we've already checked the head
+    while (current->next != NULL) {
+        if (count == loc) {
+            newnode->next = current->next;
+            current->next = newnode;
+            if (current == tail) {
+                tail = newnode; // Update tail if inserting at the end
+            }
+            return;
+        }
+        current = current->next;
+        count++;
+    }
+    
+    // If loc is greater than the number of elements in the list,
+    // insert at the end
+   // current->next = newnode;    (To make it a generic code use functions in function)
+    //tail = newnode;
+    CLinkedList::insertAtTail(data);
+}
+
+void CLinkedList::deleteAtHead(){
+	Node *temp = head;
+	head = head->next;
+	tail->next = head;
+	delete temp; // te,p is know a dangling pointer(pointed to deallocated memory)
+	temp = NULL; // when it is null now it is not a dangling pointer
+}
+void CLinkedList::deleteAtTail(){
+	Node *temp = head;
+	while(temp->next != tail){
+		temp = temp->next;
+	}
+	delete tail;
+	tail = temp;                  // errored logic temp->next = tail;
+	tail->next = head;
+	
+}
+void CLinkedList::deleteAnywhere(int loc) {
+    // Check if the list is empty
+    if (CLinkedList::isEmpty()) {
+        return; // Nothing to delete
+    }
+    
+    // If loc is 0, delete the head
+    if (loc <= 0 || loc == 1) {
+        CLinkedList::deleteAtHead();
+        return;
+    }
+    
+    Node *current = head;
+    Node *prev = NULL;
+    int count = 1;
+    
+    do {
+        if (count == loc) {
+            // Found the node to delete
+            prev->next = current->next;
+            if (current == tail) {
+                tail = prev; // Update tail if deleting the last node
+            }
+            delete current;
+            return;
+        }
+        prev = current;
+        current = current->next;
+        count++;
+    } while (current != head); // Loop until we come back to the head
+    
+    // If loc is greater than the number of elements in the list,
+    // delete at the tail
+    if (loc >= count) {
+        CLinkedList::deleteAtTail();
+    }
+}
+
+void CLinkedList::display(){
+	if(isEmpty()){
+		return;
+	}
+		Node *temp = head;
+	 do
+        {
+        
+            cout << temp->data << endl;
+            temp= temp->next;
+        }
+        while(temp != head);
+        
+}
+
+int main(){
+	CLinkedList ll(4);
+	ll.insertATHead(3);
+	ll.insertATHead(1);
+	ll.insertAtTail(2);
+	ll.display();
+	cout << "Delete at Head\n";
+	ll.deleteAtHead();
+	ll.display();
+	cout << "Delete at Tail\n";
+	ll.deleteAtTail();
+	ll.display();
+	ll.insertATHead(9);
+	ll.insertAtTail(5);
+	cout << "LL\n";
+	ll.display();
+	cout << "Insert 6 in Linked List after position 4\n";
+	ll.insertAnywhere(6,4);
+	cout <<"LL\n";
+	ll.display();
+		cout << "Insert 7 in Linked List after position 4\n";
+	ll.insertAnywhere(7,4);
+	cout <<"LL\n";
+	ll.display();
+		cout << "Insert 8 in Linked List at position 1\n";
+	ll.insertAnywhere(8,1);
+	cout <<"LL\n";
+	ll.display();
+		cout << "Insert 10 in Linked List after position 7\n";
+	ll.insertAnywhere(10,7);
+	cout <<"LL\n";
+	ll.display();
+	cout << "Delete at position 1\n";
+	ll.deleteAnywhere(1);
+	ll.display();
+	cout << "Delete at position 2\n";
+	ll.deleteAnywhere(2);
+	ll.display();
+	cout << "Delete at position 4\n";
+	ll.deleteAnywhere(4);
+	ll.display();
+	cout << "Delete at position 9\n";
+	ll.deleteAnywhere(9);
+	ll.display();
+	return 0;
+}
+    
+                              </code>
+                            </pre>
+                          </div>
+                          
+                    </div>
+                <div class="mt-2">
+                    <h2 class="my-3">Recursive Approach</h2>
+                    <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon14"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon14"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode14">
+#include &lt;iostream&gt;
+using namespace std;
+//selete at tail (include delete at head)
+class Recursive_CircularLL{
+	private:
+		class Node{
+			public:
+				int data;
+				Node *next;
+				Node(int data){
+					this->data = data;
+					next = NULL;
+				}
+		};
+	Node *head;
+	Node *tail;
+	public:
+		Recursive_CircularLL(int data){
+			head = new Node(data);
+			tail = head;
+			tail->next = head;			
+		}
+		 void insertAtTailRecursively(Node* current,int data) {
+
+        if (current->next == tail) { // If we reach the last node
+        tail->next = new Node(data);
+        tail = tail->next;
+        tail->next = head;
+        return;
+        }
+        insertAtTailRecursively(current->next,data);
+        
+    }
+    void insertAtTail(int data){
+        	insertAtTailRecursively(head,data);
+		}
+     void insertAtHead(int data) {
+        Node * temp = new Node (data);
+        temp->next = head;
+        head = temp;
+        tail->next = head;
+    }
+    int count(){
+    	Node *temp = head;
+    	int count = 1;
+    	while(temp != tail){
+    		count++;
+    		temp = temp->next;
+		}
+	return count;	
+	}
+    void insertAtSpecificNode_recursively(Node* current,int data,int loc,int currentCount = 1){
+    	if(loc > count()){
+    		insertAtTail(data);
+    		return;
+		}
+		if(loc <= 0){
+			insertAtHead(data);
+			return;
+		}
+		if(loc == currentCount){
+			Node *newnode = new Node(data);
+            newnode->next = current->next;
+            current->next = newnode;
+            return;
+		}
+		insertAtSpecificNode_recursively(current->next,data,loc,currentCount + 1);
+	}
+	void inserAt_SpecificNode(int data,int loc){
+		insertAtSpecificNode_recursively(head,data,loc);
+	}
+	void displayRecursively(Node* current) {
+        cout << current->data << " ";
+
+        if (current->next != head)  // Stop when we reach the head again
+            displayRecursively(current->next);
+    }
+    void deleteAtTail_Recursively(Node *current, Node *prev) {
+    if (current->next == head) { // If the next node is the head node (only one node in the list)
+        delete tail;
+        head = nullptr;
+        tail = nullptr;
+        return;
+    }
+    if (current->next == tail) { // If the next node is the tail node
+        delete tail;
+        tail = current;
+        tail->next = head; // Update tail to point to the head
+        return;
+    }
+    deleteAtTail_Recursively(current->next, current);
+}
+
+void deleteAtTail() {
+    if (head == nullptr) {
+        cout << "List is empty. Cannot delete tail." << endl;
+        return;
+    }
+    deleteAtTail_Recursively(head, nullptr);
+}
+
+   void deleteATSpecificLoc_Recursively(int loc, Node *current, Node *prev, int currentCount = 1) {
+    if (loc <= 0) {
+        cout << "Node is out of range\n";
+        return;
+    }
+    if (loc > count()) {
+        deleteAtTail();
+        return;
+    }
+    if (loc == 1) { 
+        Node *temp = head;
+        head = head->next;
+        tail->next = head;
+        delete temp;
+        return;
+    }
+    if (currentCount == loc) { 
+        prev->next = current->next;
+        if (current == tail) {
+            tail = prev;
+        }
+        delete current;
+        return;
+    }
+    deleteATSpecificLoc_Recursively(loc, current->next, current, currentCount + 1);
+}
+
+void deleteATSpecific_loc(int loc) {
+    deleteATSpecificLoc_Recursively(loc, head, NULL);
+}
+
+    void display() {
+        cout << "Circular Linked List: ";
+        displayRecursively(head);
+        cout << endl;
+    }
+    
+    
+};
+
+
+int main(){
+	Recursive_CircularLL CRLL(1);
+	CRLL.insertAtHead(2);
+	CRLL.insertAtHead(3);
+	CRLL.insertAtHead(4);
+	CRLL.display();
+	CRLL.insertAtTail(5);
+	CRLL.insertAtTail(6);
+	CRLL.display();
+	cout << "Node Count is : " << CRLL.count() << endl;
+	CRLL.inserAt_SpecificNode(7,0);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(8,10);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(9,5);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(10,8);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(11,10);
+	CRLL.display();
+	cout << "Delete\n";
+	CRLL.deleteATSpecific_loc(5);
+	CRLL.display();
+	CRLL.deleteATSpecific_loc(6);
+	CRLL.display();
+	cout << "Delete at head\n";
+	CRLL.deleteAtHead();
+	CRLL.display();
+	return 0;
+}                       </code></pre>
+                   </div>   
+                </div>
+            </div>
+            </div>
+        </div>
+        <script>loadContent('footer.html', 'footer');</script>
+        <div id="footer"></div>
+        <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

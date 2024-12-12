@@ -1,0 +1,53 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* *******************************light Mode Colors */
+body {
+    overflow-x: hidden;
+}
+.firstNavIcons {
+    color: rgb(235, 242, 245);
+}
+.firstNavBar {
+    background-color: rgb(111, 44, 244);
+}
+.searchBtn {
+    background-color: white;
+    color: rgb(111, 44, 244);
+    border: 1px solid white;
+}
+.searchBtn:hover {
+    background-color: rgb(111, 44, 244);
+    color: white;
+    border: 1px solid white;   
+}
+.navbarTwo{
+    background-color: rgb(221, 224, 231);
+    color: rgb(111, 44, 244);
+}
+.navbarThree{
+    background-color: rgb(221, 224, 231);
+    color: rgb(9, 171, 236);
+}
+.homePageHeading{
+    color: rgb(9, 171, 236);
+}
+/* *************************************Light mode color end */
+/* Dark Mode */
+.dark-mode .loginSignUpFormModal,.dark-mode .navbarThree{
+    background-color: rgb(51, 50, 50);
+}
+.dark-mode .homeContent{
+    color: white;
+}
+/* Home Page */
+.dark-mode .homePage{
+    background-color: rgb(50, 50, 51);
+}
+/* Single Linked List Page */
+.dark-mode .SingleLinkedListPage{
+    background-color: #282C34;
+}

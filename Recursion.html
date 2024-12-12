@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Recursion</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="/assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+      <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Recursion</h1>
+                    <p>Recursion in C++ refers to a function that calls itself in order to solve smaller instances of a problem. Recursion is often used to solve problems that can be broken down into smaller, similar subproblems, such as calculating factorials, Fibonacci numbers, or traversing data structures like trees.</p>
+                    <ul>
+                        <li><span class="fw-bold"> Base Case</span> A condition that stops the recursion. Without it, the function would continue to call itself indefinitely, leading to a stack overflow.</li>
+                        <li><span class="fw-bold"> Recursive Case</span> The part of the function that reduces the problem into smaller subproblems and calls the function itself.</li>
+                    </ul>
+                    <ul>
+                        
+                    </ul>
+                    <h2 class="text-primary">When to Use</h2>
+                    <ol>
+                         <li><span class="fw-bold">Problem Can Be Divided into Subproblems </span>Recursion is most effective when a problem can be broken down into smaller, similar subproblems. For example, tree traversal, divide-and-conquer algorithms, or problems like the Fibonacci sequence.
+                            <span class="fw-bold">Example:</span> Tree Traversal (Binary Tree)
+                            Recursion works well here because each subtree can be traversed independently.</li>
+                         <li><span class="fw-bold">When There’s a Clear Base Case </span>Recursion works well when there is a clearly defined base case that halts the recursion. Without a proper base case, recursion can cause infinite loops or crashes.</li>
+                         <li><span class="fw-bold">Elegance and Readability </span>Recursion can lead to more elegant and readable code for certain problems. It often simplifies the solution for problems like factorial calculation, the Tower of Hanoi, or depth-first search (DFS) in graphs.</li>
+                         <li><span class="fw-bold">Divide and Conquer Algorithms </span>Algorithms like merge sort, quicksort, and binary search rely on recursion to divide the problem into smaller subproblems, solve them recursively, and then combine the results.</li>
+                         <li><span class="fw-bold">Recursive Data Structures </span>When working with recursive data structures like linked lists, trees, or graphs, recursion can simplify operations such as insertion, deletion, or traversal.</li>
+                         <li><span class="fw-bold">Backtracking Problems </span>Many backtracking problems (e.g., solving a maze, generating permutations or combinations, N-Queens problem) are inherently recursive since you need to try multiple paths and backtrack upon failure.</li>
+                    </ol>
+                    <h2 class="text-primary">When Not to Use Recursion</h2>
+                    <ol>
+                        <li><span class="fw-bold">Problem Can Be Solved Iteratively </span> If a problem can be solved more efficiently or just as easily using loops, prefer an iterative approach. Iterative solutions are often more efficient in terms of memory usage and performance.</li>
+                        <li><span class="fw-bold">Memory-Intensive Recursion</span>Recursion uses the call stack, and each recursive call adds a new frame to the stack. If the recursion depth is too large (e.g., thousands or more), this can lead to a stack overflow. In such cases, recursion should be avoided or optimized (e.g., tail recursion).</li>
+                        <li><span class="fw-bold">When the Recursion Depth Is Large</span> For problems that involve deep recursion (e.g., large inputs for problems like Fibonacci or factorial), an iterative solution is more space-efficient since recursion increases the depth of the call stack.
+                        <span class="fw-bold">Example</span><p> Deep recursion for large factorial calculations or deep tree traversals can lead to stack overflow.</p></li>
+                        <li><span class="fw-bold">Performance-Sensitive Applications</span>Recursion introduces overhead due to function calls, stack management, and possibly redundant calculations. In performance-critical applications, where efficiency is paramount, recursion may not be the best choice.</li>
+                        <li><span class="fw-bold">Lack of Base Case or Poor Base Case</span> If a problem does not have a clear base case, or if the base case is difficult to define, recursion could lead to infinite loops or incorrect behavior.</li>
+                    </ol>
+                    <h2 class="text-primary">Comparison Table</h2>
+                    <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                        <thead>
+                          <tr>
+                            <th scope="col">Aspect</th>
+                            <th scope="col">Recursion</th>
+                            <th scope="col">Iteration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Code Structure</th>
+                            <td>Elegant, cleaner for some problems</td>
+                            <td>Often less elegant but faster</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Memory Usage</th>
+                            <td>Uses stack memory for each call</td>
+                            <td>Less memory, stored variables</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Speed</th>
+                            <td>Slower due to function call overhead</td>
+                            <td>Faster since no function calls</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Risk</th>
+                            <td>Stack overflow for deep recursion</td>
+                            <td>No risk of stack overflow</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Base Case Needed</th>
+                            <td>Yes</td>
+                            <td>No</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                   
+                    <h2 class="text-primary">Operations in Recursion</h2>
+                    <ul>
+                        <li>First Four Numbers</li>
+                        <li>First Four Numbers in Reverse Order</li>
+                        <li>Print Numbers in Range</li>
+                        <li>Numbers in Reverse Order </li>
+                        <li>Sum</li>
+                        <li>Table</li>
+                        <li>Factorial</li>
+                        <li>Prime Number</li>
+                        <li>Reverse Array</li>
+                        <li>All Factors</li>
+                    </ul>
+                    <div class="code-container">
+                         <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                             <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon18"></i>
+                             <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon18"></i>
+                         </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode18">
+#include &lt;iostream&gt;
+using namespace std;
+void printFirstFour(int n) {
+    // Base case: stop recursion when n is greater than 4
+    if (n > 4) {
+        return;
+    }
+
+    // Print the current value of n
+    cout << n << " ";   
+    // Recursively call the function with the next value of n
+    printFirstFour(n + 1); 
+}
+void printFirstFourReverse(int n) {
+    if (n > 4) {
+        return;
+    }
+    cout << n << " ";   
+    printFirstFour(n + 1); 
+}
+void printNumbers(int start, int end) {
+    if (start > end) 
+        return;
+    cout << start << " "; 
+    printNumbers(start + 1, end);
+}
+void printinReverse_Order(int n){
+	if(n <= 0){
+		return;
+	}
+	cout << n << " ";
+	printinReverse_Order(n - 1);
+}
+int sum(int n) {
+    if (n == 1) {                                                                      
+        return 1;
+    }               
+    return n + sum(n - 1);                                                                                                                                                
+}
+void printTable(int num, int multiplier) {
+    if (multiplier > 10) {  // Print the table up to 10
+        return;
+    }
+    cout << num << " * " << multiplier << " = " << num * multiplier << endl;
+    printTable(num, multiplier + 1); 
+}
+int factorial(int n){
+	if(n <= 0){
+		return 0;
+	}
+	if(n == 1){
+		return 1;
+	}
+	return n * factorial(n - 1);
+}
+
+bool isPrime(int n, int i = 2) {
+    if (n <= 2) {
+        // if n is 0 and 1 then not a prime no if n is 2 then prime no
+        return (n == 2) ? true : false;  
+    }
+    // if divisible to any other number other than itself then not a prime no return false
+    if (n % i == 0) {
+        return false;
+    }
+    // agr kisi pe b divide na huwa it means i * i ab greater hi aya ga and return true   
+    if (i * i > n) {
+        return true; 
+    }
+    return isPrime(n, i + 1);
+}
+void reverseArray(string arr[], int i) {
+    if (i == 0) {
+        return;
+    }
+    cout << arr[i - 1] << " ";
+    reverseArray(arr, i - 1);
+}
+void AllFactors(int n, int i = 1) {
+    if (i < 1) {
+        return;
+    }
+    if (i > n) {
+        return;
+    }
+    if (n % i == 0) {
+        cout << i << " ";
+    }
+    AllFactors(n, i + 1);
+}
+
+
+int main() {
+    // Start the recursion with n = 1
+    printFirstFour(1);
+    cout << endl;
+    printNumbers(3,10);
+    cout << endl;
+    printinReverse_Order(4);
+    cout << endl;
+    cout << "SUM is : " << sum(10);
+    cout << endl;
+    cout << "--------------Table-----------------\n";
+    printTable(4,1);
+    cout << "Factorial is : " << factorial(3) << endl;
+    
+    cout << endl;
+    if(isPrime(5)){
+    	cout << "Prime\n";
+	}
+	else{
+		cout << "Not a Prime\n";
+	}
+	if(isPrime(4)){
+    	cout << "Prime\n";
+	}
+	else{
+		cout << "Not a Prime\n";
+	}
+	if(isPrime(2)){
+    	cout << "Prime\n";
+	}
+	else{
+		cout << "Not a Prime\n";
+	}
+	if(isPrime(0)){
+    	cout << "Prime\n";
+	}
+	else{
+		cout << "Not a Prime\n";
+	}
+	if(isPrime(1)){
+    	cout << "Prime\n";
+	}
+	else{
+		cout << "Not a Prime\n";
+	}
+	
+	 string arr[] = {"Hello", "world", "this", "is", "a", "test"};
+    int length = sizeof(arr) / sizeof(arr[0]);   // fixed formula to calculate length
+    reverseArray(arr, length);
+    AllFactors(10);
+    cout << endl;
+    AllFactors(2);
+    cout << endl;
+    AllFactors(5);
+    return 0;
+}
+
+                        </code></pre>
+                    </div>
+                      <h2 class="py-3">Recursion in Singly Linked List</h2>
+                      <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon20"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon20"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode20">
+#include&lt;iostream&gt;
+    using namespace std;
+    class Recursive_SinlgeLL{
+        private:
+            class Node{
+                public: 
+                    int data;
+                    Node *next;
+                    Node(int data){
+                        this->data = data;
+                        next = NULL;
+                    }
+            };
+        Node *head;
+        public:
+            Recursive_SinlgeLL(int data){
+                head = new Node(data);
+            }
+            void insertAThead(int data);
+            void inserAtTail_Recursively(int data,Node *current);
+            void insertAtTail(int data);
+            void displaySLL_Recursively(Node *node);
+            void display();
+            void deleteATHead();
+            int count();
+            void deleteAtTail_Recursively(Node *temp,Node *current);
+            void removeatTail();
+            void delete_atMiddle_Rec(Node *node,Node *fast,Node *slow);
+            void delete_atMiddle_Wrapper();
+            void insert_atMiddle_Rec(int user_data,Node *prev,Node *fast,Node* slow);
+            void insert_atMiddle_Wrapper(int data);
+            void deleteat_SpecificLoc_Rec(int loc,Node *&ampcurrent,int currentcount = 1){
+                if (loc > count()) {
+                    removeatTail();
+                return;
+            }
+            if (loc <= 0) {
+                deleteATHead();
+                return;
+            }
+            /* if (loc == 1) {
+                Node* temp = current;
+                current = current->next;
+                delete temp;
+                return;
+            }*/
+            if (currentcount  == loc) {
+                Node* temp = current->next;
+                current->next = temp->next;
+                delete temp;
+                return;
+            }
+            deleteat_SpecificLoc_Rec(loc, current->next, currentcount + 1);
+            }
+            void deleteAt_specificloc(int loc){
+                deleteat_SpecificLoc_Rec(loc,head);
+            }
+            void insertAtSpecificLoc_Rec(int data, int loc, Node* current, int currentcount = 1) {
+            if (loc > count()) {
+                insertAtTail(data);
+                return;
+            }
+            if (loc <= 0) {
+                insertAThead(data);
+                return;
+            }
+            if (loc == currentcount) {
+                Node* newnode = new Node(data);
+                newnode->next = current->next;
+                current->next = newnode;
+                return;
+            }
+            insertAtSpecificLoc_Rec(data, loc, current->next, currentcount + 1);
+        }
+    
+        void inserAtSpecificloc(int data, int loc) {
+            insertAtSpecificLoc_Rec(data, loc, head);
+        }
+            int countNodes(Node* current) {
+            if (current == nullptr) {
+                return 0;
+            }
+            // Call countNodes recursively for the next node
+            return 1 + countNodes(current->next);
+        }
+        
+        // Wrapper function to start the recursion
+        int countNodes() {
+            return countNodes(head);
+        }
+        
+    };
+    void Recursive_SinlgeLL::deleteATHead(){
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        temp == NULL;
+    }
+    void Recursive_SinlgeLL::insertAThead(int data){
+        Node *newnode = new Node(data);
+        newnode->next = head;
+        head = newnode;
+    }
+    void Recursive_SinlgeLL::displaySLL_Recursively(Node* node) {
+            if (node == nullptr)
+                return;
+            cout << node->data << " ";
+            displaySLL_Recursively(node->next);
+    }
+    void Recursive_SinlgeLL::display() {
+            displaySLL_Recursively(head);
+            cout << endl;
+    }
+    void Recursive_SinlgeLL::deleteAtTail_Recursively(Node *temp, Node *current) {
+        // if Linkedlist is empty
+        if (current == nullptr) {
+            return;
+            
+        }
+        //reached at last node
+        else if (current->next == nullptr) {
+            // one node case 
+            if (temp == nullptr) {
+                delete current;
+                head = nullptr;
+            } 
+            else {
+                delete current;
+                temp->next = nullptr;
+            }
+            return;
+        }
+        deleteAtTail_Recursively(current, current->next);    //current ko next me bhej kay phly waly ko current kr dya ha
+    }
+    
+    void Recursive_SinlgeLL::removeatTail() {
+        deleteAtTail_Recursively(nullptr, head);
+    }
+    int Recursive_SinlgeLL::count(){
+        int count = 0;
+        Node *temp = head;
+        while(temp!= NULL){
+            temp = temp->next;
+            count++;
+        }
+        return count;
+    }
+    
+    void Recursive_SinlgeLL::inserAtTail_Recursively(int data,Node *current){
+        if(current->next== NULL){
+            Node *newnode = new Node(data);
+            current->next = newnode;
+                newnode->next = NULL;
+            return;
+        }
+        Recursive_SinlgeLL::inserAtTail_Recursively(data,current->next);
+    }
+    void Recursive_SinlgeLL::insertAtTail(int data){
+        Recursive_SinlgeLL::inserAtTail_Recursively(data,head);
+    }
+    
+    
+    void Recursive_SinlgeLL::delete_atMiddle_Rec(Node *prev, Node *fast, Node *slow) {
+        int nodeCount = Recursive_SinlgeLL::count();
+        if (nodeCount <= 2) {
+            cout << "Deletion at middle is impossible. Number of nodes: " << nodeCount << endl;
+            return;
+        }
+    
+        if (fast == nullptr || fast->next == nullptr) {
+            prev->next = slow->next;
+            delete slow;
+            return;
+        }
+    
+        Recursive_SinlgeLL::delete_atMiddle_Rec(slow, fast->next->next, slow->next);
+    }
+    
+    void Recursive_SinlgeLL::delete_atMiddle_Wrapper() {
+        Recursive_SinlgeLL::delete_atMiddle_Rec(nullptr, head, head);
+    }
+    // ye code middle se ak step agaya ja kr insert krny ga so ak previous pointer ki b zrorat ha
+    void Recursive_SinlgeLL::insert_atMiddle_Rec(int user_data,Node *prev, Node *fast, Node *slow) {
+        if (fast == nullptr || fast->next == nullptr) {
+            Node *newnode = new Node(user_data);
+            newnode->next = slow;
+            prev->next = newnode;
+            return;
+        }
+    
+        Recursive_SinlgeLL::insert_atMiddle_Rec(user_data,slow, fast->next->next, slow->next);
+    }
+    
+    void Recursive_SinlgeLL::insert_atMiddle_Wrapper(int data) {
+        Recursive_SinlgeLL::insert_atMiddle_Rec(data,nullptr, head, head);
+    }
+            
+    int main(){
+        Recursive_SinlgeLL RSLL(1);
+        RSLL.insertAThead(2);
+        RSLL.insertAThead(3);
+        RSLL.insertAThead(4);
+        RSLL.insertAThead(5);
+        RSLL.display();
+        RSLL.removeatTail();
+        RSLL.display();
+        RSLL.inserAtSpecificloc(6,3);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(7,5);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(8,0);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(9,8);
+        RSLL.display();
+        RSLL.insert_atMiddle_Wrapper(12);
+        cout << "LinkedList after insertion at middle is\n";
+        RSLL.display();
+        RSLL.insertAtTail(10);
+        RSLL.display();
+        
+        RSLL.deleteAt_specificloc(11);
+        cout << "Delete (location is greater than the no of nodes in the linked list)\n";
+        RSLL.display();
+        cout << "Delete at 3rd index\n";
+        RSLL.deleteAt_specificloc(3);
+        RSLL.display();
+        cout << "Delete at 4th index\n";
+        RSLL.deleteAt_specificloc(4);
+        RSLL.display();
+        cout << "Delete at 1st index\n";
+        RSLL.deleteAt_specificloc(1);
+        RSLL.display();
+        cout << "Delete at 0th index\n";
+        RSLL.deleteAt_specificloc(0);
+        RSLL.display();
+        cout << "Delete at middle\n";
+        RSLL.delete_atMiddle_Wrapper();
+        RSLL.display();
+        cout << "Delete at middle\n";
+        RSLL.delete_atMiddle_Wrapper();
+        RSLL.display();
+        RSLL.insert_atMiddle_Wrapper(3);
+        cout << "LinkedList after insertion at middle is\n";
+        RSLL.display();
+        
+        
+        
+        return 0;
+    }
+                       </code></pre>
+                   </div>
+                    <h2 class="py-3">Recursion in Circular Linked List</h2>
+                    <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon21"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon21"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode21">
+#include &lt;iostream&gt;
+using namespace std;
+//selete at tail (include delete at head)
+class Recursive_CircularLL{
+	private:
+		class Node{
+			public:
+				int data;
+				Node *next;
+				Node(int data){
+					this->data = data;
+					next = NULL;
+				}
+		};
+	Node *head;
+	Node *tail;
+	public:
+		Recursive_CircularLL(int data){
+			head = new Node(data);
+			tail = head;
+			tail->next = head;			
+		}
+		 void insertAtTailRecursively(Node* current,int data) {
+
+        if (current->next == tail) { // If we reach the last node
+        tail->next = new Node(data);
+        tail = tail->next;
+        tail->next = head;
+        return;
+        }
+        insertAtTailRecursively(current->next,data);
+        
+    }
+    void insertAtTail(int data){
+        	insertAtTailRecursively(head,data);
+		}
+     void insertAtHead(int data) {
+        Node * temp = new Node (data);
+        temp->next = head;
+        head = temp;
+        tail->next = head;
+    }
+    int count(){
+    	Node *temp = head;
+    	int count = 1;
+    	while(temp != tail){
+    		count++;
+    		temp = temp->next;
+		}
+	return count;	
+	}
+    void insertAtSpecificNode_recursively(Node* current,int data,int loc,int currentCount = 1){
+    	if(loc > count()){
+    		insertAtTail(data);
+    		return;
+		}
+		if(loc <= 0){
+			insertAtHead(data);
+			return;
+		}
+		if(loc == currentCount){
+			Node *newnode = new Node(data);
+            newnode->next = current->next;
+            current->next = newnode;
+            return;
+		}
+		insertAtSpecificNode_recursively(current->next,data,loc,currentCount + 1);
+	}
+	void inserAt_SpecificNode(int data,int loc){
+		insertAtSpecificNode_recursively(head,data,loc);
+	}
+	void displayRecursively(Node* current) {
+        cout << current->data << " ";
+
+        if (current->next != head)  // Stop when we reach the head again
+            displayRecursively(current->next);
+    }
+    void deleteAtTail_Recursively(Node *current, Node *prev) {
+    if (current->next == head) { // If the next node is the head node (only one node in the list)
+        delete tail;
+        head = nullptr;
+        tail = nullptr;
+        return;
+    }
+    if (current->next == tail) { // If the next node is the tail node
+        delete tail;
+        tail = current;
+        tail->next = head; // Update tail to point to the head
+        return;
+    }
+    deleteAtTail_Recursively(current->next, current);
+}
+
+void deleteAtTail() {
+    if (head == nullptr) {
+        cout << "List is empty. Cannot delete tail." << endl;
+        return;
+    }
+    deleteAtTail_Recursively(head, nullptr);
+}
+
+   void deleteATSpecificLoc_Recursively(int loc, Node *current, Node *prev, int currentCount = 1) {
+    if (loc <= 0) {
+        cout << "Node is out of range\n";
+        return;
+    }
+    if (loc > count()) {
+        deleteAtTail();
+        return;
+    }
+    if (loc == 1) { 
+        Node *temp = head;
+        head = head->next;
+        tail->next = head;
+        delete temp;
+        return;
+    }
+    if (currentCount == loc) { 
+        prev->next = current->next;
+        if (current == tail) {
+            tail = prev;
+        }
+        delete current;
+        return;
+    }
+    deleteATSpecificLoc_Recursively(loc, current->next, current, currentCount + 1);
+}
+
+void deleteATSpecific_loc(int loc) {
+    deleteATSpecificLoc_Recursively(loc, head, NULL);
+}
+
+    void display() {
+        cout << "Circular Linked List: ";
+        displayRecursively(head);
+        cout << endl;
+    }
+    
+    
+};
+
+
+int main(){
+	Recursive_CircularLL CRLL(1);
+	CRLL.insertAtHead(2);
+	CRLL.insertAtHead(3);
+	CRLL.insertAtHead(4);
+	CRLL.display();
+	CRLL.insertAtTail(5);
+	CRLL.insertAtTail(6);
+	CRLL.display();
+	cout << "Node Count is : " << CRLL.count() << endl;
+	CRLL.inserAt_SpecificNode(7,0);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(8,10);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(9,5);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(10,8);
+	CRLL.display();
+	CRLL.inserAt_SpecificNode(11,10);
+	CRLL.display();
+	cout << "Delete\n";
+	CRLL.deleteATSpecific_loc(5);
+	CRLL.display();
+	CRLL.deleteATSpecific_loc(6);
+	CRLL.display();
+	cout << "Delete at head\n";
+	CRLL.deleteAtHead();
+	CRLL.display();
+	return 0;
+}                       </code></pre>
+                   </div>  
+                      <h2 class="py-3">Recursion in Doubly Linked List</h2>
+                      <div class="mt-2">
+                        <div class="code-container">
+                            <div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                </div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon22"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon22"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode22">
+    #include &lt;iostream&gt;
+    using namespace std;
+    class Recursive_DoubleLL{
+        private:
+            class Node{
+                public:
+                    int data;
+                    Node *next;
+                    Node *prev;
+                    Node(int data){
+                        this->data  = data;
+                        next = NULL;
+                        prev = NULL;
+                    }
+            };
+            Node *head;
+            Node *tail;
+        public:
+            Recursive_DoubleLL(){
+                head = NULL;
+                tail = NULL;	
+            }
+            void insertATHead(int data){
+                    Node* newnode = new Node(data);
+            if (head == NULL) {
+                head = newnode;
+                tail = newnode;
+            } else {
+                newnode->next = head;
+                head->prev = newnode;
+                head = newnode;
+            }
+            }
+            bool isEmpty(){
+                return(head == NULL && tail == NULL);
+            }
+            void insertAtTail_Rec(Node* node,int data){
+                if(isEmpty()){
+                    insertATHead(data);
+                    return;
+                }
+                if(node == NULL){
+                    Node *newnode = new Node(data);
+                    tail->next = newnode;
+                    newnode->prev = tail;
+                    tail = newnode;
+                    return;
+                }
+                insertAtTail_Rec(node->next,data);
+            }
+            void insertAatTail_Wrapper(int data){
+                insertAtTail_Rec(head,data);
+            }
+            void display_DLL_Rec(Node *node){
+                if(node == NULL){
+                    cout << "NULL";
+                    cout << endl;
+                    return;
+                }
+                if(node == head){
+                    cout << "NULL";
+                }
+                cout << "<-" << node->data << "->"; 
+                
+                display_DLL_Rec(node->next);
+            }
+            void displayWrapper(){
+                display_DLL_Rec(head);
+            }
+            void deleteAtHead(){
+                if(isEmpty()){
+                    cout << "Linked List is empty\n";
+                    return;
+                }
+                if(head->next == NULL && head->prev == NULL){
+                    delete head;
+                    head == NULL;
+                }
+                head = head->next;
+                delete head->prev;
+                head->prev = NULL;
+            }
+            void deleteAtTail_Rec(Node *node){
+                if(isEmpty()){
+                    cout << "Linked List is already empty\n";
+                }
+                if(head->next == NULL && head->prev == NULL){
+                    delete head;
+                    head == NULL;
+                }
+                if(node == NULL){
+                    Node *temp = tail;
+                    tail = tail->prev;
+                    tail->next = NULL;
+                    delete temp;
+                    
+                    return;
+                }
+                deleteAtTail_Rec(node->next);
+            }
+            void deleteAtTail_Wrapper(){
+                deleteAtTail_Rec(head);
+            }
+            void insertAtMiddle(Node *start,Node *end,int data){
+                if(countWrapper()% 2 == 0){
+                        cout << "Nodes are even.Insertion for even no of nodes will handle later\n";
+                        return;
+                    }
+                if(start == end){
+                    start = start->prev;
+                    Node* middle = start->next;
+                    Node* newnode = new Node(data);
+                    newnode->next = middle;
+                    middle->prev = newnode;
+                    newnode->prev = start;
+                    start->next = newnode;
+        
+                    return;   
+                    
+                }
+                insertAtMiddle(start->next,end->prev,data);
+            }
+            void insertAtMiddle_Wrapper(int data){
+                insertAtMiddle(head,tail,data);
+            }
+            void deleteAtMiddle(Node* start,Node *end){
+                    if(countWrapper()% 2 == 0){
+                        cout << "Two Middles are present so first make count of nodes odd\n";
+                        return;
+                    }
+                if(start == end && start->next != end){
+                
+                    start = start->prev;
+                    Node* middle = start->next;
+                    start->next = middle->next;
+                    if (middle->next != nullptr)
+                    middle->next->prev = start;
+                    delete middle;
+                    return;
+                }
+                deleteAtMiddle(start->next,end->prev);
+            }
+            void deleteAtMiddle_Wrapper(){
+                deleteAtMiddle(head,tail);
+            }
+            int countNodes(Node *node,int count = 1){
+                if(isEmpty()){
+                    cout << "Count is 0\n";
+                }
+                if(node->next == NULL){
+                    return count;
+                }
+                
+                    countNodes(node->next,count + 1);	
+            }
+            int countWrapper(){
+            
+                countNodes(head);
+            }
+            
+            //--------------------------------Correct Method----------------------
+    //	void deleteAllRecursive(Node* current) {
+    //    if (current == nullptr)
+    //        return;
+    //    deleteAllRecursive(current->next);
+    //    delete current;
+    //}
+    //
+    //void deleteWrapper() {
+    //    deleteAllRecursive(head);
+    //    head = nullptr; // Reset the head pointer after deleting all nodes
+    //    tail = nullptr;
+    //}
+    
+    
+    //------------------------------Correct Method---------------------
+        void deleteAllRecursive(Node* current,Node *temp) {
+        if (current == nullptr){
+            
+        
+            return;
+        }
+            delete temp;
+        deleteAllRecursive(current->next,current);
+    }
+    
+    void deleteWrapper() {
+        deleteAllRecursive(head,nullptr);
+        head = nullptr; // Reset the head pointer after deleting all nodes
+        tail = nullptr;
+    }
+    };
+    int main(){
+        Recursive_DoubleLL rdll;
+        rdll.insertATHead(1);
+        rdll.insertATHead(2);
+        rdll.insertATHead(3);
+        rdll.insertATHead(4);
+        rdll.displayWrapper();
+        rdll.insertAatTail_Wrapper(5);
+        rdll.insertAatTail_Wrapper(6);
+        rdll.insertAatTail_Wrapper(7);
+        rdll.insertAatTail_Wrapper(8);
+        rdll.displayWrapper();
+        rdll.deleteAtHead();
+        rdll.displayWrapper();
+        rdll.deleteAtTail_Wrapper();
+        rdll.displayWrapper();
+        rdll.insertAatTail_Wrapper(9);
+        rdll.displayWrapper();
+        //rdll.insertAtMiddle_Wrapper(10);
+        //rdll.displayWrapper();
+        cout << "Delete AT Middle\n";
+        rdll.deleteAtMiddle_Wrapper();
+        rdll.displayWrapper();
+        cout << "Insert 10 and 11 at tail\n";
+        rdll.insertAatTail_Wrapper(10);
+        rdll.insertAatTail_Wrapper(11);
+        rdll.displayWrapper();
+        cout <<	"No of nodes in the linked list are\n" << rdll.countWrapper();
+        cout << endl;
+        cout << "Now check delete at middle for the even nodes\n";
+        rdll.deleteAtMiddle_Wrapper();
+        rdll.insertAatTail_Wrapper(13);
+        rdll.displayWrapper();
+        rdll.insertAatTail_Wrapper(14);
+        rdll.displayWrapper();
+        rdll.insertAtMiddle_Wrapper(12);
+        rdll.displayWrapper();
+        cout << "Delete Double Linked list\n";
+        rdll.deleteWrapper();
+        rdll.displayWrapper();
+        if(rdll.isEmpty()){
+            cout << "Linked list is empty\n";
+        }
+        else {
+            cout << "No Empty\n";
+        }
+        
+        
+        return 0;
+    }
+                           </code></pre>
+                       </div>   
+                    </div>
+                      <h2 class="py-3">Recursion in Doubly Circular Linked List</h2>
+                      <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon23"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon23"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode23">
+#include &lt;iostream&gt;
+using namespace std;
+class DoublyCircularLL{
+private:
+class Node{
+public:
+    int data;
+    Node *next;
+    Node *prev;
+    Node(int data){
+        this->data = data;
+        next = NULL;
+        prev = NULL;
+    }
+};
+
+Node *head;
+Node *tail;
+
+public:
+DoublyCircularLL(){
+     head = NULL;
+     tail = NULL;
+}
+void insertAtTail(int value);
+void insertAtHead(int value);
+void deleteATHead();
+void deleteATTail();
+bool isEmpty();
+void DisplayDCLL(Node *node);
+void Display_Wrapper();
+int count();
+void reverse_display_Wrapper();
+void reverse_DCLL(Node *current);
+void median_element(Node *start,Node *end);
+void median_Wrapper();
+void removeDuplicates();
+//code same as single Linked List(one difference is the usage of prev pointer)  AX_SingleLinkedList_RecursiveOperations.cpp
+//2nd method is double Linked List method AZ_DoubleLL_RecursiveOperations.cpp
+
+void insertAT_SpecificLoc(Node *current,int loc,int value,int currentCount = 1)
+{
+    if(loc <= 0){
+    insertAtHead(value);
+    return;
+}
+if(loc > count()){
+        insertAtTail(value);
+        return;
+}
+if (currentCount == loc) { 
+    Node *newnode = new Node(value);
+    newnode->next = current->next;
+    newnode->prev = current;
+    current->next->prev = newnode; 
+    current->next = newnode; 
+    return;
+}
+    insertAT_SpecificLoc(current->next,loc,value,currentCount + 1);
+
+}
+void insertAT_SpecificLoc_Wrapper(int loc,int value){
+    insertAT_SpecificLoc(head,loc,value);
+}
+void deleteAt_SpecificLoc(Node* current,int loc,int currentCount = 1){
+    if(isEmpty()){
+        cout << "Doubly Circular Linked list is empty\n";
+        return;
+    }
+    if(loc <= 0){
+    deleteATHead();
+    return;
+}
+    if(loc > count()){
+    deleteATTail();
+    return;
+}
+ if (loc == currentCount) {
+    Node *temp = current->next;
+    current->next = temp->next;
+    temp->next->prev = current;
+    delete temp;
+    return;
+}
+deleteAt_SpecificLoc(current->next,loc,currentCount + 1);
+     
+}
+void delete_atSpecific_loc_Wrapper(int loc){
+    deleteAt_SpecificLoc(head,loc);
+}
+
+};
+void DoublyCircularLL::removeDuplicates() {
+if (head == nullptr) {
+    cout << "List is empty." << endl;
+    return;
+}
+
+Node *current = head;
+do {
+    Node *temp = current->next;
+    while (temp != head) {
+        if (temp->data == current->data) {
+            Node *duplicate = temp;
+            temp = temp->next;
+            duplicate->prev->next = duplicate->next;
+            duplicate->next->prev = duplicate->prev;
+            delete duplicate;
+        } else {
+            temp = temp->next;
+        }
+    }
+    current = current->next;
+} while (current != head);
+}
+
+void DoublyCircularLL::median_element(Node *start,Node* end){
+
+ if (start == end || start->next == end) {
+    cout << "Middle element is: " << start->data << endl;
+} else {
+    DoublyCircularLL::median_element(start->next, end->prev);
+}
+
+}
+void DoublyCircularLL::median_Wrapper(){
+if(DoublyCircularLL::isEmpty()){
+    cout << "Doubly Circular Linked List is empty\n";
+    return;
+}
+    DoublyCircularLL::median_element(head,tail);
+}
+void DoublyCircularLL::reverse_DCLL(Node *current){
+cout << current->data << " ";
+if(current == head){
+    return;
+}
+DoublyCircularLL::reverse_DCLL(current->prev);
+}
+void DoublyCircularLL::reverse_display_Wrapper(){
+DoublyCircularLL::reverse_DCLL(tail);
+cout << endl;
+}
+int DoublyCircularLL::count(){
+if (isEmpty()) {
+    return 0;
+}
+
+Node* temp = head;
+int count = 1;
+while (temp != tail){
+    temp = temp->next;
+    count++;
+}
+
+return count;
+}
+
+void DoublyCircularLL::deleteATTail(){
+ if (isEmpty()) {
+    cout << "Doubly Circular Linked List is Empty\n";
+    return;
+}
+// Case 1: Only one node
+   if (head->next == head) {
+        delete head;
+        head = nullptr;
+        return;
+  }
+Node *temp= tail;
+tail = tail->prev;
+delete temp;
+head->prev = tail;
+tail->next = head;
+}
+void DoublyCircularLL::deleteATHead() {
+if (isEmpty()) {
+    cout << "Doubly Circular Linked List is Empty\n";
+    return;
+}
+// Case 1: Only one node
+   if (head->next == head) {
+        delete head;
+        head = nullptr;
+    } else {
+        // More than one node
+        Node* temp = head;
+        
+        head = head->next;
+        
+        delete temp;
+        head->prev = tail;
+        tail->next = head;
+    }
+}
+
+bool DoublyCircularLL::isEmpty(){
+return (head == NULL);
+}
+void DoublyCircularLL::insertAtTail(int value){
+if (DoublyCircularLL::isEmpty()) {
+    Node *newnode = new Node(value);
+    head = newnode;
+    head->next = head;
+    head->prev = head;
+    tail = head;
+    return;
+}
+Node *newnode = new Node(value);
+newnode->prev = tail;
+tail->next = newnode;
+newnode->next = head;
+head->prev = newnode;
+tail = newnode;
+}
+void DoublyCircularLL::insertAtHead(int value) {
+if (DoublyCircularLL::isEmpty()) {
+    Node *newnode = new Node(value);
+    head = newnode;
+    head->next = head;
+    head->prev = head;
+    tail = head;
+} else {
+    Node *newnode = new Node(value);
+    Node* lastNode = head->prev;         
+        newnode->next = head;            
+        newnode->prev = lastNode;        
+        lastNode->next = newnode;         
+        head->prev = newnode;             
+        head = newnode;
+}
+}
+
+void DoublyCircularLL::DisplayDCLL(Node *node) {
+if (isEmpty()) {
+    cout << "Empty Doubly Circular Linked List\n";
+    return;
+}
+cout << node->data << " ";
+if (node->next != head) {
+    DisplayDCLL(node->next);
+}
+
+}
+
+void DoublyCircularLL::Display_Wrapper() {
+DisplayDCLL(head);
+cout << endl;
+}
+
+
+int main(){
+
+DoublyCircularLL dcll;
+dcll.Display_Wrapper();
+dcll.insertAtHead(1);
+dcll.insertAtTail(5);
+dcll.insertAtTail(4);
+ dcll.insertAtTail(3);
+ dcll.insertAtHead(2);
+ dcll.insertAtHead(6);
+
+dcll.Display_Wrapper();
+dcll.deleteATHead();
+dcll.Display_Wrapper();
+dcll.median_Wrapper();  
+dcll.deleteATTail();
+dcll.Display_Wrapper();
+cout << dcll.count() << endl;
+cout << "Insert if loc < = 0\n";
+dcll.insertAT_SpecificLoc_Wrapper(0,7);
+dcll.Display_Wrapper();
+cout << "Insert if loc > count\n";
+dcll.insertAT_SpecificLoc_Wrapper(7,8);
+dcll.Display_Wrapper();
+cout << "Insert at third index\n";
+dcll.insertAT_SpecificLoc_Wrapper(3,9);
+dcll.Display_Wrapper();
+cout << "Delete at 3rd index\n";
+dcll.delete_atSpecific_loc_Wrapper(3);
+dcll.Display_Wrapper();
+cout << "Reverse Display\n";
+dcll.reverse_display_Wrapper();
+dcll.median_Wrapper();
+cout << "Insert at head\n";
+dcll.insertAtHead(5);
+dcll.Display_Wrapper();
+dcll.removeDuplicates();
+dcll.Display_Wrapper();
+
+return 0;
+}
+                       </code></pre>
+                   </div>
+                   <h2 class="py-3">Recursion in Binary Search Tree</h2>
+                   <div class="code-container">
+                    <div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                        </div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                        </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon19"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon19"></i>
+                    </div>
+                   <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode19">
+#include &lt;iostream&gt;
+using namespace std;
+class RecursiveBST{
+	private:
+		class Node{
+	public:
+			int data;
+			Node *left;
+			Node *right;
+			Node(int data){
+				this->data = data;
+				left = NULL;
+				right = NULL;
+			}
+		};
+	Node *root;	
+	public:
+		RecursiveBST(){
+			root = NULL;
+		}
+		
+        Node *insert(Node *node,int data){
+        	// If the current node is null, create a new node and assign it
+        if (node == nullptr) {
+            return new Node(data);
+        }
+        // If the data to be inserted is less than the current node's data
+        if (data < node->data) {
+            node->left = insert(node->left, data);
+        }
+        // If the data to be inserted is greater than the current node's data
+        else if (data > node->data) {
+            node->right = insert(node->right, data);
+        }
+        // If data is equal, do nothing (assuming no duplicates allowed)
+        return node;
+		}
+		void insertWrapper(int data){
+			if (root == NULL) {
+            root = new Node(data);
+        } else {
+            root = insert(root, data);
+        }
+		}
+		void smallestValue(Node* node)
+		{
+			if(node->left == NULL){
+				cout << "Smallest Value is : " << node->data << endl;
+				return;
+			}
+			smallestValue(node->left);
+		}
+		void smallestWrapper(){
+			smallestValue(root);
+		}
+		void largest(Node *node){
+			if(node->right == NULL){
+				cout << "Largest Value is : " << node->data << endl;
+				return;
+			}
+			largest(node->right);
+		}
+		void largestWrapper(){
+			largest(root);
+		}
+	    void deleteTree(Node* node) {
+        if (node == nullptr) {
+        return;  // Base case: if the node is null, do nothing
+        }
+
+         // Recursively delete the left and right subtrees
+        deleteTree(node->left);
+        deleteTree(node->right);
+
+         // Delete the current node
+        cout << "Deleting node with value: " << node->data << endl;
+        delete node;
+        }
+        void deleteTreeWrapper(){
+        	deleteTree(root);
+		}
+		int sumOfTree(Node* node) {
+        if (node == nullptr) {
+        return 0;  // Base case: if the node is null, return 0
+        }
+
+        // Calculate the sum of values in the left and right subtrees
+        int leftSum = sumOfTree(node->left);
+        int rightSum = sumOfTree(node->right);
+
+        // Return the sum of the current node's value and the sums of the subtrees
+        return node->data + leftSum + rightSum;
+       }
+        void sumOfTreeWrapper(){
+        	cout << "Sum : " << sumOfTree(root);
+		}
+		void inorderTraversal(Node *node){
+			if(node != NULL){
+		        inorderTraversal(node->left);
+	          	cout << node->data << " ";
+	        	inorderTraversal(node->right);
+     	   }
+		}
+		void inorderWrapper(){
+			inorderTraversal(root);
+		}
+		void postorderTraversal(Node *node){
+			if(node != NULL){
+		        postorderTraversal(node->left);
+	        	postorderTraversal(node->right);
+	        	cout << node->data << " ";
+     	   }
+		}
+		void postorderWrapper(){
+			postorderTraversal(root);
+		}
+		void preorderTraversal(Node *node){
+			if(node != NULL){
+				cout << node->data << " ";
+		        preorderTraversal(node->left);
+	        	preorderTraversal(node->right);
+     	   }
+		}
+		void preorderWrapper(){
+			preorderTraversal(root);
+		}				
+};
+
+
+int main(){
+	RecursiveBST rbst;
+	rbst.insertWrapper(10);
+	rbst.insertWrapper(5);
+	rbst.insertWrapper(30);
+	rbst.insertWrapper(3);
+	rbst.insertWrapper(7);
+	rbst.insertWrapper(35);
+	cout << "Inorder Traversal\n";
+	rbst.inorderWrapper();
+	cout << endl;
+	cout << "Postorder Traversal\n";
+	rbst.postorderWrapper();
+	cout << endl;
+	cout << "Preorder Traversal\n";
+	rbst.preorderWrapper();
+	cout << endl;
+	rbst.smallestWrapper();
+	rbst.largestWrapper();
+	// rbst.deleteTreeWrapper();
+	rbst.inorderWrapper();
+	cout << endl;
+	rbst.sumOfTreeWrapper();
+	rbst.deleteTreeWrapper();
+	return 0;
+}
+                   </code></pre>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <script>loadContent('footer.html', 'footer');</script>
+        <div id="footer"></div>
+        <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

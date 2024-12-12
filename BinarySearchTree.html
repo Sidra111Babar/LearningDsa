@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Binary Search Tree</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+        <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Binary Search Tree</h1>
+                    <p>A Binary Search Tree (BST) in C++ is a type of data structure that facilitates fast search, insertion, and deletion operations. It is a special form of a binary tree where each node has:</p>
+                    <ul>
+                        <li>Value or Key</li>
+                        <li>Two children</li>
+                        <ul>
+                            <li><span class="fw-bold">Left child </span>contains nodes with values smaller than the parent node</li>
+                            <li><span class="fw-bold">Right child </span>contains nodes with values larger than the parent node</li>
+                        </ul>
+                    </ul>
+                    <ol>
+                        <h2 class="text-primary">Characteristics of Binary Search Tree</h2>
+                        <ul>
+                            <li><span class="fw-bold">Ordered </span>The left subtree holds values less than the parent node, and the right subtree holds values greater than the parent</li>
+                            <li><span class="fw-bold">Dynamic structure </span>It can grow and shrink as elements are inserted or deleted.</li>
+                            <li><span class="fw-bold">Recursive nature </span>Each subtree in the BST is itself a binary search tree</li>
+                        </ul>
+                        <h2 class="text-primary">Why Use Binary Search Tree</h2>
+
+                            <ol>
+                                  <li><span class="fw-bold">Efficient Searching </span>Searching in a BST can be done in O(log n) time in a balanced tree, making it much faster than a linear search in a list</li>
+                                  <li><span class="fw-bold">Fast Insertion and Deletion </span> Like searching, insertion and deletion operations are efficient (O(log n)) when the tree is balanced.</li>
+                                  <li><span class="fw-bold">Sorted Output </span>In-order traversal of a BST gives elements in sorted order, which is useful for sorting or range queries</li>
+                                  <li><span class="fw-bold">Dynamic Size </span>Unlike arrays, a BST can grow dynamically without needing reallocation or resizing.</li>
+                            </ol>
+                            <h2 class="text-primary">When to Use Binary Search Tree</h2>
+                               <ol>
+                                   <li><span class="fw-bold">Frequent Insertions and Deletions </span>If your application requires frequent insertions or deletions while maintaining order, BSTs are well-suited.</li>
+                                   <li><span class="fw-bold">Searching for Elements </span>When you need to search for an element in a dynamic set of values, especially if you expect the search operations to be frequent</li>
+                                   <li><span class="fw-bold">Sorted Data Access </span>If you need to access elements in a sorted manner frequently, BSTs allow efficient in-order traversal.</li>
+                               </ol>
+                            <h2 class="text-primary">When not to Use Binary Search Tree</h2>
+                            <ol>
+                                <li><span class="fw-bold">Unbalanced Tree </span> If the BST becomes unbalanced (e.g., all elements are inserted in sorted order), its performance degrades to O(n) (similar to a linked list). In such cases, a self-balancing tree (like AVL or Red-Black Tree) is preferred.</li>
+                                <li><span class="fw-bold">Large, Static Data </span>If the data is large but static (doesn't require insertions or deletions), then arrays or sorted lists might be more efficient for search operations due to better memory locality.</li>
+                                <li><span class="fw-bold">Random Access Needs </span> If you require frequent random access by index (like with an array), a BST is not ideal since it doesn't allow constant-time access by position.</li>
+                                <li><span class="fw-bold">Memory Overhead </span>Each node in a BST requires additional memory for pointers to children, which can be inefficient if memory is a concern.</li>
+                            </ol>
+                            <h2 class="text-primary">Tabular Comparsion of Time Complexity in BST</h2>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered border-primary table-primary">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Operation</th>
+                                      <th scope="col">Average Case</th>
+                                      <th scope="col">Worst Case</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Search</th>
+                                      <td>O(log n)</td>
+                                      <td>O(n)</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Insert</th>
+                                      <td>O(log n)</td>
+                                      <td>O(n)</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Delete</th>
+                                      <td>O(log n)</td>
+                                      <td>O(n)</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                            <ul>
+                                <span class="fw-bold">Operations</span>
+                                <li>Inserion in BST</li>
+                                <li>Deletion in BST</li>
+                                <li>Largest Element in BST</li>
+                                <li>Second Largest Element in BST</li>
+                                <li>Smallest Element in BST</li>
+                                <li>Largest Element in BST</li>
+                                <li>Inorder Traversal in BST</li>
+                            </ul>
+                    <div class="code-container mt-2">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon30"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon30"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode30">
+#include &lt;iostream&gt;
+using namespace std;
+class BinaryTree{
+private:
+    class Node{
+        public:
+            int data;
+            Node *left;
+            Node *right;
+            Node(int data){
+                this->data = data;
+                left = right = NULL;
+            }
+    };
+    Node *root;
+public:
+    BinaryTree(){
+        root = NULL;
+    }
+void insert(int data);
+void inorderTraversal(); 
+void smallestvalue();
+void largestvalue();
+void deleteValue(int value);
+void secondSmallest(); 
+void secondlargest();	
+};
+void BinaryTree::insert(int data)
+{
+    Node *newnode = new Node(data);
+    if(root == NULL){
+        root = newnode;
+        return;
+    }
+    Node *current = root;
+    while(true){
+        if(data < current->data){
+            if(current->left == NULL){
+                current->left = newnode;
+                break;
+            } else {
+                current = current->left;
+            }
+        }
+        else {
+            if(current->right == NULL){
+                current->right = newnode;
+                break;
+            } else {
+                current = current->right;
+            }
+        }           
+    } 
+}
+void BinaryTree::inorderTraversal(){
+cout << "Inorder traversal: ";
+Node* current = root;
+while (current != nullptr) {                     // loop will rub until there is no node to traverse
+    if (current->left == nullptr) {                // inorder traversal is left root and right 
+    cout << current->data << "->";               // if current->left is equal to null then print root data after that print right data
+    current = current->right;
+    } else {
+    Node* predecessor = current->left;           // if current left not equal to null a pointer named predecessor will use and  keep it equal to current->left node
+    while (predecessor->right != nullptr && predecessor->right != current)     // Covering right subtree until right is notequal to null
+        predecessor = predecessor->right;           
+
+    if (predecessor->right == nullptr) {        // but if predecessor right is equal to null 
+        predecessor->right = current;
+        current = current->left;
+    } else {
+        predecessor->right = nullptr;
+        cout << current->data << "->";
+        current = current->right;
+    }
+}
+}
+cout << endl;
+}
+void BinaryTree::smallestvalue(){
+    Node *temp = root;
+    while(temp != NULL && temp->left != NULL){
+        temp = temp->left;
+    }
+    cout << temp->data;
+}	
+void BinaryTree::largestvalue(){
+    Node *temp = root;
+    while(temp != NULL && temp->right != NULL){
+        temp = temp->right;
+    }
+    cout << temp->data;
+}
+void BinaryTree::deleteValue(int value){
+        Node* parent = nullptr;
+        Node* current = root;
+
+        // Find the node to be deleted and its parent
+        while (current != nullptr && current->data != value) {
+            parent = current;
+            if (value < current->data) {
+                current = current->left;
+            } else {
+                current = current->right;
+            }
+        }
+
+        // Node not found
+        if (current == nullptr) return;
+
+        // Case 1: Node with only one child or no child
+        if (current->left == nullptr || current->right == nullptr) {
+            Node* newChild;
+            if (current->left == nullptr) {
+                newChild = current->right;
+            } else {
+                newChild = current->left;
+            }
+
+            // If the node to be deleted is the root node
+            if (parent == nullptr) {
+                root = newChild;
+            } else if (current == parent->left) {
+                parent->left = newChild;
+            } else {
+                parent->right = newChild;
+            }
+
+            delete current;
+        } else {
+            // Case 2: Node with two children
+            // Find the inorder successor (smallest in the right subtree)
+            Node* successorParent = current;
+            Node* successor = current->right;
+            while (successor->left != nullptr) {
+                successorParent = successor;
+                successor = successor->left;
+            }
+
+            // Copy the inorder successor's value to this node
+            current->data = successor->data;
+
+            // Delete the inorder successor
+            if (successorParent->left == successor) {
+                successorParent->left = successor->right;
+            } else {
+                successorParent->right = successor->right;
+            }
+
+            delete successor;
+        }
+}
+void BinaryTree::secondSmallest(){
+if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
+    cout << "The tree does not have enough elements." << endl;
+    return;
+}
+
+Node *child = root;
+Node *parent = nullptr;
+
+// Traverse to the leftmost node (smallest element)
+while (child->left != nullptr) {
+    parent = child;
+    child = child->left;
+}
+
+// If the leftmost node has a right child, find the smallest element in the right subtree
+if (child->right != nullptr) {
+    child = child->right;
+    while (child->left != nullptr) {
+        child = child->left;
+    }
+    cout << "The second smallest element is: " << child->data << endl;
+} else {
+    // Otherwise, the parent of the leftmost node is the second smallest
+    cout << "The second smallest element is: " << parent->data << endl;
+}
+}
+void BinaryTree::secondlargest(){
+    if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
+    cout << "The tree does not have enough elements." << endl;
+    return;
+}
+
+Node *child = root;
+Node *parent = nullptr;
+
+// Traverse to the leftmost node (smallest element)
+while (child->right != nullptr) {
+    parent = child;
+    child = child->right;
+}
+
+// If the leftmost node has a right child, find the smallest element in the right subtree
+if (child->left != nullptr) {
+    child = child->left;
+    while (child->right != nullptr) {
+        child = child->right;
+    }
+    cout << "The second largest element is: " << child->data << endl;
+} else {
+    // Otherwise, the parent of the leftmost node is the second smallest
+    cout << "The second largest element is: " << parent->data << endl;
+}
+}	  	
+int main(){
+BinaryTree bt;
+bt.insert(1);
+bt.insert(12);
+bt.insert(9);
+bt.insert(5);
+bt.insert(6);
+bt.inorderTraversal();
+cout << "Smallest Value : ";
+bt.smallestvalue();
+cout << endl;
+cout << "Largest Value : ";
+bt.largestvalue();
+cout << endl;
+cout << "Second smallest value : ";
+bt.secondSmallest();
+cout << endl;
+cout <<"Second largest element is : ";
+bt.secondlargest();
+cout << endl;
+cout << "Delete 12 from the tree\n";
+bt.deleteValue(12);
+bt.inorderTraversal();
+
+
+return 0;
+}
+                        </code></pre>
+                    </div>
+                    <h2 class="py-3">Recursion in Binary Search Tree</h2>
+                   <div class="code-container">
+                    <div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                        </div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                        </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon31"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon31"></i>
+                    </div>
+                   <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode31">
+#include &lt;iostream&gt;
+using namespace std;
+class RecursiveBST{
+	private:
+		class Node{
+	public:
+			int data;
+			Node *left;
+			Node *right;
+			Node(int data){
+				this->data = data;
+				left = NULL;
+				right = NULL;
+			}
+		};
+	Node *root;	
+	public:
+		RecursiveBST(){
+			root = NULL;
+		}
+		
+        Node *insert(Node *node,int data){
+        	// If the current node is null, create a new node and assign it
+        if (node == nullptr) {
+            return new Node(data);
+        }
+        // If the data to be inserted is less than the current node's data
+        if (data < node->data) {
+            node->left = insert(node->left, data);
+        }
+        // If the data to be inserted is greater than the current node's data
+        else if (data > node->data) {
+            node->right = insert(node->right, data);
+        }
+        // If data is equal, do nothing (assuming no duplicates allowed)
+        return node;
+		}
+		void insertWrapper(int data){
+			if (root == NULL) {
+            root = new Node(data);
+        } else {
+            root = insert(root, data);
+        }
+		}
+		void smallestValue(Node* node)
+		{
+			if(node->left == NULL){
+				cout << "Smallest Value is : " << node->data << endl;
+				return;
+			}
+			smallestValue(node->left);
+		}
+		void smallestWrapper(){
+			smallestValue(root);
+		}
+		void largest(Node *node){
+			if(node->right == NULL){
+				cout << "Largest Value is : " << node->data << endl;
+				return;
+			}
+			largest(node->right);
+		}
+		void largestWrapper(){
+			largest(root);
+		}
+	    void deleteTree(Node* node) {
+        if (node == nullptr) {
+        return;  // Base case: if the node is null, do nothing
+        }
+
+         // Recursively delete the left and right subtrees
+        deleteTree(node->left);
+        deleteTree(node->right);
+
+         // Delete the current node
+        cout << "Deleting node with value: " << node->data << endl;
+        delete node;
+        }
+        void deleteTreeWrapper(){
+        	deleteTree(root);
+		}
+		int sumOfTree(Node* node) {
+        if (node == nullptr) {
+        return 0;  // Base case: if the node is null, return 0
+        }
+
+        // Calculate the sum of values in the left and right subtrees
+        int leftSum = sumOfTree(node->left);
+        int rightSum = sumOfTree(node->right);
+
+        // Return the sum of the current node's value and the sums of the subtrees
+        return node->data + leftSum + rightSum;
+       }
+        void sumOfTreeWrapper(){
+        	cout << "Sum : " << sumOfTree(root);
+		}
+		void inorderTraversal(Node *node){
+			if(node != NULL){
+		        inorderTraversal(node->left);
+	          	cout << node->data << " ";
+	        	inorderTraversal(node->right);
+     	   }
+		}
+		void inorderWrapper(){
+			inorderTraversal(root);
+		}
+		void postorderTraversal(Node *node){
+			if(node != NULL){
+		        postorderTraversal(node->left);
+	        	postorderTraversal(node->right);
+	        	cout << node->data << " ";
+     	   }
+		}
+		void postorderWrapper(){
+			postorderTraversal(root);
+		}
+		void preorderTraversal(Node *node){
+			if(node != NULL){
+				cout << node->data << " ";
+		        preorderTraversal(node->left);
+	        	preorderTraversal(node->right);
+     	   }
+		}
+		void preorderWrapper(){
+			preorderTraversal(root);
+		}				
+};
+int main(){
+	RecursiveBST rbst;
+	rbst.insertWrapper(10);
+	rbst.insertWrapper(5);
+	rbst.insertWrapper(30);
+	rbst.insertWrapper(3);
+	rbst.insertWrapper(7);
+	rbst.insertWrapper(35);
+	cout << "Inorder Traversal\n";
+	rbst.inorderWrapper();
+	cout << endl;
+	cout << "Postorder Traversal\n";
+	rbst.postorderWrapper();
+	cout << endl;
+	cout << "Preorder Traversal\n";
+	rbst.preorderWrapper();
+	cout << endl;
+	rbst.smallestWrapper();
+	rbst.largestWrapper();
+	// rbst.deleteTreeWrapper();
+	rbst.inorderWrapper();
+	cout << endl;
+	rbst.sumOfTreeWrapper();
+	rbst.deleteTreeWrapper();
+	return 0;
+}
+                   </code></pre>
+                    </div>
+                </div>
+            </div>
+      </div>
+      
+      <script>loadContent('footer.html', 'footer');</script>
+      <div id="footer"></div>
+         <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

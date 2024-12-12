@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/cppImg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <title>Single Linked List</title>
+</head>
+<body>
+     <style>   
+            .darkCode-mode {
+                background-color: #000000;
+            }
+            .code-container {
+                background-color: #282C34;
+                border: 2px solid #61dafb;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 600px;
+                color: white;
+                overflow-x: auto;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            /* Single Linked List Page */
+            .dark-mode .SingleLinkedListPage{
+                background-color: #282C34;
+            }
+            .dark-mode .SingleLinkedListPage{
+                color: white;
+            }
+     </style>
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="sidebar"></div>
+        <script>loadContent('codeSidebar.html', 'sidebar');</script>
+      <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5 ">
+                </div>
+                <div class="col-md-9 pb-5">
+                    <h1 class="text-primary">Single Linked List</h1>
+                    <p>A singly linked list in C++ is a dynamic data structure used to store a collection of elements, where each element (node) contains two parts:</p>
+                    <p class="fw-bold">1. Data: The value stored in the node.</p>
+                    <p class="fw-bold">2. Pointer: A pointer (or reference) to the next node in the list</p>
+                    <p>In a singly linked list, nodes are linked together in one direction, from the head (start) to the tail (end). The last node’s pointer points to nullptr, marking the end of the list.</p>
+                    <div class="code-container">
+                         <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                             <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon1"></i>
+                             <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon1"></i>
+                         </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode">
+    class Node {
+        public:
+            int data;
+            Node *next;
+        Node(int value) : data(value), next(nullptr) {}  
+            // Initializer list to initialize node
+    };
+    
+    class LinkedList {
+        private:
+            Node* head;    
+            // First node always points to head
+        public:
+            LinkedList() : head(nullptr) {}; 
+            // Default constructor (no parameter)
+    }
+                        </code></pre>
+                    </div>
+                    
+                    <div class="mt-2"> 
+                         </ul>
+                        <h2 class="text-primary">Why Use Singly Linked List?</h2>
+                        <p>Linked List is used due to its following properties:</p>
+                        <ol>
+                            <li class="fw-bold">Dynamic Size</li>
+                            <ul>
+                                <li>Singly linked lists are dynamic in size, meaning they can grow and shrink during runtime without needing to reallocate memory or resize.</li>
+                                <li>In contrast, arrays have a fixed size or require costly resizing operations.</li>
+                            </ul>
+                            <ol><p class="fw-bold">Examples:</p>
+                                <li>
+                                    <span class="fw-bold">User-generated content (comments on social media posts)</span>
+                                    <p><span class="fw-bold">Explanation:</span> On platforms like Facebook or Instagram, users can add comments to a post dynamically. You don’t know how many comments will be added in advance. Using a singly linked list, each new comment can be added as a new node without worrying about memory reallocation or resizing the entire structure like you would with an array.</p>
+                                </li>
+                                <li><span class="fw-bold">Music playlists in streaming apps (Spotify, Apple Music).</span>
+                                    <p> <span class="fw-bold">Explanation:</span>Playlists grow as users add songs dynamically. Each song is represented as a node in a singly linked list, allowing the playlist to grow as needed without reallocating memory.</p>
+                                </li>
+                            </ol>
+                            <li class="fw-bold">Efficient Insertions/Deletions:</li>
+                            <ul>
+                                <li>Inserting or deleting elements, especially at the beginning or in the middle of the list, is faster in a singly linked list compared to an array because linked lists don’t require shifting elements.</li>
+                                <li>In an array, insertion or deletion at the beginning or middle requires shifting the elements, which can be time-consuming.</li>
+                            </ul>
+                            <ol><span class="fw-bold">Examples:</span>
+                                <li>
+                                    <span class="fw-bold"> Undo/Redo functionality in text editors (Microsoft Word, Google Docs).</span>
+                                    <p> <span class="fw-bold">Explanation:</span> Each change in the document is stored as a node in a singly linked list, and inserting a new change (undo or redo) is efficient because the list doesn't need to shift existing elements. Changes can be quickly undone by traversing backward through the list of changes.</p>
+                                </li>
+                                <li>
+                                     <span class="fw-bold">Task scheduling in an operating system.</span>
+                                    <p><span class="fw-bold">Explanation:</span> In an OS task manager, new tasks or processes are added dynamically to a list of active processes. Using a singly linked list allows quick insertion of new tasks without shifting elements, which is critical for efficient multitasking.</p>
+                                </li>
+                            </ol>
+
+                            <li class="fw-bold">Memory Efficient for Certain Operations:</li>
+                            <ul>
+                                <li>A singly linked list allocates memory for each element (node) as needed, unlike an array which may allocate memory that isn’t used.</li>
+                                <li>For situations where the <span style="color: red">number of elements is unknown or frequently changing</span>, a singly linked list is more memory-efficient.</li>
+                            </ul>
+                            <ol><span class="fw-bold">Examples:</span>
+                                <li>
+                                    <span class="fw-bold">Dynamic memory management in online multiplayer games.</span>
+                                    <p><span class="fw-bold">Explanation:</span> Players can join and leave the game at any time. Each player can be represented as a node in a singly linked list. This way, the system only allocates memory when a player joins, and frees it when they leave, ensuring memory isn't wasted.</p>
+                                </li>
+                                <li> 
+                                   
+                                    <span class="fw-bold"> Linked list-based implementations of blockchain.</span>
+                                    <p><span class="fw-bold">Explanation:</span> Each block is dynamically added as a new node. The number of blocks is unpredictable, and linked lists efficiently allocate memory for each block only as it is added.</p>
+                                </li>
+                            </ol>
+                            <li class="fw-bold">Flexible in Reorganization:</li>
+                            <ul>
+                                <li>Singly linked lists allow easy reorganization of nodes (e.g., reversing, sorting) since we can manipulate the pointers without needing to move elements around physically in memory.</li>
+                            </ul>
+                            <ol><span class="fw-bold">Examples:</span>
+                                <li><span class="fw-bold">Rearranging songs in a playlist.</span>
+                                    <p> In music streaming services, users often rearrange the order of songs in a playlist. With a singly linked list, changing the order of songs is as simple as adjusting the pointers between nodes, without having to physically move the data in memory.</p>
+                                </li>
+                                <li><span class="fw-bold">Dynamic form generation in web applications.</span>
+                                    <p>Web forms often allow users to dynamically add new fields (e.g., adding new addresses in an address book). Each field can be represented as a node in a singly linked list, and fields can be reorganized (e.g., moving address fields up or down) without shifting or reallocating memory.</p>
+                                </li>
+                            </ol>
+                            <h2 class="text-primary">When to Use Singly Linked List</h2>
+                             <ol>
+                                <li><span class="fw-bold">When frequent insertions/deletions are needed:</span>
+                                    <ul>
+                                        <li><span class="fw-bold">Example:</span> In a queue or stack where you frequently add/remove elements at the beginning or end.</li>
+                                        <li>Inserting at the start of a singly linked list is a constant-time operation, O(1).</li>
+                                    </ul>
+                                </li>
+                                <li><span class="fw-bold">When the size of the list is unknown or unpredictable:</span>
+                                    <ul>
+                                        <li>If the number of elements can grow or shrink dynamically, linked lists provide better memory management since they don’t require a predefined size like arrays.</li>
+                                    </ul>
+                                </li>
+                                <li> <span class="fw-bold">When memory reallocation costs are too high:</span>
+                                    <ul>
+                                        <li><span class="fw-bold">Example:</span> In situations where resizing arrays would be too costly (e.g., frequent append operations), a linked list can handle this with less overhead, as it doesn't need to reallocate large contiguous blocks of memory.</li>
+                                    </ul>
+                                </li>
+                                <li><span class="fw-bold">When traversals are acceptable</span>
+                                    <ul>
+                                        <li>If your application involves mostly sequential traversal of elements and doesn’t need direct access to individual elements (which arrays provide), linked lists are suitable.</li>
+                                    </ul>
+                                </li>
+                                <li><span class="fw-bold">When space isn’t a major concern</span>
+                                     <ul>
+                                        <li>Singly linked lists use extra space to store pointers (the next pointer in each node), so if memory is limited, arrays may be preferable. However, if this space overhead is not a concern, linked lists offer more flexibility.</li>
+                                     </ul>
+                                </li>
+                             </ol>
+                             <h2 class="text-primary">When not to Use Singly Linked List</h2>
+                             <ol>
+                                 <li><span class="fw-bold">If Random Access is Required:</span>
+                                    <p>If you frequently need to access elements by index (e.g., arr[5]), arrays are a better choice because they provide O(1) access. A singly linked list would require O(n) traversal to find the element.</p>
+                                 </li>
+                                 <li><span class="fw-bold">When Memory Overhead Matters:</span>
+                                    <p>Singly linked lists have extra memory overhead due to storing pointers. If memory is a limiting factor, and the list size is fixed or changes infrequently, arrays or other data structures may be more efficient.</p>
+                                 </li>
+                                 <li><span class="fw-bold">When Sorting or Searching is Frequent:</span>
+                                    <p>Arrays allow efficient searching and sorting using binary search, quicksort, etc., which are harder to implement efficiently on a linked list</p>
+                                 </li>
+                             </ol>
+                    </div>
+                    <div>
+                        <h2 class="text-primary">Operations in Singly Linked List</h2>
+                        <ul>
+                            <li>Insertion at head: O(1)</li>
+                            <li>Insertion at tail: O(n)</li>
+                            <li>Deletion (given a reference to the node e.g head): O(1)</li>
+                            <li>Deletion (searching for the node e.g tail): O(n)</li>
+                            <li>Searching: O(n)</li>
+                            <li>Traversing: O(n)</li>
+                        </ul>
+                        <p><span class="text-danger">Note:</span> Always see best and worst case. Time Complexity is not same in all cases like insertion in linked list has time complexity O(1) it will not same for all cases. </p>
+                        <p><span class="text-danger">Question:</span> What is time complexity of insertion in single linked list?</p>
+                        <p><span class="text-danger">Answer</span>Answer is not straight forward as O(1) or O(n)</p>
+                        <ul>
+                            <li>
+                                <span class="fw-bold">At the beginning (head):</span>
+                                <p>Time Complexity: O(1)</p>
+                                <p>Inserting at the beginning only requires adjusting the head pointer to point to the new node and setting the new node’s next pointer to the old head.</p>
+                            </li>
+                            <li>
+                                <span class="fw-bold">At the end (tail):</span>
+                                <p>Now there are tow cases at tail</p>
+                                <ol>
+                                    <li><span class="fw-bold">If the list does not maintain a tail pointer:</span>
+                                       <p>Time Complexity: O(n)</p>
+                                       <p>You have to traverse the entire list to find the last node and insert the new node.</p>
+                                    </li>
+                                    <li>
+                                        <span class="fw-bold">If the list maintains a tail pointer:</span>
+                                        <p>Time Complexity: O(1)</p>
+                                        <p>With direct access to the tail, you can insert the node immediately without traversal.</p>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                <span class="fw-bold">At a specific position (middle):</span>
+                                <p> Time Complexity: O(n)</p>
+                                <p>You need to traverse the list to find the desired position, which takes linear time, and then adjust the pointers.</p>
+                            </li>
+                        </ul>
+                        <h2 class="text-primary">Single Linked list(ADT) operations with maintaining tail pointer</h2> 
+                        <p>Opertions in this code are</p>
+                        <ul>
+                            <li>Insertion at head</li>
+                            <li>Insertion at tail</li>
+                            <li>Deletion at head</li>
+                            <li>Deletion at tail</li>
+                            <li>Insertion at Specific Position</li>
+                            <li>Deletion at Specific Position</li>
+                            <li>Delete Linked List</li>
+                            <li>Sorting in Linked List</li>
+                            <li>Display Linked List</li>
+                            <li>Count in Linked List</li>
+                        </ul>
+                        <div class="code-container mt-2">
+                            <div> 
+                                <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                </div>
+                                <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                    <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon2"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon2"></i>
+                            </div>
+                            <pre class="mt-2">
+                              <code class="language-cpp" id="SimpleNodeCode2">
+    #include &lt;iostream&gt;
+    using namespace stds;
+
+    class LinkedList {
+    private:
+        class Node {
+        public:
+            int data;
+            Node* next;
+            Node(int data) {
+                this->data = data;
+                next = NULL;
+            }
+        };
+        Node* head;
+        Node* tail;
+
+    public:
+        LinkedList(int data) {
+            head = new Node(data);
+            tail = head;
+        }
+
+        bool IsEmpty() {
+            return head == NULL;
+        }
+
+        void InsertAtHead(int data) {
+            if (IsEmpty()) {
+                head = new Node(data);
+                tail = head;
+                return;
+            }
+            Node* temp = new Node(data);
+            temp->next = head;
+            head = temp;
+        }
+
+        void InsertAtTail(int data) {
+            if (IsEmpty()) {
+                head = new Node(data);
+                tail = head;
+                return;
+            }
+            tail->next = new Node(data);
+            tail = tail->next;
+        }
+
+        void Insert(int data, int loc) {
+            if (loc == -99) {
+                InsertAtHead(data);
+                return;
+            }
+            Node* temp = head;
+            while (temp->next != NULL && temp->data != loc) {
+                temp = temp->next;
+            }
+            if (temp->next == NULL && temp->data == loc) {
+                InsertAtTail(data);
+                return;
+            }
+            Node* temp1 = new Node(data);
+            temp1->next = temp->next;
+            temp->next = temp1;
+        }
+
+        void DeleteAtHead() {
+            if (IsEmpty()) return;
+            if (head->next == NULL) {
+                delete head;
+                head = tail = NULL;
+            } else {
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+            }
+        }
+
+        void DeleteAtTail() {
+            if (IsEmpty()) return;
+            if (head->next == NULL) {
+                delete head;
+                head = tail = NULL;
+            } else {
+                Node* temp = head;
+                while (temp->next->next != NULL) {
+                    temp = temp->next;
+                }
+                delete temp->next;
+                tail = temp;
+                tail->next = NULL;
+            }
+        }
+
+        void Display() {
+            Node* temp = head;
+            while (temp != NULL) {
+                cout << temp->data << endl;
+                temp = temp->next;
+            }
+        }
+
+        void Delete(int data) {
+            if (head->data == data) {
+                DeleteAtHead();
+                return;
+            }
+            Node* temp = head;
+            while (temp->next != NULL) {
+                if (temp->next->data == data) {
+                    if (temp->next == tail) {
+                        DeleteAtTail();
+                        return;
+                    }
+                    Node* temp2 = temp->next;
+                    temp->next = temp2->next;
+                    delete temp2;
+                    return;
+                }
+                temp = temp->next;
+            }
+            if (temp->data == data) {
+                DeleteAtTail();
+                return;
+            }
+            cout << "The data is not in Linked List.\n";
+        }
+
+        void DeleteALL() {
+            while (head != NULL) {
+                Delete(head->data);
+            }
+        }
+
+        void Sort() {
+            Node* temp = head;
+            while (temp != NULL) {
+                Node* temp1 = head;
+                while (temp1 != NULL) {
+                    if (temp->data < temp1->data) {
+                        int itemp = temp->data;
+                        temp->data = temp1->data;
+                        temp1->data = itemp;
+                    }
+                    temp1 = temp1->next;
+                }
+                temp = temp->next;
+            }
+        }
+
+        int Count() {
+            Node* temp = head;
+            int count = 0;
+            while (temp != NULL) {
+                count++;
+                temp = temp->next;
+            }
+            return count;
+        }
+    };
+
+    int main() {
+        LinkedList l1(3);
+        LinkedList l2(6);
+        l1.InsertAtHead(6);
+        l1.InsertAtHead(5);
+        l1.InsertAtHead(8);
+        l1.InsertAtTail(2);
+        l1.Display();
+        cout << endl;
+
+        l1.Delete(8);
+        l1.Display();
+        cout << endl;
+
+        l1.Delete(2);
+        l1.Display();
+        cout << endl;
+
+        l1.Delete(6);
+        l1.Display();
+        cout << endl;
+
+        l1.Insert(9, -99);
+        l1.Display();
+        cout << endl;
+
+        l1.Insert(7, 3);
+        l1.Display();
+        cout << endl;
+
+        l1.Sort();
+        l1.Display();
+        cout << endl;
+
+        cout << "The count of elements in linked list are: " << l1.Count() << endl;
+        return 0;
+    }
+                              </code>
+                            </pre>
+                          </div>                          
+                    </div>
+                <div class="mt-2">
+                    <h2 class="text-primary">Single Linked List Operations with no tail Pointer</h2>
+                    <p>Operations in this linked List are: </p>
+                    <ul>
+                        <li>Insertion at head</li>
+                        <li>Display Linked List</li>
+                        <li>Count Nodes</li>
+                        <li>Sum Linked List</li>
+                        <li>Average of Linked List</li>
+                        <li>Specific Node Value</li>
+                        <li>Even Numbers</li>
+                        <li>Odd Numbers</li>
+                        <li>Average of Even Numbers</li>
+                        <li>Reverse Linked List</li>
+                        <li>Delete Linked List</li>
+                        <li>Deletion of Specific Node</li>
+                    </ul>
+                    <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon3"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon3"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode3">
+#include &lt;iostream&gt;
+    using namespace std;
+    
+    // Node class is a node and it contains a data and address of next node's data
+    class Node{
+        public:
+            int data;
+            Node *nextNode_dataAddress;   //  use of next is better word
+        Node(int value) : data(value),nextNode_dataAddress(nullptr){}   // Initializer list to initialize node
+    };
+    
+    // LinkedList class will use to make linkedlist and all of its operations
+    class LinkedList{
+        private:
+            Node* head;    // First node always points to head
+        public:
+            LinkedList() : head(nullptr){}; //initializer list
+            void insertValue_atBegining(int value);
+            void display_Linkedlist();
+            double Count_Nodes();
+            double Sum_LinkedList();
+            double AverageOf_Linkedlist();	
+            void specificNode_element(int nodeno);
+            void evenNo_inLinkedlist();
+            void oddNo_inLinkedlist();
+            void averageOf_evenElements();
+            void reverse_linkedlist();
+            void delete_Linkedlsit();
+            void deletionof_specificNode(int user_node); 
+            
+    };
+    
+    void LinkedList::insertValue_atBegining(int value)
+    {
+        Node *newnode = new Node(value);  // Calling of node class constructor
+        newnode->nextNode_dataAddress = head; //address of nextnode will come in head
+        head = newnode;     // Every newnode will become head
+    }
+    
+    void LinkedList::display_Linkedlist()
+    {
+        if(head == nullptr)     // if head is equal to null then it means that list is empty
+        {	                   // constructor will automatically initialize it to null after the creation of object in main
+            cout << "Linked list is empty" << endl; 
+        }
+        else
+        {
+            cout << "Elements in the Linked list are : ";
+            Node *current = head; // current initialized with the head (current points to the first node in the linkedlist)
+            while(current != nullptr)// means that until last node  ----> because last node has address null
+            {
+                cout << current->data << " ";
+                current = current->nextNode_dataAddress;  // Update current after each iteration
+            }  
+            cout << endl;
+        }
+    }
+    
+    double LinkedList::Count_Nodes()
+    {
+        if(head == nullptr)
+        {
+            cout << "Linked List is empty so count is 0" << endl;
+            return 0; // Return 0 when the list is empty
+        }
+        else
+        {
+            int count = 0;
+            Node *current = head; 	// Start with the first node in LinkedList
+            while(current != nullptr) // Means that this loop will run until the last Node of LinkedList because the last node has a null address
+            {   
+                //cout << "While loop me aya ha\n";
+                count++;
+                current = current->nextNode_dataAddress; // Update current to go forward in LinkedList by passing nodes
+            }
+            return count;
+        }	
+    }
+    
+    double LinkedList::Sum_LinkedList()
+    {
+        if(head == nullptr)
+        {
+            cout << "Linked list is empty so sum is impossible" << endl;
+            return 0; // Return 0 when the list is empty
+        }
+        else
+        {
+            Node *current = head;
+            int sum = 0;
+            while(current != nullptr)
+            {
+                sum += current->data;
+                current = current->nextNode_dataAddress;
+            }
+            return sum;
+        }
+    }
+    
+    double LinkedList::AverageOf_Linkedlist()
+    {
+        if (Count_Nodes() == 0)
+        {
+            cerr << "Division by 0 is Not allowed, Linked list has 0 nodes" << endl;
+            return 0; // Return 0 if there are no nodes in the list to avoid division by zero
+        }
+            
+        return Sum_LinkedList() / Count_Nodes();
+    }
+    void LinkedList::specificNode_element(int nodeno)
+    {
+        if(head == nullptr)
+        {
+            cout << "Node is empty so that specific node element could not found" << endl;
+        }
+        else
+        { 
+            int element = 0;
+            Node *current = head;
+            while(current != nullptr)
+            {
+                element++;
+                if(element == nodeno)
+                {
+                    cout << "Linkedlist element value at node " << element << " is " << current->data << endl;
+                    break;
+                }
+                current = current->nextNode_dataAddress;
+            }
+            
+            
+        }
+    }
+        void LinkedList::averageOf_evenElements()
+        {
+            if(head == nullptr)
+            {
+                cout << "Linked List is Empty so even numbers average is impossible" << endl;
+        }
+        else
+        {
+            double sum = 0;
+            double average = 0;
+            Node *current = head;
+            while(current != nullptr)
+            {
+                if(current->data % 2 == 0)
+                {
+                    sum += current->data;
+                    average++;
+                }
+                current = current->nextNode_dataAddress; 
+            }
+            cout << "Average of even number is : " << sum / average << endl;
+            
+        }
+        
+        }
+    void LinkedList::evenNo_inLinkedlist()
+    {
+        if(head == nullptr)
+        {
+            cout << "Linkedlist is empty" << endl;
+        }
+        else
+        {
+            Node *current = head;
+            bool found = false; 
+            while(current != nullptr)
+            {
+                if(current->data % 2 == 0)
+                {
+                    cout << current->data << " ";
+                    found = true; 
+                }
+                current = current->nextNode_dataAddress; 
+            }
+            cout << endl;
+            if (!found)
+            {
+                cout << "No even elements are present" << endl;
+            }
+        }
+    }
+    void LinkedList::oddNo_inLinkedlist()
+    {
+        if(head == nullptr)
+        {
+            cout << "Linkedlist is empty" << endl;
+        }
+        else
+        {
+            Node *current = head;
+            bool found = false; 
+            while(current != nullptr)
+            {
+                if(current->data % 2 != 0)
+                {
+                    cout << current->data << " ";
+                    found = true; 
+                }
+                current = current->nextNode_dataAddress; 
+            }
+            cout << endl;
+            if (!found)
+            {
+                cout << "No odd elements are present" << endl;
+            }
+        }
+    }
+    void LinkedList::reverse_linkedlist()
+    {
+        if(head == nullptr)
+        {
+            cout << "Linked List is empty, could not reverse" << endl;
+        }
+        else
+        {
+            Node* prev = nullptr;      // initiallly points to null 
+            Node* current = head;      // Points to next
+            Node* next = nullptr;    // initially points to null
+    
+            while(current != nullptr)    // Loop will run until the end of the Linked list
+            {  
+                next = current->nextNode_dataAddress; // Store the next node 
+                current->nextNode_dataAddress = prev; // Reverse the pointer
+                
+                // Move pointers one position ahead
+                prev = current;    
+                current = next;
+            }
+            
+            // Now, the list is reversed, so set the head to the last node (prev)
+            head = prev;
+            
+            // Print the reversed linked list
+            display_Linkedlist();
+        }
+    }
+    void LinkedList::delete_Linkedlsit()
+    {
+            
+        if(head == nullptr)
+        {
+            cout << "List is already empty" << endl;
+        }
+        else
+        {
+            Node* current = head;
+            Node* next = nullptr;      //Initialize next to null ptr
+            
+            while(current != nullptr)
+            {
+                // previous one will delete and next one is go forward
+                next = current->nextNode_dataAddress; // Store the next node and loop will go forward
+                delete current; // Delete the current node 
+                current = next; // Now current is equal to next node's address
+            }
+            
+            head = nullptr; // Update the head pointer to nullptr, because an empty linkd list has null head
+            cout << "List is deleted successfully" << endl;
+        }
+    }
+    void LinkedList::deletionof_specificNode(int user_position)
+    {
+        if(head == nullptr)
+        {
+            cout << "Linked List is empty" << endl;
+        }
+        else
+        {
+            Node* current = head;
+            Node* prev = nullptr;
+            int position = 1;
+    
+            // Special case: if the node to be deleted is the head node
+            if (user_position == 1)
+            {
+                head = current->nextNode_dataAddress;
+                delete current;
+                cout << "Node at position " << user_position << " deleted successfully" << endl;
+                return; 
+            }
+    
+            while(current != nullptr)
+                {
+                // If the position matches the desired position
+                if (position == user_position)
+                {
+                    // Adjust pointers to skip the current node
+                    prev->nextNode_dataAddress = current->nextNode_dataAddress;
+                    delete current;
+                    cout << "Node at position " << user_position << " deleted successfully" << endl;
+                    return;
+                }
+    
+                        // Move to the next node
+                prev = current;
+                current = current->nextNode_dataAddress;
+                position++;
+            }
+    
+            // If the position is not found
+            cout << "Node at position " << user_position << " not found" << endl;
+        }
+    }
+    
+    int main(){
+        LinkedList list;  // Here constructor will automatically call and head initializes to null
+        int choice;
+        int n;
+        cout << "Press 1 to insert element at the begining of LinkedList " << endl;
+        cout << "Press 2 to display Linkedlist  " << endl;
+        cout << "Press 3 to to Count Nodes in the Linked List " << endl;
+        cout << "Press 4 to Sum the Linked List " << endl;
+        cout << "Press 5 to get Average of Linked List " << endl;
+        cout << "Press 6 to get Specific node Element in the Linked List " << endl;
+        cout << "Press 7 to get Even numbers in the Linkedlist " << endl;
+        cout << "Press 8 get Odd numbers in the Linkedlist " << endl;
+        cout << "Press 9 to get average of even elements in the Linkedlist " << endl;
+        cout << "Press 10 to reverse the Linkedlist " << endl;
+        cout << "Press 11 to delete the Linkedlist " << endl;
+        cout << "Press 12 to delete specific node in the Linkedlist" << endl;
+        cout << "Press 13 to exit the program " << endl;
+            
+        
+    while(true)
+    {
+        cout << "Enter your choice: ";
+        cin >> choice;
+    
+        switch(choice)
+        {
+            case 1:
+                cout << "Enter Element to insert in the Linked list : ";
+                cin >> n;
+                list.insertValue_atBegining(n);
+                break;
+            case 2:
+                list.display_Linkedlist();
+                break;
+            case 3:
+                cout << "Number of nodes in the Linkedlist are ";
+                cout << list.Count_Nodes();
+                cout << endl;
+                break;
+            case 4:
+                cout << "Sum of linkedlist elements are ";
+                cout << list.Sum_LinkedList();
+                cout << endl;
+                break;
+            case 5:
+                cout << "Average of Linkedlist elements are ";
+                cout << list.AverageOf_Linkedlist();
+                cout << endl;
+                break;
+            case 6:
+                cout << "Enter node number : ";
+                cin >> n;
+                list.specificNode_element(n);
+                break;
+            case 7:
+                cout << "Even Numbers in the Linked list are ";
+                list.evenNo_inLinkedlist();
+                break;
+            case 8:
+                cout << "Odd Elements in the Linked list are ";
+                list.oddNo_inLinkedlist();
+                break;
+            case 9:
+                list.averageOf_evenElements();
+                break;
+            case 10:
+                cout << "Now Linked List has reversed " << endl;
+                list.reverse_linkedlist();
+                break;
+            case 11:
+                list.delete_Linkedlsit();
+                break;
+            case 12:
+                cout << "Enter node no : ";
+                cin >> n;
+                list.deletionof_specificNode(n);
+                break;
+            case 13:
+                cout << "Program has terminated " << endl;
+                exit(0);   // exit 0 is used for normal termination and exit(1) is used for abnormal termination of program
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+                break;
+        }
+    }
+    
+        return 0;
+    }
+                       </code></pre>
+                   </div>
+                </div>
+                <div class="mt-2">
+                    <h2 class="text-primary">Practice Operations at Singly Linked List</h2>
+                    <ul>
+                        <li>Insert at Tail</li>
+                        <li>Insert at Middle</li>
+                        <li>Delete at Tail</li>
+                        <li>Delete at Middle</li>
+                        <li>Insert in Sorted Order</li>
+                    </ul>
+                <div class="code-container">
+                    <div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                        </div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                        </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon4"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon4"></i>
+                    </div>
+                   <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode4">
+    #include &lt;iostream&gt;
+    using namespace std;   
+    class Node{
+        public:
+            int data;
+            Node* next;
+            Node(int value) : data(value), next(nullptr) {} 
+    };
+    class LinkedList{
+        public:
+            Node* head;
+            LinkedList() : head(nullptr) {}
+            void display();
+            void insertAtTail(int value);
+            void insertInMiddle(int value);
+            void deleteAtMiddle();
+            void deleteAtTail();
+            void insertInSortedOrder(int value);       
+    };
+    void LinkedList::display(){
+        if(head == nullptr)     
+        {	                   
+            cout << "Linked list is empty" << endl;
+        }
+        else
+        {
+            cout << "Elements in the Linked list are : ";
+            Node *current = head; 
+            while(current != nullptr)
+            {
+                cout << current->data << " ";
+                current = current->next;  
+            }
+            cout << endl;
+        }
+    }
+    void LinkedList::insertAtTail(int value){
+            Node* newnode = new Node(value);  // Creation of a node
+            if (head == NULL) {     // if Linked List is empty then make head as first node
+                head = newnode;
+                return;
+            }
+            Node* temp = head;  //In case linked list is not empty
+            while (temp->next != NULL) {  //This loop will run until pointer will reach to the last node(last node's next is always equal to null)
+                temp = temp->next;        // iteration start from head and in each iteration pointer will point to the next node
+            }
+            temp->next = newnode;   // When pointer will reach to the end of the linkedlist(last node) then while loop will terminate
+                                    // Now outside this while loop insert newnode at the next of last node
+                                    // This newnode has data and its next is equal to null(automatically because of constructor)
+    }
+    void LinkedList::insertInMiddle(int value){ 
+            Node* fast = head;    
+            Node* slow = head;
+            Node* prev = NULL;   
+            while (fast != NULL && fast->next != NULL) {
+                fast = fast->next->next;  // skip one node so fast will reach to the end of the linkedlist when slow is at the middle of the linkedlist
+                prev = slow;
+                slow = slow->next;
+            }
+            Node* newnode = new Node(value);
+            // Adjust pointers to insert the new node in the middle(now slow is at the middle of the linked list)
+            newnode->next = slow;
+            if (prev != NULL) {
+                prev->next = newnode;
+            } else {
+                head = newnode;  // This will run if linked list is empty(In this case make first node head)
+            }
+    }
+    void LinkedList::deleteAtTail(){
+                if (head == NULL) {             
+                cout << "No Node is present.\n";
+                return;
+            }
+    
+            // Special case: If there's only one node
+            if (head->next == NULL) {
+                delete head;
+                head = NULL; // Set head to NULL as the list becomes empty
+                return;
+            }
+            // Traverse the list until there is no node at the temp->next->next
+            Node* temp = head;
+            while (temp->next->next != NULL) {
+                temp = temp->next;
+            }
+            // Now temp points to the second-to-last node
+            delete temp->next; // Delete the last node
+            temp->next = NULL; // Update the next pointer of the second-to-last node to NULL
+    }
+    void LinkedList::deleteAtMiddle(){
+        if (head == NULL || head->next == NULL) {
+                cout << "No middle node to delete.\n";
+                return;
+            }   
+            Node* fast = head;
+            Node* slow = head;
+            Node* prev = NULL; // This pointer will store the node that is just before the slow node
+            while (fast != NULL && fast->next != NULL) {
+                fast = fast->next->next;
+                prev = slow;
+                slow = slow->next;
+            }    
+            // Now slow points to the middle node
+            if (prev != NULL) {
+                prev->next = slow->next; // Update the next pointer of the node before the middle node
+            } else {
+                head = slow->next; // Update the head if the middle node is the first node
+            }
+    
+            delete slow;
+    }
+    // Apply on new linked list no on already made linked list
+    void LinkedList::insertInSortedOrder(int value){
+        Node* newnode = new Node(value);
+        if(head == nullptr){
+            head = newnode;
+            return; // if the list is empty, the new node becomes the head and we're done
+        }
+        if(value < head->data){
+            newnode->next = head;
+            head = newnode;
+            return; // if the value is less than head then swap head with newnode
+        }
+    
+        Node* current = head;
+        while(current->next != nullptr && current->next->data < value){   
+        /*cout << "Enter in while loop " << endl;*/
+            current = current->next;
+            /*cout << current->data << endl; */
+        }
+    
+        newnode->next = current->next;
+        current->next = newnode; 
+    }
+    int main(){
+        LinkedList list;
+        LinkedList list2;
+        cout << "Insert at the middle.\n";
+        list.insertInMiddle(1);
+        list.display();
+        cout << "Insert at tail.\n";
+        list.insertAtTail(7);
+        list.insertAtTail(6);
+        list.insertAtTail(8);
+        list.insertAtTail(3);
+        list.display();
+        cout << "Insert at the middle.\n";
+        list.insertInMiddle(2);
+        list.display();
+            cout << "Insert at the middle.\n";
+        list.insertInMiddle(9);
+        list.display();
+        cout << "Delete at Tail.\n";
+        list.deleteAtTail();
+        list.display();   
+        cout << "Insertion of elements in sorted order.\n";
+        list2.insertInSortedOrder(1);
+        list2.insertInSortedOrder(2);
+        list2.insertInSortedOrder(0);
+        list2.insertInSortedOrder(4);
+        list2.insertInSortedOrder(3);
+        list2.display();    
+        return 0;
+    }                        
+                   </code></pre>
+               </div>
+            </div>
+                <div class="my-2">
+                    <h2 class="text-primary py-3">Builtin Single Linked List Functions(Using STL)</h2>
+                    <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon5"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon5"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode5">
+    #include &lt;iostream&gt;
+    #include &lt;list&gt;
+    using namespace std;
+    
+    //      ------------------------------------push_front(), push_back(),back(),front(),pop_front(),pop_back(),size(),begin()--> used to start iterator and iterator will go froward by using advance function,end()--->use with iterator to print the list,assign()----->used to insert same element multiple times() it will take two parameters(NoOfElement, element),insert()----> it will use to insert element at the desired position like but it will use with iterator
+    //     --------------------------------------- implementation see from website 
+    int main() {
+        // push front is insert at head
+        // push back is insert at tail
+        // .front() is left most element or topmost   (give data on head)
+        // .back() right most element                 (give data on tail)
+        list&lt;int&gt; myList;
+        cout << "Ist Linked list by using push_front() Function" << endl;
+        myList.push_front(5);    // push_front() is builtin function of list and it is used to insert elements at front side
+        cout << "Element " << myList.front() << " is pushed" << endl;  // front()(builtin list function) is used to access front most element 
+        myList.push_front(2);
+        cout << "Element " << myList.front() << " is pushed" << endl;
+        myList.push_front(3);
+        cout << "Element " << myList.front() << " is pushed" << endl;
+        cout << "Front most elment until here is " << myList.front() << endl;  
+        cout << "Last most element until here is " << myList.back() << endl;//back()(builtin function to access lastmost element)
+        cout << "Linked List after insertion at the beginning: ";  
+        for (const auto& element : myList) {    // range based loop, auto key word automatically identify datatype
+                cout << element;          // top most element always print first when use loop
+        }
+        cout << endl;
+        cout << "2nd Linked list by using push_back() Function" << endl;
+        list&lt;int&gt; myList2;
+        myList2.push_back(5);    // push_front() is builtin functionof list and it is used to insert elements at front side
+        cout << "Element " << myList2.back() << " is pushed" << endl;  // front()(builtin list function) is used to access front most element 
+        myList2.push_back(2);
+        cout << "Element " << myList2.back() << " is pushed" << endl;
+        myList2.push_back(3);
+        cout << "Element " << myList2.back() << " is pushed" << endl;
+        cout << "Front most elment until here is " << myList2.front() << endl;  
+        cout << "Last most element until here is " << myList2.back() << endl;//back()(builtin function to access lastmost element)
+        cout << "Linked List after insertion at the end ";  
+        for (const auto& element : myList2) {    // range based loop, auto key word automatically identify datatype
+                cout << element << " ";          // top most element always print first when use loop
+        }
+        cout << endl;
+    
+        cout << "Now push two more elements in Ist Linked list by using push_back() function" << endl;
+        myList.push_back(4);     //push_back() is builtin function used to add elements at tail of linked list
+        myList.push_back(5);
+    
+        
+        cout << "Linked List after insertion at the end: ";
+        for (const auto& element : myList) {
+                cout << element << " ";
+        }
+            cout << endl;
+            cout << "Now Front most element in Ist Linked list is " << myList.front() << endl;
+            cout << "Now Last most element in Ist Linked list is " << myList.back() << endl;
+            cout << "After Using push_back() function front most element is first elment in the list" << endl;
+            cout << "After Using push_back() function last most is  last element in the list " << endl;
+            cout << endl;
+            cout << "Usage of begin() builtin function of list" << endl;
+        list&lt;int&gt; myList3 = {1, 2, 3, 4, 5};
+    
+        // Accessing elements using iterators
+        list&lt;int&gt;::iterator it = myList3.begin(); // begin() is built in funciton of list, 
+                                                // iteration will start form begin Iterator is used to iterate elements in list(STL has iterator)
+        advance(it, 2); // Move iterator forward by 2 positions, advance() is a function use to access desired element at desired position
+    
+        // Now 'it' points to the third element in the list
+        cout << "Element at position 3: " << *it << endl;
+    
+        
+    
+        return 0;
+    }
+                                
+                        </code></pre>
+                    </div>
+                </div>
+                <div>
+                     <h2 class="text-primary my-3">Recursive Approach of SLL</h2>
+                    <div class="code-container">
+                        <div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                            </div>
+                            <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                            </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon10"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon10"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode10">
+#include&lt;iostream&gt;
+    using namespace std;
+    class Recursive_SinlgeLL{
+        private:
+            class Node{
+                public: 
+                    int data;
+                    Node *next;
+                    Node(int data){
+                        this->data = data;
+                        next = NULL;
+                    }
+            };
+        Node *head;
+        public:
+            Recursive_SinlgeLL(int data){
+                head = new Node(data);
+            }
+            void insertAThead(int data);
+            void inserAtTail_Recursively(int data,Node *current);
+            void insertAtTail(int data);
+            void displaySLL_Recursively(Node *node);
+            void display();
+            void deleteATHead();
+            int count();
+            void deleteAtTail_Recursively(Node *temp,Node *current);
+            void removeatTail();
+            void delete_atMiddle_Rec(Node *node,Node *fast,Node *slow);
+            void delete_atMiddle_Wrapper();
+            void insert_atMiddle_Rec(int user_data,Node *prev,Node *fast,Node* slow);
+            void insert_atMiddle_Wrapper(int data);
+            void deleteat_SpecificLoc_Rec(int loc,Node *&ampcurrent,int currentcount = 1){
+                if (loc > count()) {
+                    removeatTail();
+                return;
+            }
+            if (loc <= 0) {
+                deleteATHead();
+                return;
+            }
+            /* if (loc == 1) {
+                Node* temp = current;
+                current = current->next;
+                delete temp;
+                return;
+            }*/
+            if (currentcount  == loc) {
+                Node* temp = current->next;
+                current->next = temp->next;
+                delete temp;
+                return;
+            }
+            deleteat_SpecificLoc_Rec(loc, current->next, currentcount + 1);
+            }
+            void deleteAt_specificloc(int loc){
+                deleteat_SpecificLoc_Rec(loc,head);
+            }
+            void insertAtSpecificLoc_Rec(int data, int loc, Node* current, int currentcount = 1) {
+            if (loc > count()) {
+                insertAtTail(data);
+                return;
+            }
+            if (loc <= 0) {
+                insertAThead(data);
+                return;
+            }
+            if (loc == currentcount) {
+                Node* newnode = new Node(data);
+                newnode->next = current->next;
+                current->next = newnode;
+                return;
+            }
+            insertAtSpecificLoc_Rec(data, loc, current->next, currentcount + 1);
+        }
+    
+        void inserAtSpecificloc(int data, int loc) {
+            insertAtSpecificLoc_Rec(data, loc, head);
+        }
+            int countNodes(Node* current) {
+            if (current == nullptr) {
+                return 0;
+            }
+            // Call countNodes recursively for the next node
+            return 1 + countNodes(current->next);
+        }
+        
+        // Wrapper function to start the recursion
+        int countNodes() {
+            return countNodes(head);
+        }
+        
+    };
+    void Recursive_SinlgeLL::deleteATHead(){
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        temp == NULL;
+    }
+    void Recursive_SinlgeLL::insertAThead(int data){
+        Node *newnode = new Node(data);
+        newnode->next = head;
+        head = newnode;
+    }
+    void Recursive_SinlgeLL::displaySLL_Recursively(Node* node) {
+            if (node == nullptr)
+                return;
+            cout << node->data << " ";
+            displaySLL_Recursively(node->next);
+    }
+    void Recursive_SinlgeLL::display() {
+            displaySLL_Recursively(head);
+            cout << endl;
+    }
+    void Recursive_SinlgeLL::deleteAtTail_Recursively(Node *temp, Node *current) {
+        // if Linkedlist is empty
+        if (current == nullptr) {
+            return;
+            
+        }
+        //reached at last node
+        else if (current->next == nullptr) {
+            // one node case 
+            if (temp == nullptr) {
+                delete current;
+                head = nullptr;
+            } 
+            else {
+                delete current;
+                temp->next = nullptr;
+            }
+            return;
+        }
+        deleteAtTail_Recursively(current, current->next);    //current ko next me bhej kay phly waly ko current kr dya ha
+    }
+    
+    void Recursive_SinlgeLL::removeatTail() {
+        deleteAtTail_Recursively(nullptr, head);
+    }
+    int Recursive_SinlgeLL::count(){
+        int count = 0;
+        Node *temp = head;
+        while(temp!= NULL){
+            temp = temp->next;
+            count++;
+        }
+        return count;
+    }
+    
+    void Recursive_SinlgeLL::inserAtTail_Recursively(int data,Node *current){
+        if(current->next== NULL){
+            Node *newnode = new Node(data);
+            current->next = newnode;
+                newnode->next = NULL;
+            return;
+        }
+        Recursive_SinlgeLL::inserAtTail_Recursively(data,current->next);
+    }
+    void Recursive_SinlgeLL::insertAtTail(int data){
+        Recursive_SinlgeLL::inserAtTail_Recursively(data,head);
+    }
+    
+    
+    void Recursive_SinlgeLL::delete_atMiddle_Rec(Node *prev, Node *fast, Node *slow) {
+        int nodeCount = Recursive_SinlgeLL::count();
+        if (nodeCount <= 2) {
+            cout << "Deletion at middle is impossible. Number of nodes: " << nodeCount << endl;
+            return;
+        }
+    
+        if (fast == nullptr || fast->next == nullptr) {
+            prev->next = slow->next;
+            delete slow;
+            return;
+        }
+    
+        Recursive_SinlgeLL::delete_atMiddle_Rec(slow, fast->next->next, slow->next);
+    }
+    
+    void Recursive_SinlgeLL::delete_atMiddle_Wrapper() {
+        Recursive_SinlgeLL::delete_atMiddle_Rec(nullptr, head, head);
+    }
+    // ye code middle se ak step agaya ja kr insert krny ga so ak previous pointer ki b zrorat ha
+    void Recursive_SinlgeLL::insert_atMiddle_Rec(int user_data,Node *prev, Node *fast, Node *slow) {
+        if (fast == nullptr || fast->next == nullptr) {
+            Node *newnode = new Node(user_data);
+            newnode->next = slow;
+            prev->next = newnode;
+            return;
+        }
+    
+        Recursive_SinlgeLL::insert_atMiddle_Rec(user_data,slow, fast->next->next, slow->next);
+    }
+    
+    void Recursive_SinlgeLL::insert_atMiddle_Wrapper(int data) {
+        Recursive_SinlgeLL::insert_atMiddle_Rec(data,nullptr, head, head);
+    }
+            
+    int main(){
+        Recursive_SinlgeLL RSLL(1);
+        RSLL.insertAThead(2);
+        RSLL.insertAThead(3);
+        RSLL.insertAThead(4);
+        RSLL.insertAThead(5);
+        RSLL.display();
+        RSLL.removeatTail();
+        RSLL.display();
+        RSLL.inserAtSpecificloc(6,3);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(7,5);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(8,0);
+        RSLL.display();
+        RSLL.inserAtSpecificloc(9,8);
+        RSLL.display();
+        RSLL.insert_atMiddle_Wrapper(12);
+        cout << "LinkedList after insertion at middle is\n";
+        RSLL.display();
+        RSLL.insertAtTail(10);
+        RSLL.display();
+        
+        RSLL.deleteAt_specificloc(11);
+        cout << "Delete (location is greater than the no of nodes in the linked list)\n";
+        RSLL.display();
+        cout << "Delete at 3rd index\n";
+        RSLL.deleteAt_specificloc(3);
+        RSLL.display();
+        cout << "Delete at 4th index\n";
+        RSLL.deleteAt_specificloc(4);
+        RSLL.display();
+        cout << "Delete at 1st index\n";
+        RSLL.deleteAt_specificloc(1);
+        RSLL.display();
+        cout << "Delete at 0th index\n";
+        RSLL.deleteAt_specificloc(0);
+        RSLL.display();
+        cout << "Delete at middle\n";
+        RSLL.delete_atMiddle_Wrapper();
+        RSLL.display();
+        cout << "Delete at middle\n";
+        RSLL.delete_atMiddle_Wrapper();
+        RSLL.display();
+        RSLL.insert_atMiddle_Wrapper(3);
+        cout << "LinkedList after insertion at middle is\n";
+        RSLL.display();
+        
+        
+        
+        return 0;
+    }
+                       </code></pre>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>loadContent('footer.html', 'footer');</script>
+        <div id="footer"></div>
+        <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+        <script src="js/searchFunctionlity.js"></script>
+        <script src="dist/up.js"></script>
+        <script src="dist/codeFunctionality.js"></script>
+        <script src="dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/cpp.min.js"></script>
+        <script>hljs.highlightAll();</script>
+</body>
+</html>

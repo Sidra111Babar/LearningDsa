@@ -1,0 +1,14 @@
+
+.codesidebar{
+    width: 270px !important;
+}
+@media screen and (min-width: 992px){
+    .codesidebar{
+        transform: none !important;
+        visibility:visible  !important;
+    }
+
+    .codeSideBarBtn{
+        display: none;
+    }
+} 
