@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Databse Setup</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Database Setup and Relationships in django</h1>
+                    <h2 class="text-primary">Sqlite</h2>
+                    <p>SQLite is the default database that comes built-in with Django. It is a lightweight, file-based database that does not require a separate server to run. When you create a Django project, SQLite is automatically configured in the settings.py file.This database is stored as a single .sqlite3 file within the project directory.</p>
+                    <h3 class="text-info">Why use other databases</h3>
+                    <p>Using MySQL or PostgreSQL instead of SQLite provides better performance, scalability, and reliability for production applications.</p>
+                    <p>While SQLite is useful for small projects and quick development, it has some limitations:</p>
+                    <ul>
+                        <li><strong>Not Suitable for Large Applications </strong>SQLite cannot handle a high number of simultaneous read/write operations, making it unsuitable for large-scale applications.</li>
+                        <li><strong>Limited Concurrency </strong>SQLite supports only one write operation at a time, which can slow down applications with multiple users trying to update the database simultaneously.</li>
+                        <li><strong>No Advanced Features </strong>Unlike PostgreSQL or MySQL, SQLite lacks advanced features like stored procedures, JSON support, and full-text search.</li>
+                        <li><strong>Limited Scalability </strong>Since SQLite is a single-file database, it does not scale well in distributed or high-traffic applications.</li>
+                        <li><strong>No User Management </strong>Unlike other databases, SQLite does not have built-in user authentication and permission management.</li>
+                    </ul>
+                    <h2 class="text-primary">Mysql</h2>
+                    <ul>
+                        <li><strong>Install MySQL Workbech: </strong>See from youtube how to install mysql</li>
+                        <li><strong>Install django: </strong>Go to django Installation page and see how to setup a django project in python from this website</li>
+                        <li><strong>Create Database: </strong>Create a database in mysql named mydb</li>
+                        <li><strong>Update settings.py: </strong>Update settings.py file with the following code and make sure to comment the default database which is sqlite</li>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydb',  # Ensure this database exists in MySQL
+        'USER': 'root',  # Use your MySQL username
+        'PASSWORD': 'your_password',  # Use your MySQL password
+        'HOST': 'localhost', 
+        'PORT': '3306',
+    }
+}
+                        </code></pre>
+                        <li><strong>models.py </strong>Write the following code in home/models.py</li>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.db import models
+
+class Student(models.Model):
+    gender_choices = (('Male', 'Male'), ('Female', 'Female'))
+    name = models.CharField(max_length=100)
+    mobile_number = models.CharField(max_length=12)
+    email = models.EmailField(max_length=254)  # Email max_length should be larger
+    gender = models.CharField(max_length=6, choices=gender_choices, default='Male')
+    age = models.IntegerField(null=True, blank=True)  # Allowing null values
+    date_of_birth = models.DateField()
+    file = models.FileField(upload_to='files/')
+    student_bio = models.TextField()
+    profile_image = models.ImageField(null=True, blank=True, upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)  
+    updated_at = models.DateTimeField(auto_now=True)  
+    def __str__(self):
+        return self.name
+class Author(models.Model):  
+    author_name = models.CharField(max_length=100)
+
+class Book(models.Model):
+    author = models.OneToOneField(Author, on_delete=models.CASCADE) 
+    book_name = models.CharField(max_length=100)
+                        </code></pre>
+                        <li><strong>Command: </strong>Run the following command</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations home
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate home
+                            </code></pre>
+                        <li><strong>Check mysql database </strong>Go to mysql and check if tables are created in the mydb database if yes then python or django is successfully connected to the databse.This 0001_init should created</li>
+                        <li><strong>Output</strong></li>
+                         <img src="/assets/initFiless.png"class="img-fluid mt-3" alt="init">
+                         <img src="/assets/tableCreated.png" class="img-fluid mt-3" alt="output">
+                        <h3 class="text-info">Data insertion Commands</h3>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from home.models import * 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Author.objects.create(author_name = "Jhone Doe") 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Author.objects.create(author_name = "second Author")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+a1 = Author.objects.get(id=1) 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Book.objects.create(author = a1,book_name="Book1") 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+a2 = Author.objects.get(id=2) 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Book.objects.create(author = a2,book_name="Book2") 
+                            </code></pre>
+                        <h3 class="text-info">Ouput</h3>
+                        <img src="/assets/dataInBookTable.png" class="img-fluid mt-3" alt="output">
+                        <img src="/assets/dataInHomeTable.png" class="img-fluid mt-3" alt="output">
+                        <h3 class="text-info">Creation of More Tables(Foreign Key)</h3>
+                        <p>Modify home/models.py command</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.db import models
+
+class Student(models.Model):
+    gender_choices = (('Male', 'Male'), ('Female', 'Female'))
+    name = models.CharField(max_length=100)
+    mobile_number = models.CharField(max_length=12)
+    email = models.EmailField(max_length=254)  # Email max_length should be larger
+    gender = models.CharField(max_length=6, choices=gender_choices, default='Male')
+    age = models.IntegerField(null=True, blank=True)  # Allowing null values
+    date_of_birth = models.DateField()
+    file = models.FileField(upload_to='files/')
+    student_bio = models.TextField()
+    profile_image = models.ImageField(null=True, blank=True, upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)  # Corrected auto_now_add
+    updated_at = models.DateTimeField(auto_now=True)  # Corrected auto_now
+
+    def __str__(self):
+        return self.name
+class Author(models.Model):  # Corrected models.Models to models.Model
+    author_name = models.CharField(max_length=100)
+
+class Book(models.Model):
+    author = models.OneToOneField(Author, on_delete=models.CASCADE)  # Fixed typo: OnetoOneField -> OneToOneField
+    book_name = models.CharField(max_length=100)
+
+# Author and Book has one to one relationship
+
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=100)
+
+class Products(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)  
+    product_name = models.CharField(max_length=100)
+                            </code></pre>   
+                            <p>Again Give these commands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations home
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate home
+                            </code></pre>
+                             <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from home.models import * 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.create(brand_name="US Fashions") 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Products.objects.create(brand=brand,product_name= "Ear Rings")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Products.objects.create(brand=brand,product_name= "Necklace")
+                            </code></pre>
+                            <h3 class="text-info">Output</h3>
+                            <p>Creation of 0002_brand_products file in home folder and formation of tables in mysql database</p>
+                            <img src="/assets/0002_File.png" class="img-fluid mt-3" alt="output">                        
+                            <img src="/assets/TwoMoretables.png" class="img-fluid mt-3" alt="output"> 
+                            <h3 class="text-info">Many to Many Relationship</h3>
+                            <p>Modify home/models.py file and add the following code in it</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+class Skills(models.Model):
+    skill_name = models.CharField(max_length=100)  
+class Person(models.Model):
+    person_name = models.CharField(max_length=100)
+    skill = models.ManyToManyField(Skills)
+                            </code></pre>
+                            <p>Again give these commands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations home
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate home
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from home.models import * 
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Skills.objects.create(skill_name="Python")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Skills.objects.create(skill_name="React")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Skills.objects.create(skill_name="Javascript")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+person = Person.objects.create(person_name = "Babar")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+skills = Skills.objects.all()
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+person.skill.add(skills[0])
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+person.skill.add(skills[1])
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+person.skill.add(skills[2])
+                            </code></pre>
+                        <h2 class="text-primary">Explantion of Relationships</h2>
+                        <ul>
+                            <li><strong class="text-info">One-to-One Relationship </strong><p>A one-to-one relationship means that one record in a model is linked to exactly one record in another model. This is similar to a "unique foreign key", ensuring that the related object exists only once.</p>
+                               <ul>
+                                   <li>Each Author can have only one Book.</li>
+                                   <li>Each Book is written by only one Author.</li>
+                                   <li>If an Author is deleted, the Book associated with it will also be deleted (on_delete=models.CASCADE).</li>
+                               </ul>
+                            </li>
+                            <li><strong class="text-info">One-to-Many Relationship (ForeignKey) </strong><p>A foreign key represents a one-to-many relationship, where one record in a model can be linked to multiple records in another model.</p>
+                                 <ul>
+                                    <li>One Brand can have multiple Products.</li>
+                                    <li>Each Product belongs to only one Brand.</li>
+                                    <li>If a Brand is deleted, all its associated Products are also deleted (on_delete=models.CASCADE).</li>
+                                 </ul>
+                            </li>
+                            <li><strong class="text-info">Many-to-Many Relationship (ManyToManyField) </strong><p>A many-to-many relationship means that multiple records in one model can be related to multiple records in another model.</p>
+                                <ul>
+                                    <li>A Person can have multiple Skills.</li>
+                                    <li>A Skill can belong to multiple People.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h3 class="text-info">Conclusion</h3>
+                        <p>After completing these steps, Django should be successfully connected to MySQL, allowing it to create and manage tables in the mydb database. Running migrations will ensure that all models are properly reflected in MySQL, verifying a successful connection. If tables appear in MySQL after running python manage.py migrate, the integration is complete, and Django is ready for database-driven development.</p>
+                    </ul>
+                </div>  
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

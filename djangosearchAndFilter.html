@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Django ORM</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Django ORM</h1>
+                    <p>Django ORM (Object-Relational Mapping) lookups are powerful query tools that allow developers to filter, search, and retrieve data from the database using Python syntax instead of raw SQL.</p>
+                      <ul>
+                        <li>Lookups are used with Django’s filter(), exclude(), and get() methods to apply conditions to queries, enabling precise data retrieval.</li>
+                        <li>Common lookups include  </li>
+                        <li><strong>exact: </strong>exact match</li>
+                        <li><strong>icontains: </strong>case-insensitive substring match</li>
+                        <li><strong>gte: </strong>greater than or equal to</li>
+                        <li><strong>lte: </strong>less than or equal to</li>
+                        <li><strong>startswith: </strong>matching the beginning of a string</li>
+                        <li><strong>Q objects and F expressions: </strong>They also support complex queries with Q objects and F expressions, enabling dynamic filtering, comparisons between fields, and combining multiple conditions efficiently.</li>
+                      </ul>
+                      <h3 class="text-info">Problem Statement</h3>
+                      <p>In a production-level Django application, datasets can be very large, and we often need condition-based filtering to fetch specific data.</p>
+                      <h3 class="text-info">Solution</h3>
+                      <p>Django ORM lookups provide powerful query techniques to filter and search efficiently.</p>
+                      <h3 class="text-info">Implementation Steps</h3>
+                      <ol>
+                          <li>Search Bar and Filter</li>
+                          <li>Search Bar</li>
+                      </ol>
+                        <h2 class="text-primary">Implementation of Search</h2>
+                        <h5 class="text-info">home/models.py</h5>
+                        <p>Same as in the django faker page</p>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations home
+                        </code></pre>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate home
+                        </code></pre>
+                      <h5 class="text-info">home/seed_db.py</h5>
+                      <p>Same as in the django faker page</p>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell
+
+from home.seed_db import *
+dbSeeder()
+                        </code></pre> 
+                      <h5 class="text-info">home/urls.py</h5>
+                      <p>Same as in the django faker page</p>
+                      <h5 class="text-info">home/templates/search.html</h5>
+                      <p>Inside home/templates/search.html, we add:</p>
+                      <ul>
+                        <li><strong>search bar: </strong>A search bar to take input.</li>
+                        <li><strong>table: </strong>A table to display filtered student records.</li>
+                      </ul>
+                      <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon101"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon101"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode101">
+&lt;{% extends "base.html" %}&gt;
+&lt;{% block start %}&gt;
+&lt;form class="d-flex" role="search" method="GET"&gt;
+    &lt;input name="search" class="form-control me-2" type="search" value="{{ search }}" placeholder="Search" aria-label="Search"&gt;
+    &lt;button class="btn btn-outline-success" type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div class="container-fluid"&gt;
+    &lt;table class="table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th scope="col"&gt;#&lt;/th&gt;
+                &lt;th scope="col"&gt;Name&lt;/th&gt;
+                &lt;th scope="col"&gt;Mobile Number&lt;/th&gt;
+                &lt;th scope="col"&gt;College&lt;/th&gt;
+                &lt;th scope="col"&gt;Age&lt;/th&gt;
+                &lt;th scope="col"&gt;Gender&lt;/th&gt;
+                &lt;th scope="col"&gt;Email&lt;/th&gt;
+                &lt;th scope="col"&gt;Bio&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;{% for student in students %}&gt;
+            &lt;tr&gt;
+                &lt;td&gt;{{ forloop.counter }}&lt;/td&gt;
+                &lt;td&gt;{{ student.name }}&lt;/td&gt;
+                &lt;td&gt;{{ student.mobile_number }}&lt;/td&gt;
+                &lt;td&gt;{{ student.college.college_name }}&lt;/td&gt;
+                &lt;td&gt;{{ student.age }}&lt;/td&gt;
+                &lt;td&gt;{{ student.gender }}&lt;/td&gt;
+                &lt;td&gt;{{ student.email }}&lt;/td&gt;
+                &lt;td&gt;{{ student.student_bio }}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;{% empty %}&gt;
+            &lt;tr&gt;
+                &lt;td colspan="8" class="text-center"&gt;No results found&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;{% endfor %}&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+&lt;{% endblock %}&gt;
+                        </code></pre>
+                      </div>
+                    <h5 class="text-info">home/views.py</h5>
+                    <p>Modify views.py to implement search functionality.</p>
+                    <ul>
+                        <li><strong>request.GET.get('search', '') </strong>Retrieves the search input from the URL.Default is an empty string ('') to avoid errors when no input is provided. </li>
+                        <li><strong>Filtering with Django ORM: </strong>name__icontains=search_query performs case-insensitive partial matching.</li>
+                        <li><strong>no search: </strong>If no search input, display all students.</li>
+                    </ul>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon102"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon102"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-python" id="SimpleNodeCode102">
+from django.shortcuts import render
+from home.models import Student
+from django.db.models import Q
+
+def search_page(request):
+    search_query = request.GET.get('search', '')  # Get search input, default is empty
+    print("Search Query:", search_query)  # Debugging
+
+    if search_query:
+        students = Student.objects.filter(
+            Q(name__icontains=search_query) |
+            Q(mobile_number__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(college__college_name__icontains=search_query)
+        )
+    else:
+        students = Student.objects.all()  # If no search, show all records
+
+    context = {'students': students, 'search': search_query}  # Add search query to context
+    return render(request, 'search_page.html', context)
+                        </code></pre>
+                    </div>
+                    <h5 class="text-info">Q in django</h5>
+                    <p>In Django, the Q object from django.db.models allows for complex query filtering using OR (|), AND (&), and NOT (~) conditions, which are not possible with the default filter() method that only supports implicit AND conditions. For example, Q(name__icontains='John') | Q(email__icontains='gmail.com') retrieves students whose name contains "John" OR email contains "gmail.com". This is particularly useful for search functionality, where multiple fields need to be queried dynamically. In the code above, Q enables searching across multiple fields—name, mobile number, email, and college name—ensuring that if a user inputs a search term, it fetches results matching any of these fields, making the search more flexible and user-friendly</p>
+                    <h5 class="text-info">home/urls.py</h5>
+                    <p>Modify urls.py file(see from django faker page)</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon103"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon103"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-python" id="SimpleNodeCode103">
+from django.urls import path
+from .views import search_page
+
+urlpatterns = [
+    path('', search_page, name='home'),  # Set search_page as the home page
+    path('search_page/', search_page, name='search_page'), 
+]
+                        </code></pre>
+                    </div>                    
+                    <h5 class="text-info">Output</h5>
+                    <img src="assets/StudentTableAtFrontend.png" alt="ouput" class="img-fluid my-3">                    
+                    <img src="assets/searchbyNav.png" alt="ouput" class="img-fluid my-3">    
+                    <h5 class="text-info">Conclusion</h5>
+                    <p>In this concept, we learn how to create tables in MySQL using raw SQL queries in Django, insert fake data into the database using the Faker library, and display backend data on the frontend. Additionally, we implement a search functionality using Django's Q object, allowing users to filter records dynamically based on multiple fields. This approach helps in efficiently managing and retrieving data while ensuring a seamless user experience.</p>                
+                </div>
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

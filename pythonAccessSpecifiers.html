@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Conditions</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Access Specifiers</h1>
+                    <p>In Python, access specifiers are used to control the accessibility of class members (attributes and methods). Python doesn't have explicit access specifiers like public, protected, or private as in languages like Java or C++, but it achieves similar functionality through naming conventions and special syntax.</p>
+                    <ul>
+                        <li><h3 class="text-info">Public</h3>
+                           <p>These members are accessible from anywhere (inside and outside the class).All class members are public by default</p>
+                           <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon37"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon37"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode37">
+class Person:
+    def __init__(self, name, id):
+        self.Name = name  # Public member
+        self.ID = id   # Public member
+
+    def display(self):  # Public method
+        print(f"Name: {self.Name}, ID: {self.ID}")
+
+# Accessing public members
+obj = Person("Sidra", 1)
+print("Name:", obj.Name)  # Access public attribute
+obj.display()              # Call public method
+                           </code></pre>
+                           </div>
+                        </li>
+                        <li class="mt-2"><h3 class="text-info">Protected</h3>
+                            <p>Protected members are indicated by a single underscore _ as a prefix.Accessible within the class and its subclasses. The _ prefix is just a convention and does not enforce true restriction.</p>
+                            <div class="code-container">
+                                <div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                   </div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                   </div>
+                                    <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon38"></i>
+                                    <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon38"></i>
+                                </div>
+                               <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode38">
+class Person:
+    def __init__(self, name, age):
+        self._name = name      # Protected member
+        self._age = age      # Protected member
+
+    def _display(self):   # Protected method
+        print(f"Name: {self._name}, Age: {self._age}")
+
+class Student(Person):
+    def displayDetails(self):
+        print(f"Name: {self._name}, Age: {self._age}")  # Access protected attribute
+        self._display()         # Call protected method
+
+# Accessing protected members
+obj = Student("Anila",15)
+obj.displayDetails()
+                               </code></pre>
+                           </div>
+                        </li>
+                        <li class="mt-2"><h3 class="text-info">Private</h3>
+                            <p>Private members are indicated by a double underscore __ as a prefix. Accessible only within the class. Python achieves this by name mangling, which renames the attribute to include the class name as a prefix.</p>
+                            <div class="code-container">
+                                <div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                   </div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                   </div>
+                                    <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon39"></i>
+                                    <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon39"></i>
+                                </div>
+                               <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode39">
+class Person:
+
+# Private members
+__name = None
+__age = None
+
+# Constructor
+def __init__(self, name, age):
+    self.__name = name
+    self.__age = age
+
+# Private member function
+def __displayDetails(self):
+    # Accessing private data members
+    print(f"Name: {self.__name}, Age: {self.__age}")
+# Public member function to access private function
+def accessPrivateFunction(self):
+    # Accessing private member function
+    self.__displayDetails()
+
+# Creating object
+person_obj = Person("Anila", 15)
+
+print(dir(person_obj))
+print("")
+
+# Attempting to access private members directly (will throw an error). All these are private.
+# person_obj.__name
+# person_obj.__age
+# person_obj.__displayDetails()
+
+# Accessing private members using name mangling
+print(person_obj._Person__name)
+print(person_obj._Person__age)
+person_obj._Person__displayDetails()
+
+print("")
+
+# Accessing private method through a public member function
+person_obj.accessPrivateFunction()
+                               </code></pre>
+                           </div> 
+                        </li>
+                    </ul>
+                </div>      
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Python Exception Handling</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                        <h1 class="text-primary">Exception Handling in Python</h1>
+                        <p>Exception handling in Python is a way to manage errors that occur during program execution. The try-except block is used to catch and handle exceptions, allowing the program to continue running instead of crashing.</p>
+                        <h3 class="text-info">Syntax</h3>
+                        <ul>
+                            <li><strong>try: </strong>The block where you write code that may cause an exception.</li>
+                            <li><strong>except: </strong>The block that handles the exception. You can specify the type of exception to handle (e.g., ValueError, TypeError) or handle all exceptions by using a generic except.</li>
+                            <li><strong>finally: </strong>The block that is executed regardless of whether an exception occurred or not.</li>
+                            <li><strong>else: </strong>The block that is executed if no exceptions occur in the try block.</li>
+                            <li><strong>raise: </strong>The keyword used to raise an exception explicitly.</li>
+                        </ul>
+                       <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon61"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon61"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode61">
+try:
+    # Code that might raise an exception
+    risky_code()
+except ExceptionType:
+    # Code to execute if the specific exception occurs
+    handle_exception()
+                       </code></pre>
+                    </div>
+                    <h3 class="text-info mt-2">Example 1</h3>
+                    <p>This example consist of try with single except</p>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon62"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon62"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode62">
+try:
+    num = int(input("Enter an integer: "))  # May raise ValueError
+    print(f"You entered: {num}")
+except ValueError:
+    print("Invalid input! Please enter a valid integer.")
+                       </code></pre>
+                    </div>
+                    <h3 class="text-info mt-2">Example 2</h3>
+                    <p>This example consist of try with multiple except</p>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon63"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon63"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode63">
+try:
+    num = int(input("Enter an integer: "))
+    result = 10 / num  # May raise ZeroDivisionError
+    print(f"Result: {result}")
+except ValueError:
+    print("Invalid input! Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Division by zero is not allowed.")
+                       </code></pre>
+                    </div>
+                        <h3 class="text-info mt-2">Example 3</h3>
+                        <p>try with else and finally</p>
+                        <p><strong>finally: </strong>The finally keyword in Python is used in a try-except block to define a block of code that will always execute, regardless of whether an exception was raised or not. This is particularly useful for cleanup operations, such as closing files, releasing resources, or other tasks that must be performed regardless of the outcome of the try block.</p>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon64"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon64"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode64">
+try:
+    num = int(input("Enter an integer: "))
+    result = 10 / num
+except ValueError:
+    print("Invalid input! Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Division by zero is not allowed.")
+else:
+    print(f"Result: {result}")  # Runs only if no exceptions occur
+finally:
+    print("Execution complete.")  # Always runs
+                           </code></pre>
+                        </div>
+                        <h3 class="text-info mt-2">Example 4</h3>
+                        <p>Use Case of finlly keyword</p>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon65"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon65"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode65">
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+    print(f"Result: {result}")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+except ValueError:
+    print("Please enter a valid integer.")
+finally:
+    print("Execution complete.")
+                           </code></pre>
+                        </div>
+                        <h3 class="text-info mt-2">Example 5(Custom Error)</h3>
+                        <p>Real World Exmaple</p>
+                        <p><strong>Raise keyword: </strong>In Python, the raise keyword is used to explicitly trigger an exception. This allows you to manually raise an error when a specific condition is met, instead of relying solely on built-in errors or exceptions that occur naturally in the code. You can raise both built-in exceptions and custom exceptions.</p>
+                        <p>This code simulates a payment processing system with custom exception handling. It defines a custom exception PaymentGatewayError for payment gateway-related errors. The process_payment function checks if the entered amount is valid, simulates potential network failures, and randomly triggers errors such as ValueError for invalid amounts, ConnectionError for network issues, and PaymentGatewayError for payment gateway failures. The function handles these exceptions with specific error messages and includes a finally block to indicate the completion of the transaction attempt. The user is prompted to enter a payment amount, and the function simulates a payment process with potential failures.</p>
+                        <p><strong class="text-danger">Note: </strong>Think why program is printing corresponding error message</p>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon66"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon66"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode66">
+def process_payment(amount):
+    try:
+        # Simulate payment processing
+        if amount <= 0:
+            raise ValueError("Amount must be greater than zero.")
+        print(f"Processing payment of ${amount}...")
+        
+        # Simulate random network failure
+        import random
+        if random.choice([True, False]):
+            raise ConnectionError("Network issue during payment.")
+        
+        # Simulate payment gateway error
+        if random.choice([True, False]):
+            raise PaymentGatewayError("Payment gateway is down.")
+        
+        print("Payment processed successfully!")
+    except ValueError as ve:
+        print(f"Invalid payment amount: {ve}")
+    except ConnectionError as ce:
+        print(f"Payment failed due to network error: {ce}")
+    except PaymentGatewayError as pge:
+        print(f"Payment gateway error: {pge}")
+    finally:
+        print("Transaction attempt complete. Please try again if necessary.")
+
+# Simulate a payment attempt
+amount = float(input("Enter payment amount: "))
+process_payment(amount)
+                           </code></pre>
+                        </div>
+                    </div>        
+                </div>        
+            </div>
+       </div>
+
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Django ORM</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Aggregation and Annotation and Subquery in Django</h1>
+                    <p><strong>Aggregation: </strong>Used to compute values (SUM, AVG, COUNT, etc.) over a QuerySet.</p>
+                    <p><strong>Annotation: </strong>Adds extra computed fields to each object in a QuerySet.</p>
+                    <p><strong>Subquery: </strong>A nested query that allows us to retrieve related data dynamically.</p>
+                    <h3 class="text-info">home/models.py</h3>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon104"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon104"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode104">
+from django.db import models
+from django.utils.timezone import now
+class Author(models.Model):
+    name = models.CharField(max_length=255, default="Unknown Author")
+
+    def __str__(self):
+        return self.name
+
+class Book(models.Model):
+    title = models.CharField(max_length=255, default="Untitled Book")  # Default title
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)  # Default value added
+    published_date = models.DateField(default=now)
+
+    def __str__(self):
+        return self.title
+                        </code></pre>
+                    </div>
+                    <h3 class="text-info">home/seed_db.py</h3>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon105"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon105"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode105">
+import random
+from faker import Faker
+from home.models import Author, Book
+
+fake = Faker()
+
+def create_authors_and_books(num_authors=5, books_per_author=10):
+    authors = []
+    for _ in range(num_authors):
+        author = Author.objects.create(name=fake.name())
+        authors.append(author)
+
+        for _ in range(books_per_author):
+            Book.objects.create(
+                title=fake.sentence(nb_words=3),
+                author=author,
+                price=random.uniform(5, 100),
+                published_date=fake.date_between(start_date="-5y", end_date="today")
+            )
+    print(f"{num_authors} authors and {num_authors * books_per_author} books created.")
+
+create_authors_and_books()
+                        </code></pre>
+                    </div>
+                    <h3 class="text-info">Shell Commands</h3>
+                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell
+                    </code></pre>
+                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from home.seed_db import *
+                    </code></pre>
+                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+dbSeeder(10)
+                    </code></pre>
+                    <h3 class="text-info">Output</h3>
+                    <img src="assets/FakerAuthordb.png" alt="" class="img-fluid my-2">
+                    <img src="assets/fakerBookdb.png" alt="" class="img-fluid my-2">
+                    <h3 class="text-info">Queries</h3>
+                    <p>Total Number of Books</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon106"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon106"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode106">
+from home.models import Book
+from django.db.models import Count
+
+total_books = Book.objects.aggregate(total_books=Count('id'))
+print(total_books)
+                        </code></pre>
+                    </div>
+                    <p>Average, Sum, Min, Max Price of All Books</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon107"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon107"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode107">
+from django.db.models import Avg, Sum, Min, Max
+
+book_stats = Book.objects.aggregate(
+    avg_price=Avg('price'),
+    total_price=Sum('price'),
+    min_price=Min('price'),
+    max_price=Max('price')
+)
+print(book_stats)
+                        </code></pre>
+                    </div>
+                    <p>Total Books Written by Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon108"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon108"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode108">
+from home.models import Author
+
+authors = Author.objects.annotate(total_books=Count('books'))
+for author in authors:
+    print(f"{author.name} has written {author.total_books} books.")
+                        </code></pre>
+                    </div>
+                    <p> Average Price of Books for Each Autho</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon109"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon109"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode109">
+authors = Author.objects.annotate(avg_book_price=Avg('books__price'))
+for author in authors:
+    print(f"{author.name} - Avg Book Price: {author.avg_book_price}")
+                        </code></pre>
+                    </div>
+                    <p>Total and Average Price of Books for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon110"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon110"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode110">
+authors = Author.objects.annotate(
+    total_earnings=Sum('books__price'),
+    avg_book_price=Avg('books__price')
+)
+for author in authors:
+    print(f"{author.name} - Total Earnings: {author.total_earnings}, Avg Price: {author.avg_book_price}")
+                        </code></pre>
+                    </div>
+                    <p>Total Books Published in 2023 for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon111"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon111"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode111">
+from django.db.models import Q
+
+authors = Author.objects.annotate(
+    books_2023=Count('books', filter=Q(books__published_date__year=2023))
+)
+for author in authors:
+    print(f"{author.name} - Books in 2023: {author.books_2023}")
+                        </code></pre>
+                    </div>
+                    <p>Most Expensive Book for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon112"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon112"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode112">
+from django.db.models import OuterRef, Subquery
+
+most_expensive_book = Book.objects.filter(author=OuterRef('id')).order_by('-price').values('price')[:1]
+
+authors = Author.objects.annotate(max_price=Subquery(most_expensive_book))
+for author in authors:
+    print(f"{author.name} - Most Expensive Book Price: {author.max_price}")
+                        </code></pre>
+                    </div>
+                    <p> Authors with at Least One Book Priced Over $30</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon113"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon113"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode113">
+authors = Author.objects.filter(books__price__gt=30).distinct()
+for author in authors:
+    print(author.name)
+                        </code></pre>
+                    </div>
+                    <p>Total Earnings for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon114"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon114"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode114">
+authors = Author.objects.annotate(total_earnings=Sum('books__price'))
+for author in authors:
+    print(f"{author.name} - Total Earnings: {author.total_earnings}")
+                        </code></pre>
+                    </div>
+                    <p>Combining Multiple Aggregations</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon115"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon115"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode115">
+authors = Author.objects.annotate(
+    total_books=Count('books'),
+    total_earnings=Sum('books__price'),
+    avg_book_price=Avg('books__price')
+)
+for author in authors:
+    print(f"{author.name} - Total Books: {author.total_books}, Earnings: {author.total_earnings}, Avg Price: {author.avg_book_price}")
+                        </code></pre>
+                    </div>
+                    <p> Find Latest Book for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon116"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon116"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode116">
+latest_book = Book.objects.filter(
+    author=OuterRef('id')
+).order_by('-published_date').values('title')[:1]
+
+authors = Author.objects.annotate(latest_book=Subquery(latest_book))
+for author in authors:
+    print(f"{author.name} - Latest Book: {author.latest_book}")
+                        </code></pre>
+                    </div>
+                    <p>Total Price of Books Published in 2023 for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon117"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon117"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode117">
+books_2023 = Book.objects.filter(
+    author=OuterRef('id'),
+    published_date__year=2023
+).values('author').annotate(total_price=Sum('price')).values('total_price')
+
+authors = Author.objects.annotate(total_price_2023=Subquery(books_2023))
+for author in authors:
+    print(f"{author.name} - Total Price of Books in 2023: {author.total_price_2023}")
+                        </code></pre>
+                    </div>
+                    <p>Count of Books Published by Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon118"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon118"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode118">
+book_count = Book.objects.filter(
+    author=OuterRef('id')
+).values('author').annotate(book_count=Count('id')).values('book_count')
+
+authors = Author.objects.annotate(total_books=Subquery(book_count))
+for author in authors:
+    print(f"{author.name} - Total Books: {author.total_books}")
+                        </code></pre>
+                    </div>
+                    <p>Most Expensive Book for Each Author</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon119"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon119"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode119">
+expensive_book = Book.objects.filter(
+    author=OuterRef('id')
+).order_by('-price').values('price')[:1]
+
+authors = Author.objects.annotate(most_expensive_book=Subquery(expensive_book))
+for author in authors:
+    print(f"{author.name} - Most Expensive Book: {author.most_expensive_book}")                        
+                        </code></pre>
+                    </div>
+                    <p>Authors with at Least One Book Priced Over $50</p>
+                    <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon120"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon120"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode120">
+expensive_books = Book.objects.filter(
+    author=OuterRef('id'),
+    price__gte=50
+).values('id')[:1]
+
+authors = Author.objects.filter(id__in=Subquery(expensive_books.values('author')))
+for author in authors:
+    print(author.name)                       
+                        </code></pre>
+                    </div>
+                    <h3 class="text-info">Conclusion</h3>
+                    <p>Aggregation, annotation, and subqueries in Django ORM are essential for performing complex database queries efficiently. Aggregation (Sum, Avg, Min, Max, Count) is used to compute summary values for a queryset, such as total earnings or average book price. Annotation allows us to add computed fields to each object in a queryset, like counting books for each author dynamically. Subqueries enable us to perform nested queries by filtering data using related models, such as finding the most expensive book per author or retrieving the latest published book. Together, these tools optimize data retrieval, reducing the need for multiple database hits and improving performance.</p>
+                </div>
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

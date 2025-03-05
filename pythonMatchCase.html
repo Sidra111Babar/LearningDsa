@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Match Case</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                        <h1 class="text-primary">Match Case</h1> 
+                        <p>Case matching in Python refers to the use of the match statement, which was introduced in Python 3.10. It allows pattern matching, a powerful way to compare values against patterns and execute code based on which pattern matches. It's similar to switch-case in other programming languages but more expressive and versatile.</p>
+                        <h3 class="text-info">Syntax</h3>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon55"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon55"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode55">
+match variable:
+    case pattern1:
+        # Action for pattern1
+    case pattern2:
+        # Action for pattern2
+    case _:
+        # Default action (if no patterns match)
+                           </code></pre>
+                       </div>
+                       <h3 class="text-info mt-2">Explanation</h3>
+                       <ul>
+                           <li><strong>Patterns: </strong>
+                               Patterns can be literals, variable bindings, wildcards, or even data structures.
+                           </li>
+                           <li><strong>Wildcard_: </strong>
+                               Acts as a default case if no other patterns match.
+                           </li>
+                           <li><strong>Destructuring: </strong>
+                              You can extract values from sequences or objects. 
+                           </li>
+                       </ul>
+                       <h3 class="text-info mt-2">Benefits</h3>
+                          <li>Simplifies complex conditional logic.</li>
+                          <li>Improves code readability with structured pattern matching.</li>
+                          <li>Handles data destructuring elegantly.</li>
+                        <h3 class="text-info">Limitations</h3>
+                        <ul>
+                            <li>Available only in Python 3.10 and newer.</li>
+                            <li>Overuse can make simple logic overly complex.</li>
+                        </ul>
+                        <h3 class="text-info">Example 1</h3>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon56"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon56"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode56">
+fruit = "apple"
+
+match fruit:
+    case "apple":
+        print("This is an apple!")
+    case "banana":
+        print("This is a banana!")
+    case _:
+        print("Unknown fruit")
+                           </code></pre>
+                        </div>
+                       <h3 class="text-info mt-2">Real World Banking Example</h3>
+                       <p>We'll design a simple banking system where the user's request determines which function to call.</p>
+                       <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon57"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon57"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode57">
+# Functions for each operation
+def deposit(amount):
+    print(f"Depositing ${amount} to your account.")
+    # Logic for deposit
+
+def withdraw(amount):
+    print(f"Withdrawing ${amount} from your account.")
+    # Logic for withdrawal
+
+def check_balance():
+    print("Checking account balance...")
+    # Logic for checking balance
+
+def unknown_request():
+    print("Unknown request. Please try again.")
+
+# Banking operation handler
+def handle_request(request):
+    match request:
+        case {"type": "deposit", "amount": amount} if amount > 0:
+            deposit(amount)
+        case {"type": "withdraw", "amount": amount} if amount > 0:
+            withdraw(amount)
+        case {"type": "check_balance"}:
+            check_balance()
+        case _:
+            unknown_request()
+
+# Example requests
+requests = [
+    {"type": "deposit", "amount": 100},
+    {"type": "withdraw", "amount": 50},
+    {"type": "check_balance"},
+    {"type": "withdraw", "amount": -10},  # Invalid
+    {"type": "transfer"}  # Unsupported
+]
+
+# Process each request
+for req in requests:
+    handle_request(req)
+                       </code></pre>
+                    </div>
+                        <h3 class=" mt-2">Explanation</h3>
+                        <p>The above implementation demonstrates a banking system that processes user requests using Python's match statement. It supports operations like deposit, withdrawal, and balance checks, each tied to a specific function. The match statement simplifies the logic by matching requests to predefined patterns, such as {"type": "deposit", "amount": amount} for deposits and ensures conditions like amount > 0 are met using guards. If a request doesn’t match any known pattern, a default case handles invalid or unsupported operations. This approach ensures clean, readable, and modular code while effectively validating and routing user requests to appropriate functions.</p>
+                        <h3 class="text-info">Class Base Example</h3>
+                        <p>You can match specific attributes of a class using pattern matching and guards.</p>
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon58"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon58"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode58">
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+person = Person("Alice", 25)
+
+match person:
+    case Person(name="Alice", age=age) if age >= 18:
+        print(f"{person.name} is an adult")
+    case Person(name, age):
+        print(f"{name} is underage")
+    case _:
+        print("Unknown person")
+                           </code></pre>
+                        </div>  
+                    </div>        
+                </div>        
+            </div>
+       </div>
+
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

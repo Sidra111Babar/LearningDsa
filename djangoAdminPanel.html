@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Django Admin Panel</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                     <h1 class="text-primary">Django Admin Panel</h1>
+                     <p>Django Admin is a built-in web-based interface provided by Django for managing database records in a user-friendly way. It allows developers and administrators to create, update, delete, and view data without writing SQL queries.</p>
+                     <h3 class="text-info">How to Setup</h3>
+                     <ul>
+                        <li>Same as Django setup</li>
+                        <li>After Setting up a project and after adding an app make models in models.py</li>
+                        <li>Make models in models.py as in the code below</li>
+                        <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon144"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon144"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode144">
+from django.db import models
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="orders")
+    order_date = models.DateTimeField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(
+    max_length=50,
+    choices=(
+        ("Pending", "Pending"),
+        ("Shipped", "Shipped"),
+        ("Delivered", "Delivered"),
+        ("Cancelled", "Cancelled"),
+    ),
+    default="Pending"  # Default value set to "Pending"
+)
+
+                        </code></pre>
+                        </div>
+                        <li>Give migrations command</li>
+                        <li>Register the models in admin.py as </li>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon145"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon145"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode145">
+from django.contrib import admin
+from .models import Customer, Order  # Import your models
+
+admin.site.register(Customer)
+admin.site.register(Order)
+                            </code></pre>
+                        </div>
+                        <li>Give create Super User command</li>
+                          <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py create superuser
+                          </code></pre>
+                          <li>Set any username,password and email</li>
+                        <li>Run server</li>
+                        <li>Access admin panel on http://127.0.0.1:8000/admin</li>
+                        <img src="assets/djangoadminpanel.png" alt="output" class="img-fluid mt-2" style="width: 70%; height:30%;">
+                        <li>Login with username and password set in previous step</li>
+                        <li>Now you can see your models in admin.py</li>
+                        <img src="assets/djangoRegisteredCustomerOnAdmin.png" alt="output" class="img-fluid mt-2" style="width: 70%; height:30%;">   
+                     </ul>
+                     <h3 class="text-info">Customization Of Admin Panel</h3>
+                        <ul>These are some concepts to customize the admin panel
+                            <li>list_display</li>
+                            <li>search_fields</li>
+                            <li>list_filter</li>
+                            <li>inlines</li>
+                            <li>readonly_fields</li>
+                            <li>exclude</li>
+                            <li>actions</li>
+                            <li>Custom Forms in Django Admin</li>
+                            <li>autocomplete_fields</li>
+                            <li>search_filter</li>
+                        </ul>
+                        <h3 class="text-info">list_display</h3>
+                        <p>The list_display attribute allows you to control which fields appear in the Django admin list view.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon140"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon140"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode140">
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "email", "phone", "address", "created_at")
+                            </code></pre>
+                        </div>
+                        <img src="assets/AdmindjangoWithfields.png" alt="output" class="img-fluid mt-2">
+                        <h3 class="text-info">search_fields</h3>
+                        <p>The search_fields attribute enables search functionality within the Django admin.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon146"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon146"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode146">
+search_fields = ("first_name", "last_name", "email", "phone")
+                            </code></pre>
+                        </div>
+                        <img src="assets/ajangoSearchByName.png" alt="output" class="img-fluid mt-2">
+
+                        <h3 class="text-info">list_filter</h3>
+                        <p>The list_filter attribute allows you to filter the displayed data based on certain fields.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon147"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon147"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode147">
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ("customer", "order_date", "total_amount", "status")
+    list_filter = ('status',)
+                            </code></pre>
+                        </div>
+                        <img src="assets/djangoFilterOnAdmin.png" alt="output" class="img-fluid mt-2">
+                        <p>This adds a filter sidebar in the Django admin that lets you filter orders by their status.</p>
+                        <h3 class="text-info">inlines</h3>
+                        <p>Django inlines allow displaying related models within a parent model’s admin page.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon148"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon148"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode148">
+class OrderInline(admin.StackedInline):  # StackedInline for vertical layout
+    model = Order
+    extra = 0
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "email", "phone", "address", "created_at")
+    search_fields = ("first_name", "last_name", "email", "phone")
+    inlines = [OrderInline]  # This shows related orders inside the Customer admin panel
+                            </code></pre>
+                        </div>
+                        <img src="assets/DjangoStackedInline.png" alt="output" class="img-fluid mt-2">
+                        <p>StackedInline shows inline forms in a vertical layout.</p>
+
+                        <p>If you want a tabular (horizontal) layout, use admin.TabularInline.</p>
+                        <h3 class="text-info">readonly_fields</h3>
+                        <p>If you don’t want admins to manually change a field, you can set it as read-only.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon149"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon149"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode149">
+readonly_fields = ('order_date',)
+                            </code></pre>
+                        </div>
+                        <h3 class="text-info">exclude</h3>
+                        <p>If you want to completely hide a field from the Django admin, use the exclude attribute.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon150"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon150"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode150">
+exclude = ('total_amount',)
+                            </code></pre>
+                        </div>
+                        <h3 class="text-info">actions</h3>
+                        <p>You can define custom actions for bulk updating records to avoid update manually.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon151"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon151"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode151">
+actions = ['mark_as_shipped']
+
+def mark_as_shipped(self, request, queryset):
+    queryset.update(status="Shipped")
+
+mark_as_shipped.short_description = "Mark selected orders as Shipped"
+                            </code></pre>
+                        </div>
+                        <img src="assets/djangoAvoidCutomUPdate.png" alt="output" class="img-fluid mt-2">
+                        <h3 class="text-info">forms.ModelForm.</h3>
+                        <p>You can modify Django’s default admin forms using this.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon152"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon152"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode152">
+from django import forms
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        widgets = {
+            'address': forms.Textarea(attrs={'rows': 30})
+        }
+                            </code></pre>
+                        </div>
+                        <img src="assets/djangoCustomSizeIncrease.png" alt="output" class="img-fluid mt-2">
+                        <p>Here, we’ve customized the address field to display a larger textarea.</p>
+                        <h3 class="text-info">autocomplete_fields</h3>
+                        <p>When dealing with foreign keys, you can use autocomplete_fields for better user experience.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon153"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon153"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode153">
+autocomplete_fields = ['customer']
+                            </code></pre>
+                        </div>
+                        <h3 class="text-info">search_filter</h3>
+                        <p>If you want to search fields from related models, you can use search_filter.</p>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon154"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon154"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode154">
+search_filter = ['customer__first_name', 'customer__last_name', 'customer__email']
+                            </code></pre>
+                        </div>
+                        <h3 class="text-info">Complete Code of admin.py.Use it</h3>
+                        <div class="code-container my-2">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon155"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon155"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-python" id="SimpleNodeCode155">
+                            from django.contrib import admin
+from .models import Customer,Order
+from django import forms
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        widgets = {
+            'address' : forms.Textarea(attrs={'rows': 30})
+        } 
+
+
+class OrderInline(admin.StackedInline):
+    model = Order
+    extra = 0
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    pass
+# To Store History of customers in django admin
+    form = CustomerForm
+    list_display = (
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "address",
+        "created_at",
+    )
+    # apply search on all
+    search_fields = ("first_name", "last_name", "email", "phone")
+    inlines = [OrderInline]
+
+# admin.site.register(Customer)
+# admin.site.register(Order)
+# -----------------Now Apply Filter
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    # jis jis pe filter apply krna ha
+    list_display = (
+        "customer",
+        "order_date",
+        "total_amount",
+        "status",
+    )
+    search_filter = ['customer__first_name', 'customer__last_name', 'customer__email',]
+    list_filter =('status',)
+    autocomplete_fields = ['customer']
+
+    list_filter = ('status',)
+    # Exclude field from django Admin panel
+    readonly_fields = ('order_date',)
+    # exclude total amount from django Admin panel
+    exclude = ('total_amount',)
+
+
+    # TO avoid manual Update in any field
+    actions = ['mark_as_shipped']
+    def mark_as_shipped(self, request, queryset):
+        queryset.update(status="Shipped")
+    mark_as_shipped.short_description = "Mark selected orders as Shipped"
+    
+                            </code></pre>
+                        </div>
+                </div>
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

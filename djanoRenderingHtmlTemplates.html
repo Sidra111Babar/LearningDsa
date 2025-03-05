@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Html Templtes Rendering</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Rendering Html Templates in python</h1>
+                    <p>Rendering HTML templates in Django allows dynamic content to be displayed in a structured format using the render() function. Instead of returning plain text with HttpResponse, Django loads an HTML file from the templates folder and injects dynamic data. In views.py, the render(request, 'template_name.html', context) function passes a dictionary (context) containing variables to the template. The corresponding HTML file uses Django’s template syntax ({{ variable }}) to display data dynamically. To make Django recognize the template, the app must be added to INSTALLED_APPS in settings.py, and the template path should be correctly set. This approach enhances flexibility and separates logic from presentation.</p>
+                     <h3 class="text-info">Steps</h3>
+                     <ol>
+                        <li>Make Templates folder in home(app) folder</li>
+                        <p><strong  class="text-danger">Note: </strong>Previous steps remain same like creation of venu and app</p>
+                        <li>Make two html files in the folder one is index.html and other one is contact.html</li>
+                        <li>Write any Html code in the html file</li>
+                        <li>Make a function in views.py file and reder html file by using render function</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')  # Renders index.html   
+                            </code></pre>
+                        <li>Go to settings.py and register app and add modify templates in it</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+import os
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'home',     # add app here
+]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+                            </code></pre>                       
+                        <li>Go to manual urls.py and give path</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.urls import path
+from .views import index
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('contact/', contact, name='/contact'), # contact page is available at http://127.0.0.1:8000/contact
+   
+]  
+                            </code></pre>
+                        <i>Go to main urls.py and include app in it</i>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.contrib import admin
+from django.urls import path, include  # Import `include`
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('home.urls')),  # Include `home.urls`
+]   
+                            </code></pre>
+                     </ol>
+                     <h3 class="text-info">Rendering of Dynamic Data using context</h3>
+                     <p>In Django, dynamic data is passed from the views.py file to an HTML template using the context dictionary in the render() function. The context contains key-value pairs where keys are variable names accessible in the template, and values are the data being passed. </p>
+                     <h3>Views.py</h3>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.shortcuts import render
+
+def index(request):
+    names = ["Abc","def","ghi","jkl","mno"]
+    items = {
+        "pen": 5,
+        "pencil": 10,
+        "eraser": 60
+    }
+    context = {
+        "names": names,
+        "items": items
+    }
+    return render(request, 'index.html',context)  # Renders index.html
+
+def contact(request):
+    return render(request, 'contact.html')  
+                            </code></pre>
+                            <h3>Index.html</h3>
+                            <p>Render this in index.html using double curly brackets</p>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+{{items}}
+                                </code></pre>
+                            <h3>Output</h3>
+                            <img src="/assets/djangoContextOutput.png" alt="">
+                            <h3 class="text-info">Django Template Engine</h3>
+                            <p>Django's template engine is a system that allows you to embed Python-like logic inside HTML files. It helps dynamically render UI based on conditions, such as checking if a user is logged in or fetching data from a database. With Django templates, we can use if-else conditions, loops (for), filters, and template tags to manipulate and display data.</p>
+                            <p>This code defines a Django template structure with a base template (base.html) and three child templates (index.html, contact.html, and about.html) that extend the base template. The base.html file contains the common structure for all pages, including the <head> section and a {% block start %} where specific content will be inserted by the child templates. Each child template overrides this block to display unique content. The index.html page displays a heading and a list of names and items, applying Django filters and conditions. The contact.html and about.html pages inherit from the base template and provide simple content with navigation links.</p>
+                                <h4 class="text-info">Base.html</h4>
+                                <p>This file serves as the parent template for all other pages. It contains the basic structure of an HTML document, including <head>, <meta> tags, and a <body> section with a {% block start %} placeholder. Any child template that extends base.html will replace the {% block start %} section with its own content while keeping the shared layout intact.</p>
+                                <pre class="mt-3 rounded-end bg-light text-dark" style="border-left: 5px solid #3de1ec;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Base Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+     {% block start %}
+
+     {% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;
+                                </pre>
+                                <h4 class="text-info">Index.html</h4>
+                                <p>This is the home page that extends base.html</p>
+                                <ul>
+                                    <li>It includes an h1 tag describing the file location.</li>
+                                    <li>It displays the variables names and items.</li>
+                                    <li>It applies Django template filters like: |length to show the length of names,|default to provide a default value if fruits is empty.</li>
+                                    <li>A {% for %} loop iterates through the names list,It skips the value "def".</li>
+                                    <li>It includes a contact page link</li>
+                                </ul>
+                           <pre class="mt-3 rounded-end bg-light text-dark" style="border-left: 5px solid #3de1ec;">
+  &lt;!-- Django Template Code --&gt;
+  &lt;{% extends "base.html" %}&gt;
+  &lt;{% block start %}&gt;
+        &lt;h1&gt;This is index.html file in templates folder which is in home folder&lt;/h1&gt;
+        &#123;&#123;names&#125;&#125;
+        &#123;&#123;items&#125;&#125;
+        &lt;!-- To print the length of name --&gt;
+        &#123;&#123;names| length&#125;&#125;
+        &lt;br&gt;
+        &lt;!-- Default value --&gt;
+         &#123;&#123;fruits|default:"No Value provided"&#125;&#125;
+         &#123;&#123;fruits&#125;&#125;
+
+        &lt;br&gt;
+        &lt;{% for name in names %}&gt;
+        &lt;!-- Condition to not print the name --&gt;
+        &lt;{% if not name == "def" %}&gt;
+        &lt;h4&gt;&#123;&#123;name&#125;&#125;&lt;/h4&gt;
+        &lt;{% endif %}&gt;
+        &lt;{% endfor %}&gt;
+        &lt;a href="/contact"&gt;Contact&lt;/a&gt;
+  &lt;{% endblock %}&gt;
+                        </pre>
+                        <h4 class="text-info">contact.html</h4>
+                        <p>This file also extends base.html and defines content inside {% block start %}. It displays a heading Contact, a paragraph This is contact page, and a navigation link to return to the home page.</p>
+                           <pre class="mt-3 rounded-end bg-light text-dark" style="border-left: 5px solid #3de1ec;">
+&lt;{% extends "base.html" %}&gt;
+&lt;{% block start %}&gt;
+    &lt;h1&gt;Contact&lt;/h1&gt;
+    &lt;p&gt;This is contact page&lt;/p&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+&lt;{% endblock %}&gt;
+                        </pre>
+                        <h4 class="text-info">about.html</h4>
+                        <p>This page follows the same pattern as contact.html, extending base.html. It contains a heading About, a paragraph This is about page, and a navigation link  that presumably leads back to the home page.</p>
+                        <pre class="mt-3 rounded-end bg-light text-dark" style="border-left: 5px solid #3de1ec;">
+&lt;{% extends "base.html" %}&gt;
+&lt;{% block start %}&gt;
+    &lt;h1&gt;About&lt;/h1&gt;
+    &lt;p&gt;This is about page&lt;/p&gt;
+    &lt;a href="/"&gt;About&lt;/a&gt;
+&lt;{% endblock %}&gt;
+                        </pre>
+                        <h3 class="text-info">Output</h3>
+                        <img src="assets/dangoTemplate1.png" class="img-fluid mt-3" alt="">
+                        <img src="assets/djangoTemplate2.png" class="img-fluid mt-3" alt="">
+                        <img src="assets/DjangoTemplate3.png" class="img-fluid mt-3" alt="">
+                        <h3 class="text-info mt-3">Conclusion</h3>
+                        <p>Reusability in Django templates allows developers to write code once and use it across multiple pages, reducing redundancy and improving maintainability. By leveraging template inheritance ({% extends %}) and reusable components like blocks ({% block %}), templates become modular and easier to manage. This approach enhances scalability, consistency, and efficiency in web development.</p>
+                </div>  
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

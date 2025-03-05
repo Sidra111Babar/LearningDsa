@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Polymorphism</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Polymorphism</h1>
+                    <p>The term polymorphism comes from the Greek words poly (many) and morphe (forms). In programming, polymorphism refers to the ability of a single function, method, or operator to behave differently depending on the type of object or data it is working with. In Python, it allows you to use the same name (for a method, function, or operator) to perform different actions based on the object or data type.</p>
+                    <h3>Example</h3>
+                    <ul>
+                        <li>A single method name like speak() can be used by different classes (e.g., Dog and Cat), but each class defines its own version of the method.</li>
+                        <li>The same operator + can add numbers or concatenate strings. It depends on the data types involved.</li>
+                    </ul>
+                    <h2 class="text-primary">Types of Polymorphism</h2>
+                    <ul>
+                        <li><h4 class="text-info">Polymorphism with Built-in Functions:</h4>
+                             <p>Polymorphism allows built-in Python functions to work seamlessly with different types of objects, as long as those objects support the required operations. One common example of this is the <strong>len()</strong> function, which is inherently polymorphic.</p>
+                              <p>The len() function is used to return the length (number of items) of an object. However, the behavior of len() is polymorphic because it can operate on different types of objects, such as:</p>
+                                <ul>
+                                    <li>Strings</li>
+                                    <li>Lists</li>
+                                    <li>Tuples</li>
+                                    <li>Dictionaries</li>
+                                    <li>Custom objects (if they implement the __len__() method)</li>
+                                </ul>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+#  Using len() with Strings:                          
+text = "Hello"
+print(len(text))  # Output: 5
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+# Using len() with Lists:
+numbers = [10, 20, 30, 40]
+print(len(numbers))  # Output: 4                               
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+# Using len() with Tuples:
+items = (1, 2, 3, 4, 5)
+print(len(items))  # Output: 5                                                         
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+# Using len() with Dictionaries:
+dictionary = {"key1": "value1", "key2": "value2"}
+print(len(dictionary))  # Output: 2                                                      
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+# Using len() with Custom Objects:
+# To make len() work with custom objects, you can implement the __len__() method in your class. Python's polymorphism allows the len() function to interact with the custom object by calling its __len__() method.
+class MyCollection:
+    def __init__(self, items):
+        self.items = items
+    
+    def __len__(self):
+        return len(self.items)
+
+# Custom Object
+collection = MyCollection([1, 2, 3, 4, 5])
+print(len(collection))  # Output: 5                                                    
+                            </code></pre>
+                        </li>
+                        <li>
+                            <h4 class="text-info">Method Overloading(Compile-Time Polymorphism)</h4>
+                            <p>While Python does not support method overloading natively (same method name with different arguments), it can be mimicked using default arguments or by handling multiple argument types manually.</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+class Calculator:
+    def add(self, a, b=0):
+        return a + b
+
+calc = Calculator()
+print(calc.add(5))       # Uses default value for b
+print(calc.add(5, 3))    # Overridden b                                                   
+                            </code></pre>
+                            <h4>Techniques for Method Overloading</h4>
+                            <p>Python relies on techniques like dynamic typing and duck typing to achieve similar flexibility and behavior.</p>
+                            <ul>
+                                <li><strong> Dynamic Typing: </strong>Dynamic typing means that variables in Python do not have a fixed type. The type of a variable is determined at runtime, based on the value assigned to it. This allows functions, methods, and operators to work with objects of different types, provided the required behavior is supported.</li>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+# A function that works with different types
+# Polymorphism with operators
+def add(a, b):
+    return a + b
+
+# Passing integers
+print(add(2, 3))  # Output: 5
+
+# Passing strings
+print(add("Hello, ", "World!"))  # Output: Hello, World!
+
+# Passing lists
+print(add([1, 2], [3, 4]))  # Output: [1, 2, 3, 4]                
+                                </code></pre>
+                                <li><strong>Duck Typing: </strong>The concept of duck typing comes from the phrase:
+                                    "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
+                                     In Python, duck typing means that an object's suitability is determined by its behavior (methods and attributes) rather than its explicit type. This allows objects of different types to be used interchangeably, as long as they implement the required behavior.</li>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+class Dog:
+    def speak(self):
+        return "Bark"
+
+class Cat:
+    def speak(self):
+        return "Meow"
+
+class Robot:
+    def speak(self):
+        return "Beep boop"
+
+# A function that works with any object having a 'speak' method
+def make_speak(animal):
+    print(animal.speak())
+
+# Demonstrating duck typing
+dog = Dog()
+cat = Cat()
+robot = Robot()
+
+make_speak(dog)   # Output: Bark
+make_speak(cat)   # Output: Meow
+make_speak(robot) # Output: Beep boop                
+                                </code></pre>
+                            </ul>
+                        </li>
+                        <li><h4 class="text-info">Method Overriding (Runtime Polymorphism): </h4><p>A subclass can provide a specific implementation of a method that is already defined in its superclass. This allows different behaviors for the same method depending on the object that invokes it.</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+class Animal:
+    def sound(self):
+        return "Some generic sound"
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+# Demonstration
+animals = [Dog(), Cat()]
+for animal in animals:
+    print(animal.sound())              
+                                </code></pre>
+                        </li>
+                    </ul>
+                </div>      
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

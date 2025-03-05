@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Databse Setup</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">CRUD Operations</h1>
+                    <p>Django provides an Object-Relational Mapping (ORM) system that allows us to interact with the database using Python code instead of raw SQL queries.</p>
+                        <ol>
+                            <li>Create</li>
+                            <li>Read</li>
+                            <li>Update</li>
+                            <li>Delete</li>
+                        </ol>
+                        <p><strong class="text-danger">Note: </strong>Previous knowledge of Setup database in django and relationships between models is required to play with these commands</p>
+                        <p>Shell Commands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell 
+from home.models import *
+                            </code></pre> 
+                        <h3 class="text-info">Creating Records (INSERT) </h3>
+                            <ul>
+                                <li><strong>Using .create() </strong>
+                                    <p>The .create() method directly inserts data into the database without requiring .save(). It is a shortcut to creating and saving an object in a single step.</p>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Author.objects.create(author_name="The Future Author")
+                                    </code></pre>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Author.objects.create(author_name="The Past Author")
+                                    </code></pre>  
+                                <li> 
+                                    <strong>Using .save() </strong><p>This method creates an object in memory first, then saves it to the database.</p>
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+author_name = "Author 2" 
+                                    </code></pre>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+author = Author(author_name=author_name)
+                                    </code></pre>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+author.save()
+                                    </code></pre>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand(brand_name="US Fashions 2")
+                                    </code></pre>  
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.save()
+                                    </code></pre>  
+                                </li>
+                            </ul>
+                        <h3 class="text-info">Reading Records (SELECT) </h3>
+                            <p>To retrieve data from the database, Django provides several ORM methods.</p>
+                            <h5>Fetching All Records</h5>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brands = Brand.objects.all()  # Returns a queryset of all Brand objects
+for brand in brands:
+    print(brand.brand_name)  # Print each brand name
+                            </code></pre>  
+                             <h5>Ordering Data</h5>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brands = Brand.objects.all().order_by('brand_name')  # Order by brand_name (A-Z)
+for brand in brands:
+    print(brand.brand_name)
+                            </code></pre>  
+                            <h5>Fetching a Single Record using .get()</h5>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(id=2)  # Get the brand with ID 2
+print(brand.brand_name)
+                            </code></pre>  
+                        <h3 class="text-info">Updating Records (UPDATE) </h3>
+                            <p>To update a record</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(brand_name="US Fashions")
+                            </code></pre>  
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.brand_name = "US Fashions (Pak)"
+                            </code></pre>  
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.save()
+                            </code></pre>  
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(id=3)
+                            </code></pre>  
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.brand_name = "New Brand Name"
+                            </code></pre>    
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.save()
+                            </code></pre>  
+                        <h3 class="text-info">Deleting Records (DELETE) </h3>
+                            <p>To delete a specific record</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(id=3)
+                            </code></pre>  
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.delete()
+                            </code></pre> 
+                            <p>To delete all records from a table:</p> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Skills.objects.all().delete()
+                            </code></pre> 
+                            <h1 class="text-primary">Using Foreign Key</h1>
+                            <p>A Foreign Key (FK) is a field in one model that creates a relationship between two tables. It links a row in one table to a row in another table. In Django ORM, ForeignKey is used to establish these relationships.</p>
+                            <h3 class="text-info">Why to use</h3>
+                            <ul>
+                                <li>Create relationships between different tables.</li>
+                                <li>Avoid data duplication.</li>
+                                <li>Fetch related data efficiently.</li>
+                            </ul>
+                            <p>Modiy home/models.py</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.brand_name  # Returns brand name in admin panel and queries
+
+class Products(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)  
+    product_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.product_name  # Returns product name in queries
+                            </code></pre>
+                            <p>Run Migrations using these two commands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations home
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate home
+                            </code></pre>
+                            <p>Shell Commands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py shell 
+from home.models import *
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand3 = Brand.objects.create(brand_name="Apple")
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand4 = Brand.objects.create(brand_name="Samsung")
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product3 = Products.objects.create(product_name="iPhone 14", brand=brand3)
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product4 = Products.objects.create(product_name="Galaxy S23", brand=brand4)
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product5 = Products.objects.create(product_name="MacBook Pro", brand=brand3)
+                            </code></pre> 
+                            <p>Using save()</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product = Products(product_name="iPad Pro", brand=brand3)
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product.save()
+                            </code></pre> 
+                            <p>Retrieve all Brands</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brands = Brand.objects.all()
+for brand in brands:
+    print(brand.brand_name)
+                            </code></pre> 
+                            <p>Retrieve all Products</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+products = Products.objects.all()
+for product in products:
+    print(product.product_name, "->", product.brand.brand_name)
+                            </code></pre> 
+                            <p>Retrieve products of specific brand</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+apple = Brand.objects.get(brand_name="Apple")
+apple_products = Products.objects.filter(brand=apple)
+
+for product in apple_products:
+    print(product.product_name)  # Output: iPhone 14, MacBook Pro, iPad Pro
+                            </code></pre> 
+                            <p>Retrieve brand of specific product</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product = Products.objects.get(product_name="iPhone 14")
+print(product.brand.brand_name)  # Output: Apple
+                            </code></pre> 
+                            <p>Change a product's brand</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+samsung = Brand.objects.get(brand_name="Samsung")
+product = Products.objects.get(product_name="MacBook Pro")
+product.brand = samsung
+product.save()
+                            </code></pre> 
+                            <p>Change a brand's name</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(brand_name="Samsung")
+brand.brand_name = "Samsung Electronics"
+brand.save()
+                            </code></pre> 
+                            <p>Delete a Product</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product = Products.objects.get(product_name="iPhone 14")
+                            </code></pre> 
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+product.delete()
+                            </code></pre> 
+                            <p>Delete a Brand (Deletes Related Products)</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(brand_name="Apple")
+brand.delete()  # This will delete all Apple products
+                            </code></pre> 
+                            <h3 class="text-info">Reverse Query</h3>
+                            <p>Django automatically creates a reverse relation to access products from a brand</p>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand = Brand.objects.get(brand_name="Apple")
+                            </code></pre>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+brand.products_set.all()
+                            </code></pre>
+                            <h3 class="text-info">Constraints Table</h3>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                    <tr>
+                                        <th>Option (on_delete)</th>
+                                        <th>Behavior</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CASCADE</td>
+                                        <td>Deleting the parent (Category) also deletes all related child (Products).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SET_NULL</td>
+                                        <td>Sets the Foreign Key to NULL when the parent is deleted.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PROTECT</td>
+                                        <td>Prevents deletion if related child objects exist.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SET_DEFAULT</td>
+                                        <td>Assigns a default value if the parent is deleted.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DO_NOTHING</td>
+                                        <td>Does nothing; may cause database errors if not handled properly.</td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        <h3 class="text-info">Conclusion</h3>
+                        <p>CRUD operations (Create, Read, Update, Delete) in Django allow efficient database management using Django ORM. Create records using .create() or .save(), Read data with .all(), .get(), or .filter(), Update records by modifying fields and calling .save(), and Delete records with .delete(). Foreign keys establish relationships between models, and on_delete=models.CASCADE ensures dependent records are removed when a parent is deleted. Using Django ORM, CRUD operations become simpler, improving database interactions and application efficiency.</p>
+                </div>  
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

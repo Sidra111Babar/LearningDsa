@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>File Handling</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                        <h1 class="text-primary">File Handling</h1>
+                        <p>File handling in Python allows you to work with files for reading, writing, or appending data. It provides built-in functions and methods for file operations, making it easy to manipulate text and binary files.</p>
+                        <h3 class="text-info">Methods</h3>
+                        <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                            <thead>
+                                <tr>
+                                    <th>Mode</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>"r"</td>
+                                    <td>Read-only (default mode).</td>
+                                </tr>
+                                <tr>
+                                    <td>"w"</td>
+                                    <td>Write-only (overwrites existing files).</td>
+                                </tr>
+                                <tr>
+                                    <td>"a"</td>
+                                    <td>Append mode. Adds to the file.</td>
+                                </tr>
+                                <tr>
+                                    <td>"b"</td>
+                                    <td>Binary mode (used with other modes).</td>
+                                </tr>
+                                <tr>
+                                    <td>"x"</td>
+                                    <td>Exclusive creation (fails if file exists).</td>
+                                </tr>
+                                <tr>
+                                    <td>"t"</td>
+                                    <td>Text mode (default).</td>
+                                </tr>
+                                <tr>
+                                    <td>"r+"</td>
+                                    <td>Read and write.</td>
+                                </tr>
+                                <tr>
+                                    <td>"w+"</td>
+                                    <td>Write and read (overwrites existing).</td>
+                                </tr>
+                                <tr>
+                                    <td>"a+"</td>
+                                    <td>Append and read.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                            <h2 class="text-info">"r" (Read-Only)</h2>   
+                            <p>Opens a file for reading. File must exist.</p>                
+                            <div class="code-container">
+                                <div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                                   </div>
+                                   <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                       <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                                   </div>
+                                    <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon70"></i>
+                                    <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon70"></i>
+                                </div>
+                               <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode70">
+with open("example.txt", "r") as f:
+    content = f.read()
+    print(content)
+                               </code></pre>
+                           </div> 
+                           <h2 class="text-info mt-2">"w" (Write-Only)</h2>
+                           <p>Opens a file for writing. Overwrites existing content or creates a new file.</p>
+                           <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon71"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon71"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode71">
+with open("example.txt", "w") as f:
+    f.write("This is a new file content.")
+                           </code></pre>
+                       </div> 
+                       <h2 class="text-info mt-2">"a" (Append Mode)</h2>
+                       <p>Opens a file for appending. Content is added to the end of the file.</p>
+                       <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon72"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon72"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode72">
+with open("example.txt", "a") as f:
+    f.write("\nAppending new content.")
+                       </code></pre>
+                   </div> 
+                    <h2 class="text-info mt-2">"b" (Binary Mode)</h2>
+                    <p>Used for reading or writing binary data like images.</p>
+                   <div class="code-container">
+                        <div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                        </div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                        </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon73"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon73"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode73">
+with open("image.png", "rb") as f:
+    binary_data = f.read()
+    print(binary_data)
+with open("copy_image.png", "wb") as f:
+    f.write(binary_data)  # Writes previously read binary data
+                        </code></pre>
+                   </div> 
+                <h2 class="text-info mt-2">"x" (Exclusive Creation)</h2>
+                <p>Creates a new file. Fails if the file already exists.</p>
+                <div class="code-container">
+                    <div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                    </div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                    </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon74"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon74"></i>
+                    </div>
+                    <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode74">
+try:
+    with open("newfile.txt", "x") as f:
+        f.write("This file is created using 'x' mode.")
+except FileExistsError:
+    print("File already exists.")
+                    </code></pre>
+                </div> 
+                <h2 class="text-info mt-2">"t" (Text Mode)</h2>
+                <p>Default mode. Used for text data (often combined with "r", "w", etc.).</p> 
+                <div class="code-container">
+                    <div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                    </div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                    </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon75"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon75"></i>
+                    </div>
+                    <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode75">
+with open("example.txt", "rt") as f:  # "t" is implied
+    print(f.read())
+                    </code></pre>
+                </div> 
+                <h2 class="text-info mt-2">"r+" (Read and Write)</h2>
+                <p>Opens a file for both reading and writing. File must exist.</p>
+                <div class="code-container">
+                    <div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                    </div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                    </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon76"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon76"></i>
+                    </div>
+                    <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode76">
+with open("example.txt", "r+") as f:
+    content = f.read()
+    print("Before:", content)
+    f.seek(0)  # Move to the beginning of the file
+    f.write("Updated content.")
+                    </code></pre>
+                </div> 
+                <h2 class="text-info mt-2">"w+" (Write and Read)</h2>
+                <p>Opens a file for writing and reading. Overwrites existing content.</p>
+                <div class="code-container">
+                    <div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                    </div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                    </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon77"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon77"></i>
+                    </div>
+                    <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode77">
+with open("example.txt", "w+") as f:
+    f.write("New content for the file.")
+    f.seek(0)  # Move to the beginning to read
+    print(f.read())
+                    </code></pre>
+                </div> 
+                <h2 class="text-info mt-2">"a+" (Append and Read)</h2>
+                <p>Opens a file for appending and reading.</p>
+                <div class="code-container">
+                    <div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                    </div>
+                    <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                        <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                    </div>
+                        <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon78"></i>
+                        <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon78"></i>
+                    </div>
+                    <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode78">
+with open("example.txt", "a+") as f:
+    f.write("\nAdding more content.")
+    f.seek(0)  # Move to the beginning to read the entire file
+    print(f.read())
+                    </code></pre>
+                </div> 
+                        </li>
+                    </ul>
+                </div>      
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

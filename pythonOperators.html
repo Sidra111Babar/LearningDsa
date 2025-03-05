@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Operators</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                     <h1 class="text-primary">Operators</h1>
+                     <ul>
+                        <li><h2 class="text-info">Arithmetic Operators</h2>
+                            <p>Arithmetic operators perform mathematical operations.</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>+</td>
+                                    <td>Addition</td>
+                                    <td>5 + 3 = 8</td>
+                                  </tr>
+                                  <tr>
+                                    <td>-</td>
+                                    <td>Subtraction</td>
+                                    <td>5 - 3 = 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>*</td>
+                                    <td>Multiplication</td>
+                                    <td>5 * 3 = 15</td>
+                                  </tr>
+                                  <tr>
+                                    <td>/</td>
+                                    <td>Division</td>
+                                    <td>5 / 2 = 2.5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>//</td>
+                                    <td>Floor Division</td>
+                                    <td>5 // 2 = 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>%</td>
+                                    <td>Modulus</td>
+                                    <td>5 % 2 = 1</td>
+                                  </tr>
+                                  <tr>
+                                    <td>**</td>
+                                    <td>Exponentiation</td>
+                                    <td>5 ** 2 = 25</td>
+                                  </tr>
+                                </tbody>
+                            </table>  
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a, b = 5, 2
+    print(a + b)   # 7
+    print(a ** b)  # 25 
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Assignment Operators</h2>
+                            <p>Assignment operators assign values to variables.</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>=</td>
+                                    <td>Assigns value</td>
+                                    <td>a = 5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>+=</td>
+                                    <td>Add and assign</td>
+                                    <td>a += 3</td>
+                                  </tr>
+                                  <tr>
+                                    <td>-=</td>
+                                    <td>Subtract and assign	</td>
+                                    <td>a -= 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>*=</td>
+                                    <td>Multiply and assign</td>
+                                    <td>a *= 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>/=</td>
+                                    <td>Divide and assign</td>
+                                    <td>a /= 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>//=</td>
+                                    <td>Floor divide and assign</td>
+                                    <td>a //= 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>%=</td>
+                                    <td>Modulus and assign</td>
+                                    <td>5 %= 2</td>
+                                  </tr>
+                                  <tr>
+                                    <td>**=</td>
+                                    <td>Exponentiation and assign</td>
+                                    <td>a **= 2</td>
+                                  </tr>
+                                </tbody>
+                            </table> 
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5
+    a += 2  # a = a + 2
+    print(a)  # 7                                    
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Comparison Operators</h2>
+                             <p>Comparison operators compare two values and return a boolean.</p>
+                             <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>==</td>
+                                    <td>Equal to</td>
+                                    <td>5 == 5 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>!=</td>
+                                    <td>Not equal to</td>
+                                    <td>5 != 3 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>></td>
+                                    <td>Greater than</td>
+                                    <td>5 > 3 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td><</td>
+                                    <td>Less than</td>
+                                    <td>3 < 5 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>>=</td>
+                                    <td>Greater than or equal to</td>
+                                    <td>5 >= 3 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td><=</td>
+                                    <td>Less than or equal to</td>
+                                    <td>3 <= 5 → True</td>
+                                  </tr>
+                                </tbody>
+                            </table> 
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a, b = 5, 3
+    print(a > b)  # True
+    print(a == b)  # False  
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Logical Operators</h2>
+                            <p>Logical operators are used to combine conditional statements.</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>and</td>
+                                    <td>True if both are True</td>
+                                    <td>5 > 3 and 5 < 10 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>or</td>
+                                    <td>True if at least one is True</td>
+                                    <td>5 > 3 or 5 > 10 → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>not</td>
+                                    <td>Negates the result</td>
+                                    <td>not(5 > 3) → False</td>
+                                  </tr>
+                                </tbody>
+                            </table> 
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a, b = True, False
+    print(a and b)  # False
+    print(a or b)   # True 
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Identity Operators</h2>
+                            <p>Identity operators check if two objects are the same.</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>is</td>
+                                    <td>True if objects are same</td>
+                                    <td>a is b</td>
+                                  </tr>
+                                  <tr>
+                                    <td>is not</td>
+                                   <td>True if objects are not same</td>
+                                   <td>a is not b</td>
+                                  </tr>
+                                </tbody>
+                            </table> 
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+     a = [1, 2, 3]
+     b = a
+     c = [1, 2, 3]
+     print(a is b)       # True
+     print(a is c)       # False (different objects) 
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Membership Operators</h2>
+                            <p>Membership operators test for membership in a sequence (e.g., lists, strings).</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>in</td>
+                                    <td>True if element is in sequence</td>
+                                    <td>'a' in 'apple' → True</td>
+                                  </tr>
+                                  <tr>
+                                    <td>not in</td>
+                                   <td>True if element not in sequence</td>
+                                   <td>'b' not in 'apple' → True</td>
+                                  </tr>
+                                </tbody>
+                            </table> 
+                            <h3>Example</h3>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = [1, 2, 3]
+    print(2 in a)       # True
+    print(4 not in a)   # True 
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><h2 class="text-info">Bitwise Operators</h2>
+                            <p>Bitwise operators are used to perform operations on binary numbers at the bit level. They treat numbers as sequences of binary digits (bits) and operate on each bit individually.</p>
+                            <table class="table table-striped table-hover table-bordered border-primary table-responsive table-primary">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Operator</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>&</td>
+                                    <td>Bitwise AND</td>
+                                    <td>5 & 3 = 1</td>
+                                  </tr>
+                                  <tr>
+                                     <td>`</td>
+                                     <td>`</td>
+                                     <td>Bitwise OR</td>
+                                  </tr>
+                                  <tr>
+                                    <td>^</td>
+                                    <td>Bitwise XOR</td>
+                                    <td>5 ^ 3 = 6</td>
+                                 </tr>
+                                 <tr>
+                                    <td>~</td>
+                                    <td>Bitwise NOT</td>
+                                    <td>~5 = -6</td>
+                                 </tr>
+                                 <tr>
+                                    <td><<</td>
+                                    <td>Left shift</td>
+                                    <td>5 << 1 = 10</td>
+                                 </tr>
+                                 <tr>
+                                    <td>>></td>
+                                    <td>Right shift</td>
+                                    <td>5 >> 1 = 2</td>
+                                 </tr>
+                                </tbody>
+                            </table> 
+                            <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a, b = 5, 3
+    print(a & b)  # 1
+    print(a | b)  # 7
+    print(a << 1) # 10  
+                                </code></pre>
+                            </div>
+                            <ul>
+                                <li> <h4>Bitwise AND (&)</h4>
+                                    <p>Compares each bit of two numbers.The result is 1 only if both corresponding bits are 1; otherwise, it's 0.</p>
+                                    <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    b = 3      # Binary: 0011
+    result = a & b  # Binary: 0001 → Decimal: 1
+    print(result)  # Output: 1
+                                </code></pre>
+                            </div>
+                                </li>
+                                <li><h4>Bitwise OR (|)</h4>
+                                    <p>Compares each bit of two numbers.The result is 1 if either of the corresponding bits is 1.</p>
+                                    <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    b = 3      # Binary: 0011
+    result = a | b  # Binary: 0111 → Decimal: 7
+    print(result)  # Output: 7
+                                </code></pre>
+                            </div>
+                                </li>
+                                <li><h4>Bitwise XOR (^)</h4>
+                                    <p>Compares each bit of two numbers.The result is 1 if the corresponding bits are different; otherwise, it's 0.</p>
+                                    <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    b = 3      # Binary: 0011
+    result = a ^ b  # Binary: 0110 → Decimal: 6
+    print(result)  # Output: 6                                     
+                                </code></pre>
+                            </div>
+                                </li>
+                                <li><h4>Bitwise NOT (~)</h4>
+                                   <p>Inverts all the bits of a number.Changes 1 to 0 and 0 to 1.The result is the two's complement of the number, calculated as -(n + 1).</p>
+                                   <p><strong>Note:</strong>Negative results occur because Python uses signed integers, where the most significant bit represents the sign.</p>
+                                   <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    result = ~a  # Binary: 1010 → Decimal: -6
+    print(result)  # Output: -6
+                                </code></pre>
+                            </div>
+                               </li>
+                                <li><h4>Left Shift (<<)</h4>
+                                   <p>Shifts the bits of a number to the left by the specified number of positions.Adds 0s to the right and effectively multiplies the number by 2^n (where n is the shift count).</p>
+                                   <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    result = a << 1  # Binary: 1010 → Decimal: 10
+    print(result)  # Output: 10  
+                                </code></pre>
+                            </div>
+                                </li>
+                                <li>
+                                    <h4>Right Shift (>>)</h4>
+                                    <p>Shifts the bits of a number to the right by the specified number of positions.Discards bits shifted off and fills the leftmost bits with 0s (for positive numbers).</p>
+                                    <h4>Example</h4>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5      # Binary: 0101
+    result = a >> 1  # Binary: 0010 → Decimal: 2
+    print(result)  # Output: 2
+                                </code></pre>
+                            </div>
+                                </li>
+                                <li>
+                                    <h4>Combined Bitwise</h4>
+                                    <p>Bitwise operators can be combined for complex operations.</p>
+                                    <div>
+                                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    a = 5       # Binary: 0101
+    b = 3       # Binary: 0011
+    result = (a & b) | (a ^ b)  # (0001) | (0110) = 0111 → Decimal: 7
+    print(result)  # Output: 7
+                                        </code></pre>
+                                    </div>    
+                                </li>
+                            </ul>
+                            <ul><h5>Use Cases</h5>
+                                <li><strong>Low-Level Programming: </strong>Bitwise operators are often used in hardware-level programming to control or manipulate specific bits.</li>
+                                <li><strong>Optimized Calculations: </strong>Left shifts (<<) are faster than multiplying by powers of 2.Right shifts (>>) are faster than dividing by powers of 2.
+                                </li>
+                                <li><strong>Flags and Masks: </strong>Used to set, clear, or check specific bits in a value.</li>
+
+                            </ul>
+                        </li>
+                     </ul>
+                </div>        
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html>

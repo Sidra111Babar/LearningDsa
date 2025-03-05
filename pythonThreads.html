@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Threads</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Threads</h1>
+                    <p>Threads are lightweight units of execution within a program that allow you to perform multiple tasks at the same time.</p>
+                    <ul>
+                        <li>A program can have one or more threads running independently.</li>
+                        <li>Each thread can handle a separate task, allowing your program to do many things simultaneously.</li>
+                    </ul>
+                    <h3 class="text-info">Example of Single Thread</h3>
+                    <ul>Imagine you're cooking a meal:
+                        <li>You start boiling water.</li>
+                        <li>While waiting for it to boil, you chop vegetables.</li>
+                        <li>After the water boils, you cook pasta.</li>
+                    </ul>
+                    <p>If you're the only person cooking (a single thread), you have to finish one task before moving to the next. If chopping takes 5 minutes and boiling takes 10 minutes, you'll spend 15 minutes in total.</p>
+                    <h3 class="text-info">Example of Multi-threading</h3>
+                    <ul>Now imagine you have a helper:
+                        <li>You boil water.</li>
+                        <li>Your helper chops vegetables at the same time.</li>
+                    </ul>
+                    <p>Both tasks happen simultaneously, reducing the total time spent. This is multi-threading.</p>
+                    <h3 class="text-info">Why Use Threads</h3>
+                    <ul>Threads are useful because they:
+                        <li><strong>Improve Speed: </strong>Tasks that can run independently, such as downloading files or processing data, can run simultaneously, reducing wait times.</li>
+                        <li><strong>Make Programs Responsive: </strong>For example, a thread can keep a user interface responsive while another thread processes data in the background.</li>
+                        <li><strong>Efficient Resource Use: </strong>Threads share the same memory space, so creating and managing threads is faster and requires fewer resources than running separate programs.</li>
+                    </ul>
+                    <h3 class="text-info">Explanation</h3>
+                    <ul>
+                        <li>A program starts with a main thread (the default thread that runs your program).</li>
+                        <li>You can create additional threads to perform tasks in parallel.</li>
+                        <li>Threads share the same memory and resources of the program, so they're lightweight compared to processes.</li>
+                    </ul>
+                    <div class="code-container">
+                        <div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                        </div>
+                        <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                            <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                        </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon83"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon83"></i>
+                        </div>
+                        <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode83">
+import time  # Importing time to measure execution time and simulate delays
+import threading  # Importing threading to create and manage threads
+
+# Define the function that simulates a task taking 1 second
+def doSomething():
+    print(f"Thread name is {threading.current_thread().name} with id - {threading.get_ident()}")
+    print("Doing something")  # Indicate task start
+    time.sleep(1)  # Simulate a task that takes 1 second
+    print("Done")  # Indicate task completion
+
+# Without using threads
+print("Executing without threads...")
+start_no_thread = time.perf_counter()  # Start time for non-threaded execution
+
+doSomething()  # Call the function
+doSomething()  # Call the function again
+
+finish_no_thread = time.perf_counter()  # End time for non-threaded execution
+print(f"\nFinished without threads in {round(finish_no_thread - start_no_thread, 2)} seconds(s)\n")
+
+# Using threads
+print("Executing with threads...")
+start_with_thread = time.perf_counter()  # Start time for threaded execution
+
+# Create two threads to execute the doSomething function
+t1 = threading.Thread(target=doSomething)
+t2 = threading.Thread(target=doSomething)
+
+t1.start()  # Start the first thread
+t2.start()  # Start the second thread
+
+t1.join()  # Wait for the first thread to finish
+t2.join()  # Wait for the second thread to finish
+
+finish_with_thread = time.perf_counter()  # End time for threaded execution
+print(f"\nFinished with threads in {round(finish_with_thread - start_with_thread, 2)} seconds(s)")
+                        </code></pre>
+                    </div> 
+                    <h3 class="text-info mt-2">Explanation</h3>
+                    <ul>
+                        <li><strong>Without Thread</strong></li>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Do something -> 1s  
+Do something -> 1s  
+Total: 2s                               
+                        </code></pre>
+                        <li><strong>With Thread</strong></li>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+Do something (Thread-1) + Do something (Thread-2) -> 1s  
+Total: 1s                               
+                        </code></pre>
+                    </ul>
+                </div>  
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

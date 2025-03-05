@@ -1,0 +1,20 @@
+.darkCode-mode {
+    background-color: #000000;
+}
+.code-container {
+    background-color: #282C34;
+    border: 2px solid #61dafb;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 900px;
+    color: white;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+/* Single Linked List Page */
+.dark-mode .SingleLinkedListPage{
+    background-color: #282C34;
+}
+.dark-mode .SingleLinkedListPage{
+    color: white;
+}

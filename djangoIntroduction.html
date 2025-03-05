@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Installation of django</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Virtual Environment</h1>
+                    <p>A virtual environment in Python is an isolated environment that allows you to install and manage dependencies separately from the system-wide Python installation. This helps avoid conflicts between different projects that require different package versions.</p>
+                    <h3 class="text-info">Why to use Virtual Environment</h3>
+                    <ul>
+                        <li><strong>Dependency Management: </strong>Keeps project dependencies separate.</li>
+                        <li><strong>Avoid Conflicts: </strong>Different projects can have different versions of the same library.</li>
+                        <li><strong>Easier Deployment: </strong>Ensures consistency across development and production environments.</li>
+                    </ul>
+                    <h3 class="text-info">Steps to Create Virtual Environment and start django app</h3>
+                    <ul>
+                      <li><strong>Create </strong>Create Virtual Environment by giving command python -m venv venv</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python -m venv venv                   
+                      </code></pre>
+                      <li><strong>Activate </strong>Activate the Virtual Environment by giving command .\venv\Scripts\activate</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+.\venv\Scripts\activate                   
+                      </code></pre>
+                      <li><strong>Install  </strong>Install library by giving command pip install library name</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+pip install django                  
+                      </code></pre>
+                      <li><strong>Start Django Project </strong>Start by giving command django-admin startproject firstproject</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+django-admin startproject firstproject                  
+                      </code></pre>
+                      <li><strong>Start Django app</strong>Start the app by giving command python manage.py startapp home</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py startapp home                   
+                      </code></pre>
+                      <li><strong>Run Server </strong>Run by giving command python manage.py runserver</li>
+                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py runserve                   
+                      </code></pre>
+
+                    </ul>
+                    <h3 class="text-info">Explanation of Files in home folder in Django</h3>
+                    <ol>
+                        <li><strong>migrations/ Folder</strong>
+                           <p>This folder contains migration files, which are used for database schema changes.</p>
+                              <ul>
+                                <li>Migrations help Django track changes to the models (database structure) and apply them to the database without writing raw SQL queries.</li>
+                                <li>Django automatically creates migration files when you run:
+                                    <div>
+                                      <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py makemigrations
+                                      </code></pre>
+                                    </div>
+                                </li>
+                                <li>To apply migrations and update the database, use:
+                                  <div>
+                                    <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+python manage.py migrate 
+                                    </code></pre>
+                                  </div>
+                                </li>
+                                <li>Each migration file is named like 0001_initial.py, 0002_auto.py, etc.</li>
+                              </ul>
+                        </li>
+                        <li><strong>__init__.py</strong>
+                            <ul>
+                              <li>This is a special Python file that tells Python to treat the directory as a package.</li>
+                              <li>In Django apps, __init__.py allows the app to be recognized as a module.</li>
+                              <li>Without this file, Python wouldn't treat the folder as an importable module.</li>
+                              <li>This file is mostly empty but necessary for Django to work properly.</li>
+                            </ul>
+                        </li>
+                        <li><strong>admin.py</strong>
+                            <ul>
+                              <li>Django provides a built-in Admin Panel, which allows managing database records through a web interface.</li>
+                              <li>admin.py is used to register models so they appear in the Django admin panel.</li>
+                              <li>
+                                <div>
+                                  <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+ from django.contrib import admin
+ from .models import Product  # Import the model  
+ admin.site.register(Product)  # Register the model
+                                  </code></pre>
+                                </div>
+                              </li>
+                              <li>After registering, the Product model will be visible in the Django Admin Panel.</li>
+                            </ul>
+                        </li>
+                        <li><strong>apps.py</strong>
+                            <ul>
+                              <li>This file contains the configuration for the app.</li>
+                              <li>Every Django app has an apps.py file, which tells Django that the app exists.</li>
+                              <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.apps import AppConfig
+
+class HomeConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'home'
+                                </code></pre>
+                              </div>
+                              <li>If you create another app (e.g., accounts), Django will generate accounts/apps.py with AccountsConfig.</li>
+                            </ul>
+                        </li>
+                        <li><strong>models.py</strong>
+                           <ul>
+                              <li>This file is where you define the database structure using Django's ORM (Object-Relational Mapping).</li>
+                              <li>Instead of writing raw SQL queries, you define models (tables), and Django handles database interactions.</li>
+                              <li>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+                                </code></pre>
+                              </li>
+                              <li>Running python manage.py makemigrations will create a migration file for this model.</li>
+                              <li>Running python manage.py migrate will apply the model to the database.</li>
+                           </ul>
+                        </li>
+                        <li><strong>tests.py</strong>
+                           <ul>
+                              <li>This file is used to write unit tests for the app.</li>
+                              <li>Unit tests help ensure that functions, views, and APIs work correctly.</li>
+                              <li>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.test import TestCase
+from .models import Product
+
+class ProductTestCase(TestCase):
+    def test_product_creation(self):
+        product = Product.objects.create(name="Laptop", price=1000)
+        self.assertEqual(product.name, "Laptop")
+                                </code></pre>
+                              </li>
+                              <li>Running python manage.py test will execute all test cases.</li>
+                           </ul>
+                        </li>
+                        <li><strong>views.py</strong>
+                          <ul>
+                            <li>This file contains the main logic of the application.</li>
+                            <li>It handles requests and returns responses.</li>
+                            <li>
+                              <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the Home Page!")
+                              </code></pre>
+                            </li>
+                            <li>This function is a view that returns a simple text response.</li>
+                            <li>In a real application, views usually return HTML templates or JSON responses.</li>
+                          </ul>
+                        </li>
+                        <li><strong>urls.py(Not Automatically Created, But Important)</strong>
+                          <ul>
+                            <li>This file defines URL patterns for the app.</li>
+                            <li>You need to create this file manually inside the app directory.</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+from django.urls import path
+from .views import home
+
+urlpatterns = [
+    path('', home, name='home'),
+]                              
+                            </code></pre>
+                            <li>This maps the root URL (/) to the home view.</li>
+                          </ul>
+                        </li>
+                        <li><strong>Registering the App in settings.py</strong>
+                          <ul>   
+                            <li>Every new app must be added to INSTALLED_APPS in settings.py.</li>
+                            <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'home',  # Register the 'home' app here
+  ]                           
+                            </code></pre>
+                          </ul>
+                        </li>
+                    </ol>
+                </div>  
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

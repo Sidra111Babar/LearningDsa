@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Decorators</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Decorators</h1>
+                    <p>Decorators in Python are a design pattern that allows you to modify or extend the behavior of a function or method without permanently modifying its code. Decorators are typically used to wrap another function, adding some functionality before or after the function is executed. In Python, decorators are applied using the @decorator_name syntax.</p>      
+                    <h3 class="text-info">Example</h3>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon47"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon47"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode47">
+# A simple decorator that prints a message before and after a function call:
+def my_decorator(func):    # here func is say_hello() which is defined below
+    def wrapper():
+        print("Before the function is called.")
+        func()             # calling of say_hello
+        print("After the function is called.")
+    return wrapper
+# Decorators takes another function as argument here decorator is taking say_hello as argument.
+@my_decorator
+def say_hello():
+    print("Hello, world!")
+say_hello()
+# Before the function is called.
+# Hello, world!
+# After the function is called.
+                       </code></pre>
+                   </div>  
+                    <h2 class="text-info mt-2">Use Cases</h2>
+                    <p><strong class="text-primary fs-3">Access Control: </strong>Restrict access based on conditions</p>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon48"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon48"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode48">
+# example when wrapper takes an Argument
+def require_admin(func):
+    def wrapper(user):
+        if user != "admin":
+            print("Access denied!")
+            return
+        return func(user)
+    return wrapper
+
+@require_admin
+def view_dashboard(user):
+    print(f"Welcome, {user}!")
+
+view_dashboard("guest")  # Access denied!
+view_dashboard("admin")  # Welcome, admin!   
+                       </code></pre>
+                   </div>
+                    <p><strong class="text-primary fs-3">Type Error Handling: </strong>to prevent the type error.</p>
+                    <p>This code defines a decorator, int_only, which ensures that the argument passed to the decorated function is of type int. When the square function is called, the decorator's wrapper function first checks the type of the argument using the built-in function isinstance(). If the argument is not an integer, it raises a TypeError using the built-in function raise, along with an error message that includes the invalid type, retrieved using type() and .__name__. If the type check passes, the original function (square) is called, and it calculates the square of the number by returning n * n. The @int_only decorator effectively enforces type safety for the square function without modifying its core logic.</p>
+                    <ul><h4>Role of Builtin Functions</h4>
+                        <li><strong>isinstance(arg, int): </strong>Checks if the argument (arg) is an instance of the specified type (int).Ensures type safety by validating the argument before calling the original function.</li>
+                        <li><strong>type(arg): </strong>Returns the type of the object (arg), such as <class 'int'> or <class 'str'>.Used here to identify the actual type of the argument if it fails the type check. </li>
+                        <li><strong>.__name__: </strong>An attribute of the type object returned by type().Extracts the type name (e.g., "int", "str") as a string for user-friendly error messages.</li>
+                        <li><strong>raise: </strong>Raises an exception (in this case, TypeError) when the type check fails. Stops further execution and notifies the user of the invalid argument type.</li>
+                        <li><strong>print(): </strong>Outputs the result</li>
+                    </ul>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon49"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon49"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode49">
+def int_only(func):
+    def wrapper(arg):
+        if not isinstance(arg, int):  # Check if the argument is an integer
+            raise TypeError(f"Argument must be of type int, got {type(arg).__name__}")
+        return func(arg)
+    return wrapper
+
+@int_only
+def square(n):
+    return n * n
+
+# Test cases
+print(square(4))    # Works: Outputs 16
+print(square("4"))
+                       </code></pre>
+                   </div>
+                    <p><strong class="text-primary fs-3">Execution time of a function: </strong>Measure the time a function takes to execute</p>
+                    <h4>Explanation</h4>
+                    <p>The timing_decorator wraps the original function, measuring the time before and after its execution to calculate and print the time taken. It takes any number of positional and keyword arguments (*args and **kwargs), passing them to the original function to maintain its functionality.</p>
+                    <h4>Builtin Functions Used</h4>
+                    <ul>
+                        <li>time.time(): Returns the current time in seconds since the Epoch (typically January 1, 1970). It's used here to capture the start and end times for measuring execution duration.</li>
+                        <li>print(): Output the result</li>
+                    </ul>
+                    <h4>Use of *args and **kwargs:</h4>
+                    <p>*args: Allows the function to accept an arbitrary number of positional arguments (passed as a tuple). It makes the function flexible, so it can handle different numbers of arguments without explicitly defining them.**kwargs: Allows the function to accept an arbitrary number of keyword arguments (passed as a dictionary). It enables the function to be extended in the future without breaking its signature. </p>
+                    <h4>Advantages of Using *args and **kwargs</h4>
+                    <p><strong>Flexibility: </strong>Functions can accept any number of arguments, making them adaptable to different scenarios.</p>
+                    <p><strong>Reusability: </strong>The function can work with different sets of arguments without modification.</p>
+                    <p><strong>Maintainability: </strong>They allow future extensions without changing the function's structure or breaking the existing code.</p>
+                    <div class="code-container">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon50"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon50"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode50">
+import time
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} with args {args} and kwargs {kwargs} took {end_time - start_time:.4f} seconds")
+        return result
+    return wrapper
+@timing_decorator
+def slow_function():
+    time.sleep(2)  # Simulate a slow task
+    print("Finished slow function!")
+slow_function()
+
+@timing_decorator
+def add_numbers(a, b, c):
+    time.sleep(1)  # Simulate a slow task
+    total = a + b + c
+    print(f"Sum of {a}, {b}, and {c}: {total}")
+    return total
+
+# Call the decorated function
+result = add_numbers(5, 10, 15)
+print("Result:", result)
+                       </code></pre>
+                   </div>
+                </div>       
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

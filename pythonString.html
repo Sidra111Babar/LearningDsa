@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Strings</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                    <h1 class="text-primary">Strings</h1>
+                    <p>A string in Python is a sequence of characters enclosed in single ('), double ("), or triple quotes (''' or """`). Strings are one of the most commonly used data types and are immutable, meaning they cannot be changed once created.</p>
+                    <h3>Example</h3>
+                    <div>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    # Single and Double quote
+    string1 = 'Hello, World!'
+    string2 = "Python Strings"
+    print(string1)  # Output: Hello, World!
+    print(string2)  # Output: Python Strings
+                        </code></pre>
+                    </div>
+                    <h3>Example</h3>
+                    <div>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    # Single and Double quote
+    multiline_string = '''This is a multiline string.
+    It can span multiple lines.'''
+    print(multiline_string)
+                        </code></pre>
+                    </div>
+                    <h2 class="text-info">Common String Operations</h2>
+                    <ol>
+                        <li><strong>Accessing Characters: </strong>Strings are indexed, allowing you to access individual characters
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    string = "Python"
+    print(string[0])  # Output: P
+    print(string[-1]) # Output: n                               
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><strong>String Slicing: </strong>Extract a part of the string using slicing:
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    string = "Programming"
+    print(string[0:4])   # Output: Prog
+    print(string[-3:])   # Output: ing
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><strong>String Length: </strong>Use the len() function
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    string = "Hello"
+    print(len(string))  # Output: 5 
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><strong>Split a String: </strong>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    text = "Python is fun"
+    print(text.split())  # Output: ['Python', 'is', 'fun']
+                                </code></pre>
+                            </div>
+                        </li>
+                        <li><strong>String Formatting or f String:</strong>
+                            <div>
+                                <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+    name = "Sidra"
+    fname = "Babar" 
+    city = "Dreams"
+    print(f"My name is {name} and my father name is {fname}.I lives in {city}")
+                                </code></pre>
+                            </div>
+                        </li>
+                    </ol>
+                    <h2 class="text-info">List of Most Common Methods</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered border-primary table-primary">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Method</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"> Case Conversion</th>
+                                    <td>.capitalize()</td>
+                                    <td>Capitalizes the first character.</td>
+                                    <td>"python".capitalize() → Python</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.lower()</td>
+                                    <td>Converts all characters to lowercase.</td>
+                                    <td>"PYTHON".lower() → python</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.upper()</td>
+                                    <td>Converts all characters to uppercase.</td>
+                                    <td>"python".upper() → PYTHON</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.swapcase()</td>
+                                    <td>Swaps the case of all characters.</td>
+                                    <td>"PyThOn".swapcase() → pYtHoN</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.title()</td>
+                                    <td>Capitalizes the first character of each word.</td>
+                                    <td>"hello world".title() → Hello World</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Alignment</th>
+                                    <td>.center(width, char)</td>
+                                    <td>Aligns the string to the center.</td>
+                                    <td>"Python".center(10, '-') → --Python--</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.ljust(width, char)</td>
+                                    <td>Aligns the string to the left.</td>
+                                    <td>"Python".ljust(10, '-') → Python----</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.rjust(width, char)</td>
+                                    <td>Aligns the string to the right.</td>
+                                    <td>"Python".rjust(10, '-') → ----Python</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.zfill(width)</td>
+                                    <td>Pads the string with zeros on the left.</td>
+                                    <td>"42".zfill(5) → 00042</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Searching</th>
+                                    <td>.count(substring)</td>
+                                    <td>Counts occurrences of a substring.</td>
+                                    <td>"hello".count('l') → 2</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.find(substring)</td>
+                                    <td>Finds the first occurrence of a substring.</td>
+                                    <td>"hello".find('e') → 1</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.rfind(substring)</td>
+                                    <td>Finds the last occurrence of a substring.</td>
+                                    <td>"hello".rfind('l') → 3</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.index(substring)</td>
+                                    <td>Like .find(), but raises an error if not found.</td>
+                                    <td>"hello".index('e') → 1</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.rindex(substring)</td>
+                                    <td>Like .rfind(), but raises an error if not found.</td>
+                                    <td>"hello".rindex('l') → 3</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Checking</th>
+                                    <td>.startswith(prefix)</td>
+                                    <td>Checks if the string starts with the prefix.</td>
+                                    <td>"hello".startswith('he') → True</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.endswith(suffix)</td>
+                                    <td>Checks if the string ends with the suffix.</td>
+                                    <td>"hello".endswith('lo') → True</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.isalnum()</td>
+                                    <td>Returns True if all characters are alphanumeric.</td>
+                                    <td>"hello123".isalnum() → True</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.isalpha()</td>
+                                    <td>Returns True if all characters are alphabetic.</td>
+                                    <td>"hello".isalpha() → True</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>.isdigit()</td>
+                                    <td>Returns True if all characters are digits.</td>
+                                    <td>"123".isdigit() → True</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <h3>Example</h3> 
+                        <div class="code-container">
+                            <div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                               </div>
+                               <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                                   <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                               </div>
+                                <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon36"></i>
+                                <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon36"></i>
+                            </div>
+                           <pre class="mt-2"><code class="language-cpp" id="SimpleNodeCode36">
+# ------------------- Python String Methods Demonstration -------------------
+
+# Case Conversion
+str1 = "hello World"
+print(str1.capitalize())  # Capitalizes the first character
+print(str1.lower())       # Converts to lowercase
+print(str1.upper())       # Converts to uppercase
+print(str1.swapcase())    # Swaps case
+print(str1.title())       # Capitalizes the first character of each word
+
+# Alignment
+str2 = "Python"
+print(str2.center(10, '-'))  # Centers the string with padding
+print(str2.ljust(10, '-'))   # Left-justifies the string with padding
+print(str2.rjust(10, '-'))   # Right-justifies the string with padding
+print("42".zfill(5))         # Pads the string with zeros on the left
+
+# Searching
+str3 = "hello"
+print(str3.count('l'))       # Counts occurrences of a substring
+print(str3.find('e'))        # Finds the first occurrence of a substring
+print(str3.rfind('l'))       # Finds the last occurrence of a substring
+print(str3.index('e'))       # Finds the index of a substring
+print(str3.rindex('l'))      # Finds the last index of a substring
+
+# Checking
+str4 = "Hello123"
+print(str4.startswith('He'))   # Checks if the string starts with a prefix
+print(str4.endswith('23'))     # Checks if the string ends with a suffix
+print(str4.isalnum())          # Checks if all characters are alphanumeric
+print(str4.isalpha())          # Checks if all characters are alphabetic
+print(str4.isdigit())          # Checks if all characters are digits
+print("  ".isspace())          # Checks if all characters are whitespace
+
+# Modifying
+str5 = "   Python   "
+print(str5.strip())            # Removes leading and trailing whitespace
+print(str5.rstrip())           # Removes trailing whitespace
+print(str5.lstrip())           # Removes leading whitespace
+
+str6 = "Python is awesome!"
+print(str6.replace("awesome", "great"))  # Replaces a substring with another
+
+# Splitting and Joining
+str7 = "apple,banana,cherry"
+print(str7.split(','))       # Splits the string at each occurrence of a separator
+print(" ".join(["I", "love", "Python"]))  # Joins elements of a list with a separator
+
+# Other
+print("Python".islower())    # Checks if all characters are lowercase
+print("PYTHON".isupper())    # Checks if all characters are uppercase
+print("123".isnumeric())     # Checks if all characters are numeric
+print("¼".isdecimal())       # Checks if all characters are decimal
+print("½".isprintable())     # Checks if all characters are printable
+print("hello".encode())      # Encodes the string to bytes
+print("Hello World".find("World"))  # Finds the index of a substring
+
+# Formatting
+str8 = "Hello {name}, welcome to {place}"
+print(str8.format(name="Sidra", place="Python World"))  # Formats strings with placeholders
+
+# Example with escape sequences
+print("Python\nProgramming")  # Demonstrates a newline character
+print("Python\tProgramming")  # Demonstrates a tab character
+                           </code></pre>
+                       </div>
+                    </div>        
+                </div>        
+            </div>
+       </div>
+
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 
