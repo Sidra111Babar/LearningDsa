@@ -1,7 +1,7 @@
 .darkCode-mode {
     background-color: #000000;
 }
-.code-container {
+/* .code-container {
     background-color: #282C34;
     border: 2px solid #61dafb;
     border-radius: 10px;
@@ -10,6 +10,20 @@
     color: white;
     overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
+} */
+
+/* *****************************Updated CSS */
+.code-container {
+    background-color: #282C34;
+    border: 2px solid #61dafb;
+    border-radius: 10px;
+    padding: 0px 20px;
+    max-width: 800px;
+    color: white;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 80vh;
+    font-family: 'Courier New', Courier, monospace;
 }
 /* Single Linked List Page */
 .dark-mode .SingleLinkedListPage{
@@ -17,4 +31,7 @@
 }
 .dark-mode .SingleLinkedListPage{
     color: white;
+}
+.iconsContainer{
+    position: sticky; top:0; background-color:#282C34; padding:10px; margin-right: -2px; margin-left: -2px;
 }

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/Python.svg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="dist/mutiFileReference.js"></script>
+    <link rel="stylesheet" href="css/darkbg.css">
+    <title>Django with Celery</title>
+</head>
+<body>    
+         <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
+            <div class="container-fluid">
+            <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
+            <div class="d-flex gap-3 firstNavIcons">
+                <i class='bx bx-moon fs-4' id="darkLightIcon"></i>
+                    <!-- Button trigger modal -->
+                <!-- <i  class='bx bx-user fs-4' data-bs-toggle="modal" data-bs-target="#loginFormModal"></i>   -->
+                <!-- Modal -->
+                <div class="modal fade " id="loginFormModal" tabindex="-1" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content loginSignUpFormModal" style=" color: rgb(9, 171, 236);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginFormModalLabel">SignUp</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="signupForm">
+                                <div class="mb-3">
+                                  <label for="name" class="form-label">Name</label>
+                                  <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                  <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <div id="loginPrompt" class="text-center mt-3"></div>
+                              </form>
+                              <div id="loginForm" class="text-center">
+                                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+                              </div>                              
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="navbarSupportedContent d-flex flex-row gap-3">
+                <div>
+                    <form class="d-flex" role="search" id="searchForm" onsubmit="handleSearch(event)">
+                        <input type="text" id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn searchBtn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div id="navbar" style="position: sticky; top:0; z-index: 1000;"></div>
+        <script>loadContent('navbar.html', 'navbar');</script>
+        <div id="pythonSideBar"></div>
+        <script>loadContent('pythonSideBar.html', 'pythonSideBar');</script>
+       <div class="container-fluid SingleLinkedListPage">
+            <div class="row">
+                <div class="col-md-3 p-5">
+                </div>
+                <div class="col-md-9 animationCol pb-5" style=" position: relative;">
+                     <h1 class="text-primary">Celery</h1>
+                     <p>Celery is an asynchronous task queue that allows you to run time-consuming or background tasks in a Django application without blocking the main execution thread. It is commonly used for:</p>
+                     <ul>
+                        <li>Sending emails asynchronously</li>
+                        <li>Processing large data sets</li>
+                        <li>Running scheduled tasks</li>
+                        <li>Handling background jobs like file uploads, API calls, or notifications</li>
+                     </ul>
+                     <h3 class="text-info">Benefits of Celery</h3>
+                     <ul>
+                        <li><strong>Asynchronous Execution: </strong>Runs tasks in the background, improving application performance.</li>
+                        <li><strong>Scalability: </strong>Can handle multiple tasks efficiently, supporting distributed task queues.</li>
+                        <li><strong>Scheduled Tasks: </strong>Supports periodic and scheduled execution of tasks.</li>
+                        <li><strong>Error Handling & Retries: </strong>Automatically retries failed tasks.</li>
+                        <li><strong>Integration with Message Brokers: </strong>Works with Redis, RabbitMQ, etc.</li>
+                        <li><strong>Concurrency Support: </strong>Can process multiple tasks simultaneously using different worker pools.</li>
+                     </ul>
+                     <h3 class="text-info">Steps to Use Celery</h3>
+                     <h4 class="text-info">Install Celery</h4>
+                     <p>Run the following command to install Celery:</p>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+pip install celery 
+                        </code></pre>
+                     <h4 class="text-info">Create and Configure celery.py</h4>
+                     <p>In your Django project folder, create a celery.py file and add the following setup (from Django documentation):</p>
+                     <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon164"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon164"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode164">
+import os
+
+from celery import Celery
+
+# Set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'scrapper.settings')
+
+app = Celery('scrapper')
+
+# Using a string here means the worker doesn't have to serialize
+# the configuration object to child processes.
+# - namespace='CELERY' means all celery-related configuration keys
+#   should have a `CELERY_` prefix.
+app.config_from_object('django.conf:settings', namespace='CELERY')
+
+# Load task modules from all registered Django apps.
+app.autodiscover_tasks()
+
+
+@app.task(bind=True, ignore_result=True)
+def debug_task(self):
+    print(f'Request: {self.request!r}')
+                       </code></pre>
+                    </div>
+                     <h4 class="text-info">Update __init__.py</h4>
+                     <p>In the project’s __init__.py, add:</p>
+                     <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon165"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon165"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode165">
+from .celery import app as celery_app
+
+__all__ = ('celery_app',)
+                       </code></pre>
+                    </div>
+                     <h4 class="text-info">Configure Celery in settings.py</h4>
+                     <p>Add the following configuration to settings.py:</p>
+                     <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon166"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon166"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode166">
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+                       </code></pre>
+                    </div>
+                     <h4 class="text-info">Install and Setup Redis</h4>
+                     <p>Since Celery needs a message broker, install Redis in your virtual environment:</p>
+                     <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+pip install redis
+                     </code></pre>
+                     <h4 class="text-info">Create tasks.py in Django App</h4>
+                     <p>Inside your Django app folder, create a tasks.py file and define a sample task:</p>
+                     <div class="code-container my-2">
+                        <div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
+                           </div>
+                           <div style="position: realtive; transition: 2s ease;" class="d-none notCopiedMessage">
+                               <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(205, 22, 22, 0.427); color: white; border-radius: 5px;" >Not Copied!</p>
+                           </div>
+                            <i class='bx bx-copy text-dark bg-light p-2 rounded' id="copyIcon167"></i>
+                            <i class='bx bx-moon text-dark bg-light p-2 rounded lightDarkIconForCode' id="lightDarkIcon167"></i>
+                        </div>
+                       <pre class="mt-2"><code class="language-python" id="SimpleNodeCode167">
+from celery import shared_task
+import time
+import os
+import requests
+@shared_task
+def add(x, y):
+    # this will delay website for 5 seconds
+    time.sleep(5)
+    return x + y
+                       </code></pre>
+                    </div>
+                     <h4 class="text-info">Call Celery Task in views.py</h4>
+                     <p>Import and use the Celery task in views.py:</p>
+
+                     <h4 class="text-info">Install Eventlet (For Windows Users)</h4>
+                     <p>Windows users need eventlet for Celery workers:</p>
+                     <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+pip install eventlet
+                     </code></pre>
+                     <h4 class="text-info">Start Celery Worker</h4>
+                     <p>Run the Celery worker using:</p>
+                        <pre class="mt-3 rounded-end" style="border-left: 5px solid #3de1ec;"><code class="language-python">
+celery -A projectname worker -l info -P eventlet
+                        </code></pre>
+                     <p><strong class="text-danger">Note: </strong>Replace projectname with your actual Django project name</p>
+
+                     <h4 class="text-info">Running Background Tasks with Celery</h4>
+                     <p>To move an existing function (e.g., download_image) to Celery:</p>
+                     <p>In script.py, import and call the function with .delay():</p>
+
+                     <h4 class="text-info">Restart Celery Worker</h4>
+                     <p>Stopping the worker: CTRL + C. Running it again</p>
+                </div>
+            </div>
+       </div>
+       <script>loadContent('Up.html', 'quickUp');</script>
+        <div id="quickUp"></div>
+       <script>loadContent('footer.html', 'footer');</script>
+       <div id="footer"></div>
+       <script src="js/searchFunctionlity.js"></script>
+       <script src="dist/up.js"></script>
+       <script src="dist/codeFunctionality.js"></script>
+       <script src="dist/index.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+       <script>hljs.highlightAll();</script>
+</body>
+</html> 

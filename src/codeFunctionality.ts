@@ -533,3 +533,15 @@ copyFunction('SimpleNodeCode162', 'copyIcon162');
 
 darkLightCodeFunction('SimpleNodeCode163', 'lightDarkIcon163');
 copyFunction('SimpleNodeCode163', 'copyIcon163');
+
+darkLightCodeFunction('SimpleNodeCode164', 'lightDarkIcon164');
+copyFunction('SimpleNodeCode164', 'copyIcon164');
+
+darkLightCodeFunction('SimpleNodeCode165', 'lightDarkIcon165');
+copyFunction('SimpleNodeCode165', 'copyIcon165');
+
+darkLightCodeFunction('SimpleNodeCode166', 'lightDarkIcon166');
+copyFunction('SimpleNodeCode166', 'copyIcon166');
+
+darkLightCodeFunction('SimpleNodeCode167', 'lightDarkIcon167');
+copyFunction('SimpleNodeCode167', 'copyIcon167');
