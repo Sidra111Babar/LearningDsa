@@ -10,32 +10,25 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/darkbg.css">
     <script src="dist/mutiFileReference.js"></script>
     <title>Circular Linked list</title>
 </head>
 <body>
-     <style>   
-            .darkCode-mode {
-                background-color: #000000;
-            }
-            .code-container {
-                background-color: #282C34;
-                border: 2px solid #61dafb;
-                border-radius: 10px;
-                padding: 20px;
-                max-width: 600px;
-                color: white;
-                overflow-x: auto;
-                font-family: 'Courier New', Courier, monospace;
-            }
-            /* Single Linked List Page */
-            .dark-mode .SingleLinkedListPage{
-                background-color: #282C34;
-            }
-            .dark-mode .SingleLinkedListPage{
-                color: white;
-            }
-     </style>
+    <style>
+        .code-container {
+            background-color: #282C34;
+            border: 2px solid #61dafb;
+            border-radius: 10px;
+            padding: 0px 20px;
+            max-width: 800px;
+            color: white;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 80vh;
+            font-family: 'Courier New', Courier, monospace;
+    }
+    </style>
          <nav class="navbar navbar-expand-lg d-flex firstNavBar border-bottom border-tertiary">
             <div class="container-fluid">
             <a class="navbar-brand fs-4 fw-bold firstnavHeading" href="#"><img src="assets/cppdsaImg (1).png" alt="" style="width: 30px; height: 30px; border-radius: 50%;"></a>
@@ -111,7 +104,7 @@
                         <li>There is no nullptr or NULL termination in a circular linked list, which means you have to be careful when traversing the list to avoid infinite loops.</li>
                     </ul>
                     <div class="code-container">
-                         <div>
+                         <div class="iconsContainer">
                             <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
                                 <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
                             </div>
@@ -153,7 +146,7 @@
                               </ul>
                               <h2>Traversal from any node</h2>
                               <div class="code-container">
-                                <div>
+                                <div class="iconsContainer">
                                     <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
                                         <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
                                     </div>
@@ -249,7 +242,7 @@ int main() {
                         </ul>
                         <h2 class="my-3">Circular Linked List Without maintaining tail pointer</h2>
                         <div class="code-container">
-                            <div>
+                            <div class="iconsContainer">
                                 <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
                                     <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
                                 </div>
@@ -467,7 +460,7 @@ int main() {
                        </div>
                        <h2 class="my-3">Circular Linked List with Tail Pointer</h2>
                         <div class="code-container mt-2">
-                            <div> 
+                            <div class="iconsContainer"> 
                                 <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
                                     <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
                                 </div>
@@ -685,7 +678,7 @@ int main(){
                 <div class="mt-2">
                     <h2 class="my-3">Recursive Approach</h2>
                     <div class="code-container">
-                        <div>
+                        <div class="iconsContainer">
                             <div style="position: realtive; transition: 2s ease;" class="d-none copiedMessage">
                                 <p  style="position: absolute; left: 40%; padding: 10px;clip-path: polygon(0% 15%, 0 0, 15% 0%, 85% 0%, 100% 0, 100% 15%, 100% 85%, 85% 85%, 63% 86%, 53% 100%, 42% 86%, 0% 85%); background-color: rgba(111, 44, 244, 0.603); color: white; border-radius: 5px;" >Copied!</p>
                             </div>
